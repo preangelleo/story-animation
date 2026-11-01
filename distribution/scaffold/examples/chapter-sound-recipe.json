@@ -1,0 +1,10 @@
+{
+  "name": "chapter_dull_drum",
+  "category": "sfx",
+  "prompt": "One single muted low drum impact, close-mic, deep soft wooden floor tom thump, restrained cinematic chapter punctuation, loud and clear, silent background, rapid warm decay within one second, no speech, no music, no repeated hits, original sound.",
+  "seconds": 1,
+  "audio_included": false,
+  "reason": "ElevenCreative Terms Exhibit 4 section 2 prohibits distribution of isolated sound-effect files or sound libraries outside its own community sharing; recipients generate with their own account or use separately licensed audio.",
+  "terms": "https://elevenlabs.io/creative-terms",
+  "volume_intent": "restrained, quiet; audition before using; no sudden loud impact"
+}

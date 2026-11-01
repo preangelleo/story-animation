@@ -1,0 +1,10 @@
+{
+  "type": "object",
+  "properties": {
+    "project_name": {
+      "type": "string",
+      "default": "Story Animation",
+      "description": "可编辑频道名"
+    }
+  }
+}

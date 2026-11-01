@@ -1,0 +1,809 @@
+{
+  "automations": [],
+  "category": "workflow",
+  "entry": "README.md",
+  "files": [
+    {
+      "bytes": 1986,
+      "path": "README.md",
+      "sha256": "b65de6e44cbf14b6543efd88b6a53a65330b943987875ea106a6fd389b2a4773"
+    },
+    {
+      "bytes": 176,
+      "path": "params.schema.json",
+      "sha256": "74bc8814e1db27861e873f955b627377d8cfc2a739717a2e072e4515a26eb7bd"
+    },
+    {
+      "bytes": 326,
+      "path": "scaffold/.claude/agents/audience-analyst.md",
+      "sha256": "0cc468bf916ed12d888dff3ba61fea39dc1a23512e8c3944dcc163dfe353521a"
+    },
+    {
+      "bytes": 388,
+      "path": "scaffold/.claude/agents/chapter-transition-designer.md",
+      "sha256": "858d80c16e6974536edf743525d3385239d43ff6fc716ef2359e636be00f9ef0"
+    },
+    {
+      "bytes": 330,
+      "path": "scaffold/.claude/agents/character-designer.md",
+      "sha256": "45fb49fd5877b53a1cdfbb66c7083831fa3fdce39668070363f6781a111d042c"
+    },
+    {
+      "bytes": 306,
+      "path": "scaffold/.claude/agents/dev-maintainer.md",
+      "sha256": "bf6e583f88ece81240835d31c567a1142ef8d34dc414f35fbea85f3b45d06e08"
+    },
+    {
+      "bytes": 335,
+      "path": "scaffold/.claude/agents/media-producer.md",
+      "sha256": "7c7ddceb54cbf61059de01c3081d2ff4aa6cf1cc4f8a93c2aa29840826261c51"
+    },
+    {
+      "bytes": 327,
+      "path": "scaffold/.claude/agents/release-operator.md",
+      "sha256": "e66222f4c1bc74e95c1c3d0bd99acb3499970669aa4edaec372f0d93be82d4ae"
+    },
+    {
+      "bytes": 320,
+      "path": "scaffold/.claude/agents/story-author.md",
+      "sha256": "e2c4e35c910e75b9e020c46e0f14c40e511ed28f465dcbb28ad66cdd2b1ece2e"
+    },
+    {
+      "bytes": 307,
+      "path": "scaffold/.claude/agents/story-editor.md",
+      "sha256": "3370e4d22706a230d9513383214a972b5635791d4ff56f7c4134670e24997726"
+    },
+    {
+      "bytes": 312,
+      "path": "scaffold/.claude/agents/story-researcher.md",
+      "sha256": "2a399a626a072c8519d9901885ce365cd96bd4fc7b76291fbb7f956a8634f40f"
+    },
+    {
+      "bytes": 318,
+      "path": "scaffold/.claude/agents/theme-planner.md",
+      "sha256": "7fec3e5faca1b2487ff146edf4636ad042df33342dbf5b1f6607fd1f80a14859"
+    },
+    {
+      "bytes": 1167,
+      "path": "scaffold/.claude/agents/thumbnail-designer.md",
+      "sha256": "b0d80769ce7b910bceb14ceb1141c58528f053302178d2f210823ecd0db3b8f9"
+    },
+    {
+      "bytes": 807,
+      "path": "scaffold/AGENTS.md",
+      "sha256": "39def547f625ebf44e925e7c9ce362a07513f7104343b5c7a098bd67e3c542b0"
+    },
+    {
+      "bytes": 662,
+      "path": "scaffold/NOTICE.md",
+      "sha256": "fef754a0a0f2501ba6ba20b1500246f175f732096adecf3657d97ec12a3ee4ab"
+    },
+    {
+      "bytes": 1561,
+      "path": "scaffold/README.md",
+      "sha256": "75f6705a50c9d4e19ab2d8c737605b55c6de8880a153bc6f571818d6310c5b55"
+    },
+    {
+      "bytes": 2810,
+      "path": "scaffold/SKILL.md",
+      "sha256": "4fc52784659200919931c82f903c60654aa93a80c6d7351729d4beee07c8d880"
+    },
+    {
+      "bytes": 1179,
+      "path": "scaffold/adapters/el.py",
+      "sha256": "1421e05df1d3636af34e9a927906079c46341599e637b102ce8ced4348631de2"
+    },
+    {
+      "bytes": 1274,
+      "path": "scaffold/adapters/replicate.py",
+      "sha256": "ee3ca5117c44e1aff565d5d0ff0e76369f6a22e6490fb4a4ee9667f06ac9600d"
+    },
+    {
+      "bytes": 501,
+      "path": "scaffold/adapters/review-upload.py",
+      "sha256": "5ab3a34002ed239300c768db900ce353b7597aa90a3cbd0bdd1f98e4be70df9a"
+    },
+    {
+      "bytes": 2005,
+      "path": "scaffold/adapters/yt.py",
+      "sha256": "18ce0514e907e67b4b4dfe99f68a375bbe2aba622f20201e46c95e21e73f7bee"
+    },
+    {
+      "bytes": 257,
+      "path": "scaffold/bin/qy",
+      "sha256": "d7a8071fef6c9f07a449804297bf50d8c9ce6cdaf11570e70c8f394249195b2e"
+    },
+    {
+      "bytes": 257,
+      "path": "scaffold/bin/story-animation",
+      "sha256": "3f57d164a0889b19077427148ae516181cc1df9a0dbbc597400ae608a059dc65"
+    },
+    {
+      "bytes": 24259,
+      "path": "scaffold/config/styles.json",
+      "sha256": "d58bc9d9aa78996aac09f8b382853e4ea6abf1e8310473896aa7c1685bb83582"
+    },
+    {
+      "bytes": 1356,
+      "path": "scaffold/config/weekly_series.json",
+      "sha256": "2f6b471a10bd6bdf27edfd0e36d587b097e129a1ecebd05315f8d467872bd6ac"
+    },
+    {
+      "bytes": 1076,
+      "path": "scaffold/documentation/FONTS.md",
+      "sha256": "5f258cfb299175b29a3bd2a4d845c11f7434997b89b373a7152d157a19a6dd44"
+    },
+    {
+      "bytes": 4602,
+      "path": "scaffold/documentation/PROVIDERS.md",
+      "sha256": "820851617a5104aa94c8267869d8e457b18ea7239cd288d870bd9e168e77d8cc"
+    },
+    {
+      "bytes": 1394,
+      "path": "scaffold/documentation/RELEASE.md",
+      "sha256": "908b545a3d083d8facdb62e2c90686e4a6667c1ce695dd123ea93a4911bb109b"
+    },
+    {
+      "bytes": 4922,
+      "path": "scaffold/documentation/WORKFLOW.md",
+      "sha256": "380c7695fb8c4da11d4e33862dcec2b21511684140dafad531d391dd978bf613"
+    },
+    {
+      "bytes": 1774,
+      "path": "scaffold/documentation/configuration.json",
+      "sha256": "aac5af7f1ec250af607664a6b9747aab28f4ec4515d40717c4286dfa4c84bb90"
+    },
+    {
+      "bytes": 2543,
+      "path": "scaffold/documentation/playbooks/multilingual_captions.md",
+      "sha256": "c8af0028f06c16dbbf01d50c9d95b6e5bb7a68008955ff270bc71be94ebfb3e9"
+    },
+    {
+      "bytes": 6352,
+      "path": "scaffold/documentation/playbooks/pilot_release.md",
+      "sha256": "1e5b9f689134ca9536c49bb1357d67362b9d25c6b06d0a2324c9d98bbf15343a"
+    },
+    {
+      "bytes": 3466,
+      "path": "scaffold/documentation/playbooks/thumbnail_design.md",
+      "sha256": "8e4c9c16d2d639444f69ef40e99a011a06a7743b203b5dd07ea61ca10752418c"
+    },
+    {
+      "bytes": 342,
+      "path": "scaffold/examples/author-brief.md",
+      "sha256": "4c64347540c736a41a79548e0d4de59d52cdd24f6f5095e9b571e9b08b2ecbf5"
+    },
+    {
+      "bytes": 738,
+      "path": "scaffold/examples/chapter-sound-recipe.json",
+      "sha256": "cfe46a189b4776512961b91019111d0375cf596b62901f4bb54c2dc97c4a9993"
+    },
+    {
+      "bytes": 193,
+      "path": "scaffold/examples/materials/dossier.md",
+      "sha256": "f5ad061755067f007880e348759a3ac4f43a7844331376f697931436a550cefb"
+    },
+    {
+      "bytes": 191,
+      "path": "scaffold/examples/materials/sources.json",
+      "sha256": "c309c2e22bbf46f5597bb426960fb90da3d563407bf5c9ed83d19c1698a6977e"
+    },
+    {
+      "bytes": 125,
+      "path": "scaffold/examples/materials/themes.json",
+      "sha256": "6fb41d59cd474dd869d30c5dd1d43a79f38900f2041e3e39c926326ca75b959b"
+    },
+    {
+      "bytes": 779,
+      "path": "scaffold/examples/pilot/README.md",
+      "sha256": "2bad0969c59ccd8438a737c7a25ec4585f7da394aeb9c38bfe226a0c8625fbbf"
+    },
+    {
+      "bytes": 825,
+      "path": "scaffold/examples/pilot/accepted-media.json",
+      "sha256": "e557dac3a9c1e9af069281ac4202ed25ec0065b015b05203880457a2978df17a"
+    },
+    {
+      "bytes": 125,
+      "path": "scaffold/requirements.txt",
+      "sha256": "4d3274c7cbb28f96a0e881ad86604c3ecf6a285ce063ba1a3b3b19475f68049d"
+    },
+    {
+      "bytes": 277,
+      "path": "scaffold/roles/audience-analyst.md",
+      "sha256": "6c81e4d47f4c9c78f78df0fa6fad0c1c31ae17ba6386d8f1053b50ecb1e740e1"
+    },
+    {
+      "bytes": 328,
+      "path": "scaffold/roles/chapter-transition-designer.md",
+      "sha256": "e59aa56f3afc696d571c882ab7e143a4ec48abf4b4d09def03dd57d78315eb4b"
+    },
+    {
+      "bytes": 279,
+      "path": "scaffold/roles/character-designer.md",
+      "sha256": "bdad2d6c21b4747f1c0ae60611cc978711919f72f7694e89c07f4c186687bb11"
+    },
+    {
+      "bytes": 259,
+      "path": "scaffold/roles/dev-maintainer.md",
+      "sha256": "3598191f40d27776501aab491ad77a386332ede442781498c9c8643e1bf550b1"
+    },
+    {
+      "bytes": 288,
+      "path": "scaffold/roles/media-producer.md",
+      "sha256": "ad1db60ab11b7e6c70d1a00f8fe1e3a8f3da01f6bec442f42b1a32506e1d47aa"
+    },
+    {
+      "bytes": 278,
+      "path": "scaffold/roles/release-operator.md",
+      "sha256": "4a6dad4830005f5a232d7bfa75a5953a881d15aed2b6f2d06a1ca96be0c74481"
+    },
+    {
+      "bytes": 275,
+      "path": "scaffold/roles/story-author.md",
+      "sha256": "e89e42f609c628e0e5e1e46a75998f4e7d0b0109bd860fc862981f41d08d18c5"
+    },
+    {
+      "bytes": 262,
+      "path": "scaffold/roles/story-editor.md",
+      "sha256": "a3d573dfcfbaa5aa0d47afcc037925420cb4d6e952c11013aff3d46995893174"
+    },
+    {
+      "bytes": 263,
+      "path": "scaffold/roles/story-researcher.md",
+      "sha256": "c0eb091f9d59ae1376d286f5b6fee77e0ad3dc403eb091645b17f7adcaf32279"
+    },
+    {
+      "bytes": 272,
+      "path": "scaffold/roles/theme-planner.md",
+      "sha256": "a9f27a69e3acad92d132ed7142809c76b2f5ddebfba89d6da50e45fcc3f2cbc5"
+    },
+    {
+      "bytes": 284,
+      "path": "scaffold/roles/thumbnail-designer.md",
+      "sha256": "0f8132d3f8a64c6073dd8f7c2b40ef3887344abb4f13b130f9d0176d7649885b"
+    },
+    {
+      "bytes": 1023,
+      "path": "scaffold/roles/thumbnail-designer.toml",
+      "sha256": "d76f3356669fd777478f781aa20ff3753d0e6b56aa2e143e83921e70ffbc0438"
+    },
+    {
+      "bytes": 2942,
+      "path": "scaffold/schemas/styles.schema.json",
+      "sha256": "9ba97c7a11bf41f3b60d74305d3974c20cb5c5f3ba53e763ab06a614b468401f"
+    },
+    {
+      "bytes": 1449,
+      "path": "scaffold/schemas/weekly_series.schema.json",
+      "sha256": "5eff166cfc3511cba6ff0878a92b26940de258e8a6d7d850788233ad932fc384"
+    },
+    {
+      "bytes": 1318,
+      "path": "scaffold/skills/story-captions-multilingual/SKILL.md",
+      "sha256": "7b2afc39199b6c8e11174e119a5f1a067c9f7e5d35740c846959f9a4d7c946c8"
+    },
+    {
+      "bytes": 1608,
+      "path": "scaffold/skills/story-pilot-release/SKILL.md",
+      "sha256": "1ab5758aab65328f208efaa3c93040e1c3b8b6d7e0f8dd057677b80292524032"
+    },
+    {
+      "bytes": 1405,
+      "path": "scaffold/skills/story-thumbnail/SKILL.md",
+      "sha256": "ae35f67504152e3f0cfc0d08bf5fbc34b21be112a1c02d98803d017152242dc7"
+    },
+    {
+      "bytes": 40,
+      "path": "scaffold/storyflow/__init__.py",
+      "sha256": "5b9e8a187bfc4d9b75412cd3c116472301f5ec3b36ed9a1ec41b238887c4a598"
+    },
+    {
+      "bytes": 3385,
+      "path": "scaffold/storyflow/asr_variants.py",
+      "sha256": "48cc035b25d55c20b0d2f70ab7c55c11bb60249cd05aa3e465f4324768839840"
+    },
+    {
+      "bytes": 10454,
+      "path": "scaffold/storyflow/burn_ops.py",
+      "sha256": "dbc1f2408ae05a2aa9d6e24f1d05ccb92215d4a34858e5b178bb4cdc33cae2a5"
+    },
+    {
+      "bytes": 18454,
+      "path": "scaffold/storyflow/captions.py",
+      "sha256": "d6b831013d6c5fd9b32dbff2a47f89e0492cd1a70ced8204dcb2b19bf223aacd"
+    },
+    {
+      "bytes": 9851,
+      "path": "scaffold/storyflow/captions_multilingual.py",
+      "sha256": "4573bb9525879355b2b2505231585928fa3da5907b75537f6364e5a069fe0082"
+    },
+    {
+      "bytes": 8128,
+      "path": "scaffold/storyflow/chapter_clip_gate.py",
+      "sha256": "08a1b7a7fd2cfbdf9b9030da6a05650026cf2a67e29a8358ce439e5c98ad067b"
+    },
+    {
+      "bytes": 31209,
+      "path": "scaffold/storyflow/chapter_mix.py",
+      "sha256": "4495ef897a7f3a997ae419240f9316281862d881bb2c490a693e9b2a08ee21e0"
+    },
+    {
+      "bytes": 15855,
+      "path": "scaffold/storyflow/chapter_render.py",
+      "sha256": "d6b55c405d7568209731dee8b3db825becf960fc21c96a7daa52144cf7cf2858"
+    },
+    {
+      "bytes": 16103,
+      "path": "scaffold/storyflow/chapters.py",
+      "sha256": "ccbfdabde892cae9879c59b3df326f55cd884418763721a0224d2f310807ea85"
+    },
+    {
+      "bytes": 7596,
+      "path": "scaffold/storyflow/cli.py",
+      "sha256": "37eb1058b7e327831eca82d2262b237fbffec85a4caa3b054e71df49ecf192af"
+    },
+    {
+      "bytes": 5431,
+      "path": "scaffold/storyflow/clock_qa.py",
+      "sha256": "b7eef616f95942ea666ac2c3e23a4583ebabeec63134975b788742c91b09e306"
+    },
+    {
+      "bytes": 59341,
+      "path": "scaffold/storyflow/core.py",
+      "sha256": "aa99af186bbe5517be60e6449c695b87cd7142578bbfbf999e34ecc391df331e"
+    },
+    {
+      "bytes": 89241,
+      "path": "scaffold/storyflow/integrations.py",
+      "sha256": "df55eb4c82fab5952e34ea31e062354131fb4c6e77a58b2e68d6ad0d1f5d5369"
+    },
+    {
+      "bytes": 3676,
+      "path": "scaffold/storyflow/manifest_ops.py",
+      "sha256": "1cd0d95e43905ac67a04ef52a5925ad3bf16e6c454d5c1015c1dfdb5e9ea1a28"
+    },
+    {
+      "bytes": 23854,
+      "path": "scaffold/storyflow/pilot_release.py",
+      "sha256": "e905553963b423bd8132950dc70b1f4b8bd152b2bc60216d823eb871abd790d1"
+    },
+    {
+      "bytes": 3468,
+      "path": "scaffold/storyflow/portable.py",
+      "sha256": "b22b8e7da0f65645fd033ef829b05d8755296fc26e5d2dad3595d49c49882b1e"
+    },
+    {
+      "bytes": 18151,
+      "path": "scaffold/storyflow/production.py",
+      "sha256": "88ecdaaa1118a6d55dcbbfa95ee8ef5492c6422ce0309fc87f02a7d231da161f"
+    },
+    {
+      "bytes": 3473,
+      "path": "scaffold/storyflow/providers.py",
+      "sha256": "48b82e2f8fad784da73d7a49525592c1dbe2fa5750553645b86816e076705bc0"
+    },
+    {
+      "bytes": 1938,
+      "path": "scaffold/storyflow/research_contract.py",
+      "sha256": "b7160cdd1ab23f60a9401ad294d9f290343c571b8bfb17beba824fe7c317966e"
+    },
+    {
+      "bytes": 786,
+      "path": "scaffold/storyflow/revision_gate.py",
+      "sha256": "333a3495b18db9b0d99903f4cfe5c14d65658dcccfb2f1069698cbce69f8b4bc"
+    },
+    {
+      "bytes": 12408,
+      "path": "scaffold/storyflow/scene_assembly.py",
+      "sha256": "2666907701c5618ca0462a5389a13d8b3fdc5d616b57adac10501771d69c3c83"
+    },
+    {
+      "bytes": 702,
+      "path": "scaffold/storyflow/scene_cleanup.py",
+      "sha256": "acf9f100e899d5fa212ce40139cabbe3eb4cafcca098f864f9413909f0c514bf"
+    },
+    {
+      "bytes": 3192,
+      "path": "scaffold/storyflow/scene_timing.py",
+      "sha256": "3e8f348413b2f3878708498f5db1088f6ab9b0c78056ff9e430a2195510b5087"
+    },
+    {
+      "bytes": 14682,
+      "path": "scaffold/storyflow/sound_library.py",
+      "sha256": "1017d949568227dfc91b2cc83b24c0bc7e5b3e1d551729bbe4ac69616ac0c920"
+    },
+    {
+      "bytes": 1867,
+      "path": "scaffold/storyflow/style_binding.py",
+      "sha256": "6bfe1311f3cc9f662b8117e80e9e1dab1cbd86a05c5c02a217625fb9aead1bb9"
+    },
+    {
+      "bytes": 12055,
+      "path": "scaffold/storyflow/style_registry.py",
+      "sha256": "7cd14bb2f795fd4042db70d2792706478ca0ce1fe49dc2264021f49177cc83fb"
+    },
+    {
+      "bytes": 1934,
+      "path": "scaffold/storyflow/styles_cli.py",
+      "sha256": "ca8df10d74b0959339cfcd60f8b10a04fe1c70a5b946562918da8817db3c3021"
+    },
+    {
+      "bytes": 0,
+      "path": "scaffold/storyflow/vendor/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 824,
+      "path": "scaffold/storyflow/vendor/smart_caption/SOURCE.json",
+      "sha256": "a5de40c43981eb3f926f8d5e269f2622c32d81f3729f443edc0f28fd4d13c5f5"
+    },
+    {
+      "bytes": 65,
+      "path": "scaffold/storyflow/vendor/smart_caption/__init__.py",
+      "sha256": "7a04d9566f6dd0748143554e829869dcf9a484500570471603ab49358a2c95b7"
+    },
+    {
+      "bytes": 6549,
+      "path": "scaffold/storyflow/vendor/smart_caption/caption_units.py",
+      "sha256": "46746898b6aea79cfde9617567493ac7cfa60fa43eda8d5560a78b91029c84c1"
+    },
+    {
+      "bytes": 5923,
+      "path": "scaffold/storyflow/vendor/smart_caption/convert.py",
+      "sha256": "54bbec92946b8bd329a6156782aa5cf6e0c01bfb9c211a4a8b8a1e544281b1bc"
+    },
+    {
+      "bytes": 13706,
+      "path": "scaffold/storyflow/vendor/smart_caption/segment.py",
+      "sha256": "e1a194d1ed079e6e33df69d630eea4db4135c77aa96237126c988663e8135573"
+    },
+    {
+      "bytes": 8647,
+      "path": "scaffold/storyflow/video_ops.py",
+      "sha256": "57a1a4e192161cd4158502f995e85f7622a8036604bd5948adbf07fdd7818e31"
+    },
+    {
+      "bytes": 3781,
+      "path": "scaffold/storyflow/visual_prompt.py",
+      "sha256": "03645b787615c2d6831cb191af33a04741e153d1f631b5080ceb22d82a9fe41a"
+    },
+    {
+      "bytes": 34813,
+      "path": "scaffold/storyflow/visuals.py",
+      "sha256": "f4ce5b9bc321e521a5b4f881e666851827eaeec269d3befeef79ab0ab965a3fc"
+    },
+    {
+      "bytes": 13434,
+      "path": "scaffold/storyflow/voice_rewrite.py",
+      "sha256": "e4a6b92c47861af0b0a1d66547ee090183f292bf9183a9521fc1cc0217c78daf"
+    },
+    {
+      "bytes": 999,
+      "path": "scaffold/templates/chapter-transition/default-preset.json",
+      "sha256": "37650a6eab1ccfd8e272bb59d0c69f50b0d326fd0e6112a46bc0729e5928e00d"
+    },
+    {
+      "bytes": 3732,
+      "path": "scaffold/templates/chapter-transition/parameters.schema.json",
+      "sha256": "676710514f51ec10b7031f05a11cb9c768450844686025a33ea83968b0db5929"
+    },
+    {
+      "bytes": 0,
+      "path": "scaffold/tests/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 6801,
+      "path": "scaffold/tests/test_alignment_asr_gate.py",
+      "sha256": "b14ff53a9facf82089a563c9ef0eb71797ad96a34a3cab975afca260a97fd033"
+    },
+    {
+      "bytes": 2214,
+      "path": "scaffold/tests/test_burn_timestamps.py",
+      "sha256": "38d5b0a1de3ea1e954499a4e400c16b8f4698c87695fca7a0c90ab4641cc42dd"
+    },
+    {
+      "bytes": 757,
+      "path": "scaffold/tests/test_caption_band_cleanup.py",
+      "sha256": "a6c516ccabd26f24c3e29bebb3efacbc99f4be3229afb9846169f4cf4e115cba"
+    },
+    {
+      "bytes": 3341,
+      "path": "scaffold/tests/test_caption_pipeline.py",
+      "sha256": "ef2902572102a1c6add6dc87ede17291437c1c2aad938a56de2087cd8611e908"
+    },
+    {
+      "bytes": 6863,
+      "path": "scaffold/tests/test_chapter_clip_gate.py",
+      "sha256": "63a9e21bf3c506908b478457aeccbf697d2e3be7c5dd46e339e0fc41a4be620a"
+    },
+    {
+      "bytes": 12113,
+      "path": "scaffold/tests/test_chapter_mix.py",
+      "sha256": "a3155a219df4b33242c80c894366d310ada33b2997575b3d5b478d4cc03b303f"
+    },
+    {
+      "bytes": 5677,
+      "path": "scaffold/tests/test_chapter_render.py",
+      "sha256": "5f0560c39391928eae13fa3a6e43d006d3b67889ab3bd0bfeb8a06f6106a48fd"
+    },
+    {
+      "bytes": 3176,
+      "path": "scaffold/tests/test_chapters.py",
+      "sha256": "ecf8aab343a054375ac10d11243ad4d5a11e43845b9f15fc27b54250a06c317b"
+    },
+    {
+      "bytes": 3851,
+      "path": "scaffold/tests/test_chinese_author_longform.py",
+      "sha256": "92156dfeb5d3b0c91f32dc740c3a68f6a148d43e85fd85ef46fbbc623ff8a136"
+    },
+    {
+      "bytes": 13599,
+      "path": "scaffold/tests/test_core.py",
+      "sha256": "d3355e5bf0af46eaf93a8f786046656399332c928e3cede6a686b607b3e7faff"
+    },
+    {
+      "bytes": 67131,
+      "path": "scaffold/tests/test_integrations.py",
+      "sha256": "ce21f7b1f0837cb404da492f3f0e02eca5be7f1a0555a9119819c6ac949d7edf"
+    },
+    {
+      "bytes": 17460,
+      "path": "scaffold/tests/test_multilingual_pilot.py",
+      "sha256": "d41ef7129958e61a6afdd8c8419a5663f4ba692e15bce3639cbd2bfbd1579d41"
+    },
+    {
+      "bytes": 8018,
+      "path": "scaffold/tests/test_owner_review_pending.py",
+      "sha256": "d950a8528d26972037b721cb9dff46f160198419f73ed7c9c7329ac7001fa596"
+    },
+    {
+      "bytes": 713,
+      "path": "scaffold/tests/test_portable.py",
+      "sha256": "78cc931bd620cc51d89aa7b53407eae731de4ecebb4252c03b71b19e4223f152"
+    },
+    {
+      "bytes": 2431,
+      "path": "scaffold/tests/test_providers.py",
+      "sha256": "541909afef77c5ebfd307aeb3ae5a1ae38620560ef9c1ddba2dc133104d452d5"
+    },
+    {
+      "bytes": 2403,
+      "path": "scaffold/tests/test_public_110.py",
+      "sha256": "eafb2bedda144d71d216f50e8e15a9d11c93d1a93cf08c7f27c6ff7d6f3ed214"
+    },
+    {
+      "bytes": 7426,
+      "path": "scaffold/tests/test_readiness_fix2.py",
+      "sha256": "ae6902327a75718d93ec272f83471faa4fe97274326259cb57412e5fd11d39ef"
+    },
+    {
+      "bytes": 1053,
+      "path": "scaffold/tests/test_research_contract.py",
+      "sha256": "b65ca93a6b10f4293f5579e31ee27c1f14109bace1ea5438ccb7436fbbff5e39"
+    },
+    {
+      "bytes": 3083,
+      "path": "scaffold/tests/test_revision_gate.py",
+      "sha256": "efce97f8efc807e9cc32059d392cc18005f3c268bd8732006ef90c243502d0d9"
+    },
+    {
+      "bytes": 10729,
+      "path": "scaffold/tests/test_scene_assembly.py",
+      "sha256": "f617cf2fa7bf89addc605b7a5d01525d4df47866c252ffd27d02962607a9356b"
+    },
+    {
+      "bytes": 5859,
+      "path": "scaffold/tests/test_sound_library.py",
+      "sha256": "c23e475e69af6667e6cdc6cadf8b11460921e712e1e48b17f041827a4e2aa2bf"
+    },
+    {
+      "bytes": 15357,
+      "path": "scaffold/tests/test_spine_offline_paths.py",
+      "sha256": "38e607fdd6b33be04e3e86caef9629361006ea2783d71423dbe47ddfcfdcd946"
+    },
+    {
+      "bytes": 7334,
+      "path": "scaffold/tests/test_style_consumers.py",
+      "sha256": "faafc77208d80a5349775370ba30b7fa41039db527710b8dbf53640c84a15182"
+    },
+    {
+      "bytes": 9194,
+      "path": "scaffold/tests/test_style_registry.py",
+      "sha256": "bdb0c039e081fd89ae92a6b509952ed3c6c05830a0ac6b28ad2ca38fda1fdb38"
+    },
+    {
+      "bytes": 6810,
+      "path": "scaffold/tests/test_visual_gate.py",
+      "sha256": "8780b52e6732f139e3c6795f79a03686fddc445c671cf917a4dda37b0f5f5519"
+    },
+    {
+      "bytes": 22931,
+      "path": "scaffold/tests/test_visuals.py",
+      "sha256": "e6ae56639c377d10cc3201a6198fb72a60143e0c8965e612959d10f6a9f66f48"
+    },
+    {
+      "bytes": 14648,
+      "path": "scaffold/tests/test_voice_rewrite.py",
+      "sha256": "d81b691e92d130b1766da5ecb36e7379e2184a8399f9e1fb76610a32d3260243"
+    },
+    {
+      "bytes": 3816,
+      "path": "scaffold/tests/test_withdrawal.py",
+      "sha256": "c9895a33936385409c1a96d37e446256050d40f933e3cb71d32648042ecacc15"
+    },
+    {
+      "bytes": 9543,
+      "path": "scaffold/tools/burn_subtitles.py",
+      "sha256": "01ed5c6137a01897526cc915828ad2cb1521b9e432cb633a07da03b41af7ffab"
+    },
+    {
+      "bytes": 11922,
+      "path": "scaffold/tools/chinese_author.py",
+      "sha256": "91ae25669d750a6d7373c7d11be2d4c946783da191a7dedee4c33cdbd91382ad"
+    },
+    {
+      "bytes": 1784,
+      "path": "scaffold/tools/configure_roles.py",
+      "sha256": "925332ceb0de28b1cbf075c4042eac2d8d946c5b49c237b5422cc39ac9188058"
+    },
+    {
+      "bytes": 1817,
+      "path": "scaffold/tools/export_cover.py",
+      "sha256": "a6c223e51d6781e34f179fdbc39d54659e9c68335f79a161c2da45fded86dcbb"
+    },
+    {
+      "bytes": 167,
+      "path": "scaffold/tools/qy.py",
+      "sha256": "39ab1b58484bc7b2bfe0cdb30a3617d6a7f33b080ac7e1c0df4592742523d068"
+    }
+  ],
+  "install": {
+    "post_install": [
+      "阅读 documentation/PROVIDERS.md，按自己的环境配置依赖、字体和供应商；不默认开始付费制作。",
+      "安装后执行 python3 tools/configure_roles.py --execute 配置本工作区thumbnail-designer的gpt-6.1-sol；缺Codex内置image_gen不得用收费API冒充。"
+    ],
+    "verify": "python3 bin/story-animation doctor"
+  },
+  "name": "story-animation",
+  "permissions": {
+    "exec": true,
+    "network": true,
+    "secrets": [
+      "ELEVENLABS_API_KEY",
+      "ELEVENLABS_VOICE_ID",
+      "ARK_AGENT_PLAN_API_KEY",
+      "REPLICATE_API_TOKEN"
+    ],
+    "tools": [
+      "Read",
+      "Write",
+      "Edit",
+      "Bash"
+    ]
+  },
+  "requires": {
+    "cli": [
+      {
+        "name": "python3",
+        "optional": false
+      },
+      {
+        "name": "ffmpeg",
+        "optional": true
+      },
+      {
+        "name": "ffprobe",
+        "optional": true
+      },
+      {
+        "name": "opencode",
+        "optional": true
+      },
+      {
+        "name": "node",
+        "optional": true
+      },
+      {
+        "name": "npx",
+        "optional": true
+      }
+    ],
+    "env": [
+      {
+        "description_zh": "使用者自己的供应商凭据，不随包分发",
+        "name": "ELEVENLABS_API_KEY",
+        "required": false,
+        "secret": true
+      },
+      {
+        "description_zh": "使用者自己的供应商凭据，不随包分发",
+        "name": "ELEVENLABS_VOICE_ID",
+        "required": false,
+        "secret": true
+      },
+      {
+        "description_zh": "使用者自己的供应商凭据，不随包分发",
+        "name": "ARK_AGENT_PLAN_API_KEY",
+        "required": false,
+        "secret": true
+      },
+      {
+        "description_zh": "使用者自己的供应商凭据，不随包分发",
+        "name": "REPLICATE_API_TOKEN",
+        "required": false,
+        "secret": true
+      }
+    ],
+    "harness": [
+      "claude_code",
+      "codex",
+      "opencode"
+    ],
+    "os": [
+      "linux",
+      "macos"
+    ],
+    "python_requirements": "scaffold/requirements.txt"
+  },
+  "roles": [
+    {
+      "description": "先真实检索并归档 dossier/sources，区分事实/流传说法/演绎/版权，不写故事正文。",
+      "name": "story-researcher"
+    },
+    {
+      "description": "由已收集素材提炼1—3核心思想和一句takeaway；精确人物引用核来源，否则署名本片总结。",
+      "name": "theme-planner"
+    },
+    {
+      "description": "只编排国产headless作者，从冻结材料与新brief从零写丰富纯口语旁白，禁工具/搜索和历史稿。",
+      "name": "story-author"
+    },
+    {
+      "description": "独立审大纲与完整稿、逻辑/动机/线索/史实与来源、语义字幕；作者不得自签PASS。",
+      "name": "story-editor"
+    },
+    {
+      "description": "先定妆，逐镜带真实参考图；独立视角构图，静图静止、完整画面无底带，无意重复拒绝。",
+      "name": "character-designer"
+    },
+    {
+      "description": "预算/unknown门；配音→ASR全文差异→原稿FA→语义字幕→最多三视频→静图clip→混音→烧录→时钟QA。",
+      "name": "media-producer"
+    },
+    {
+      "description": "按语义分章；使用可改参数A/C1双艺术字和弱音量声音，先交使用者定稿；独立clip只插完整scene边界，typed EDL加全帧核验。",
+      "name": "chapter-transition-designer"
+    },
+    {
+      "description": "table是真相，vector只召回候选；发布后72h/7d/28d分析真实指标，缺值明确，不虚构观众反馈。",
+      "name": "audience-analyst"
+    },
+    {
+      "description": "默认演练，先核独立OAuth/profile与channel ID；使用者明确发布授权后CEO上传回读，不启动timer。",
+      "name": "release-operator"
+    },
+    {
+      "description": "维护本包拥有的schema/CLI/回归，不读写任何人的共享凭据或重建本机共享工具。",
+      "name": "dev-maintainer"
+    },
+    {
+      "description": "Codex gpt-6.1-sol + built-in image_gen; per-episode parameterized thumbnails; actual small-preview review",
+      "name": "thumbnail-designer"
+    }
+  ],
+  "schema_version": "agentj.catalog/v1",
+  "summary_en": "Independent storytelling with research-first writing, editable styles, aligned multilingual captions, dedicated Codex thumbnails and recoverable pilot publishing.",
+  "summary_zh": "独立动画故事工作流：研究与核心思想、国产作者、26画风、原稿FA字幕、多语外挂轨、专职Codex封面、可恢复的独立pilot发布。",
+  "tags": [
+    "story",
+    "animation",
+    "chinese",
+    "video"
+  ],
+  "title_en": "Story Animation",
+  "title_zh": "Story Animation 动画故事工作流",
+  "type": "workflow",
+  "version": "1.1.0"
+}

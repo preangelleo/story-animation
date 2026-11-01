@@ -1,0 +1,627 @@
+{
+  "schema_version": 1,
+  "styles": [
+    {
+      "index": "S001",
+      "id": "scene-classic-clear-line",
+      "name": {
+        "zh": "欧陆清线漫画风",
+        "en": "European Clear-line Comic"
+      },
+      "description": "欧陆清线漫画风；even daylight, minimal cast shadows and no cinematic bloom",
+      "prompt": "European clear-line graphic novel illustration, uniform fine ink contours, precise architectural perspective, flat matte color areas, evenly detailed environments, simplified original faces, no hatching or lettering.",
+      "palette": [
+        "#f0eee6",
+        "#71bbde",
+        "#629887",
+        "#fcbe7c"
+      ],
+      "lighting": "even daylight, minimal cast shadows and no cinematic bloom",
+      "source": {
+        "sha256": "1c592ea0192fb04b26197b08221aa213f16671c7df15d82e2219b11b3cba77fc",
+        "version": 2,
+        "url": "https://shotfable.com/styles/scene-classic-clear-line",
+        "path": "ShotFable/styles/scene-classic-clear-line.json"
+      }
+    },
+    {
+      "index": "S002",
+      "id": "scene-classic-rubber-hose",
+      "name": {
+        "zh": "复古弹性卡通风",
+        "en": "Vintage Rubber-hose Cartoon"
+      },
+      "description": "复古弹性卡通风；flat stage lighting with simple painted shadows",
+      "prompt": "1930s inspired 2D rubber-hose animation, original human characters with flexible curved limbs, simple oval features, thick flowing ink outlines, flat muted fills, sparse theatrical painted background.",
+      "palette": [
+        "#f0eee6",
+        "#2c2b26",
+        "#d97757",
+        "#dbb293"
+      ],
+      "lighting": "flat stage lighting with simple painted shadows",
+      "source": {
+        "sha256": "cda220bcb60c79636bd4db5fb6bdae1bf9065af5f86deddea6de26b91a6d182c",
+        "version": 2,
+        "url": "https://shotfable.com/styles/scene-classic-rubber-hose",
+        "path": "ShotFable/styles/scene-classic-rubber-hose.json"
+      }
+    },
+    {
+      "index": "S003",
+      "id": "scene-classic-shonen",
+      "name": {
+        "zh": "热血少年动画风",
+        "en": "Shonen Action Anime"
+      },
+      "description": "热血少年动画风；hard directional side light with crisp triangular shadow shapes",
+      "prompt": "energetic 2D action anime, angular original adult faces, tapered ink outlines, bold two-tone cel shading, sharply folded clothing.",
+      "palette": [
+        "#2c2b26",
+        "#f7827e",
+        "#71bbde",
+        "#f7e17c"
+      ],
+      "lighting": "hard directional side light with crisp triangular shadow shapes",
+      "source": {
+        "sha256": "c2d774908050e1f4d843241529f4bd131f44894210190da23c6be87b08a05ca6",
+        "version": 2,
+        "url": "https://shotfable.com/styles/scene-animation/scene-classic-shonen",
+        "path": "ShotFable/styles/scene-classic-shonen.json"
+      }
+    },
+    {
+      "index": "S004",
+      "id": "scene-classic-ink-motion",
+      "name": {
+        "zh": "水墨留白动画风",
+        "en": "Ink-wash Animation"
+      },
+      "description": "水墨留白动画风；diffuse luminous paper ground, no volumetric rendering or lens effects",
+      "prompt": "traditional Chinese ink-wash animation still, boneless brush-painted forms without ink outlines, graded diluted ink, dry-brush reeds, flowing pigment on absorbent rice paper, sparse mineral-color accents, large poetic negative space.",
+      "palette": [
+        "#f0eee6",
+        "#2c2b26",
+        "#858585",
+        "#629887"
+      ],
+      "lighting": "diffuse luminous paper ground, no volumetric rendering or lens effects",
+      "source": {
+        "sha256": "3690507e8d4a283b0d6f55144c95efe3c65dc170ce63328c22f2aace6867e313",
+        "version": 2,
+        "url": "https://shotfable.com/styles/scene-classic-ink-motion",
+        "path": "ShotFable/styles/scene-classic-ink-motion.json"
+      }
+    },
+    {
+      "index": "S005",
+      "id": "scene-classic-pastoral",
+      "name": {
+        "zh": "手绘田园动画风",
+        "en": "Hand-painted Pastoral"
+      },
+      "description": "手绘田园动画风；soft late-afternoon sunlight with diffuse leaf shadows",
+      "prompt": "hand-drawn 2D animation, delicate organic pencil contours, watercolor and gouache rural backgrounds, restrained rounded faces, wind-shaped foliage, warm earthy pigments.",
+      "palette": [
+        "#f0eee6",
+        "#629887",
+        "#b7e396",
+        "#dbb293"
+      ],
+      "lighting": "soft late-afternoon sunlight with diffuse leaf shadows",
+      "source": {
+        "sha256": "dbee71c6c09b34a4a9a576e1b6b49e53ded576f107a82454413a10e7290309e5",
+        "version": 2,
+        "url": "https://shotfable.com/styles/scene-classic-pastoral",
+        "path": "ShotFable/styles/scene-classic-pastoral.json"
+      }
+    },
+    {
+      "index": "S006",
+      "id": "scene-classic-feature-3d",
+      "name": {
+        "zh": "圆润 3D 电影风",
+        "en": "Rounded 3D Feature"
+      },
+      "description": "圆润 3D 电影风；large soft key light, warm bounce light and subtle rim light",
+      "prompt": "stylized 3D animated feature still, sculpted rounded silhouettes, expressive original faces, physically based fabric and wood, soft subsurface scattering, cinematic depth of field.",
+      "palette": [
+        "#f0eee6",
+        "#6a9bcc",
+        "#fcbe7c",
+        "#827dbd"
+      ],
+      "lighting": "large soft key light, warm bounce light and subtle rim light",
+      "source": {
+        "sha256": "8c46971cdd98998bb7c4b1dc42351b752b96c6fa968b8ad1527b498c883da443",
+        "version": 2,
+        "url": "https://shotfable.com/styles/scene-classic-feature-3d",
+        "path": "ShotFable/styles/scene-classic-feature-3d.json"
+      }
+    },
+    {
+      "index": "S007",
+      "id": "scene-classic-clay-stop",
+      "name": {
+        "zh": "黏土手作定格风",
+        "en": "Handmade Clay Stop-motion"
+      },
+      "description": "黏土手作定格风；small practical warm lamps and soft miniature-set shadows",
+      "prompt": "handmade clay stop-motion miniature still, original plasticine adult puppets, visible thumbprint texture, slightly asymmetric sculpted features, tactile clay seams, practical miniature props, shallow macro focus.",
+      "palette": [
+        "#dbb293",
+        "#d97757",
+        "#629887",
+        "#f0eee6"
+      ],
+      "lighting": "small practical warm lamps and soft miniature-set shadows",
+      "source": {
+        "sha256": "31fa6c1f486393e1f3d6e5c0c4bfd37d76a3f7f8de01d4dad4b9c529739e950f",
+        "version": 2,
+        "url": "https://shotfable.com/styles/scene-animation/scene-classic-clay-stop",
+        "path": "ShotFable/styles/scene-classic-clay-stop.json"
+      }
+    },
+    {
+      "index": "S008",
+      "id": "anime",
+      "name": {
+        "zh": "日系动画",
+        "en": "Japanese-Style Anime"
+      },
+      "description": "日系动画；bright clear daylight or golden-hour backlight; hard-edged cel shadow shapes with soft atmospheric glow and lens bloom",
+      "prompt": "clean cel shading, hand-painted textures, luminous blue and soft bloom.",
+      "palette": [
+        "#2b4c7e",
+        "#6ec6ff",
+        "#bfe6ff",
+        "#ffffff",
+        "#ffd3e0",
+        "#f6c177"
+      ],
+      "lighting": "bright clear daylight or golden-hour backlight; hard-edged cel shadow shapes with soft atmospheric glow and lens bloom",
+      "source": {
+        "sha256": "4c07cf87daf937f5b46190f9bdcdef6d2f488a909a79dd297d623f4f50834d8e",
+        "version": 2,
+        "url": "local-json:not-web-verified",
+        "path": "ShotFable/styles/anime.json"
+      }
+    },
+    {
+      "index": "S009",
+      "id": "cg-feature-3d",
+      "name": {
+        "zh": "暖光 3D 动画",
+        "en": "Warm-Light 3D Animation"
+      },
+      "description": "暖光 3D 动画；soft diffuse global lighting with a warm sunrise key, colorful bounce fill and a gentle rim light separating characters from the background",
+      "prompt": "rounded appealing forms, subsurface scattering, rich saturated warm colors, polished surface rendering.",
+      "palette": [
+        "#fff4e0",
+        "#ffd86b",
+        "#ffb347",
+        "#ff6f3c",
+        "#5ec2b7",
+        "#7a4b9c"
+      ],
+      "lighting": "soft diffuse global lighting with a warm sunrise key, colorful bounce fill and a gentle rim light separating characters from the background",
+      "source": {
+        "sha256": "61f76eefdfcef455b8d8aa02c2757b8c293da5dfbb9771ca6cfeb5619efbea60",
+        "version": 2,
+        "url": "local-json:not-web-verified",
+        "path": "ShotFable/styles/cg-feature-3d.json"
+      }
+    },
+    {
+      "index": "S010",
+      "id": "cinematic-real",
+      "name": {
+        "zh": "电影写实",
+        "en": "Cinematic Real"
+      },
+      "description": "电影写实；low-key motivated practicals (lamps, windows, street light); teal shadows against warm orange highlights; gentle haze for depth",
+      "prompt": "subtle 35mm grain, muted teal and orange grade, natural skin tones.",
+      "palette": [
+        "#14202a",
+        "#1f3a4d",
+        "#4f7380",
+        "#d9822b",
+        "#e8d5bc"
+      ],
+      "lighting": "low-key motivated practicals (lamps, windows, street light); teal shadows against warm orange highlights; gentle haze for depth",
+      "source": {
+        "sha256": "3cc2238b4d9fa03cc8493f98f75ced1d587284f3fcf0ffdab2aec3fbcaa0934f",
+        "version": 3,
+        "url": "local-json:not-web-verified",
+        "path": "ShotFable/styles/cinematic-real.json"
+      }
+    },
+    {
+      "index": "S011",
+      "id": "claymation",
+      "name": {
+        "zh": "黏土定格",
+        "en": "Claymation"
+      },
+      "description": "黏土定格；soft tabletop key with gentle fill; tiny practical lamps on the set; small soft-edged shadows",
+      "prompt": "handmade plasticine texture, visible fingerprints and tool marks, tactile matte surfaces, candy colors.",
+      "palette": [
+        "#ff8fa3",
+        "#ffd166",
+        "#7bdff2",
+        "#95d5b2",
+        "#b388eb",
+        "#f4efe6"
+      ],
+      "lighting": "soft tabletop key with gentle fill; tiny practical lamps on the set; small soft-edged shadows",
+      "source": {
+        "sha256": "b58c24e393c429f7c67a575c7d593db6e93d56b7b05bda2541f9df02b60ff952",
+        "version": 3,
+        "url": "local-json:not-web-verified",
+        "path": "ShotFable/styles/claymation.json"
+      }
+    },
+    {
+      "index": "S012",
+      "id": "cn-donghua",
+      "name": {
+        "zh": "国漫仙侠",
+        "en": "Chinese Xianxia Donghua"
+      },
+      "description": "国漫仙侠；volumetric god rays through cloud layers, golden rim light, emissive spiritual glow on weapons and robes against cool deep-teal shadows",
+      "prompt": "polished Chinese 3D animation aesthetic, fine silk textures, gold and crimson accents on deep teal.",
+      "palette": [
+        "#0f1f2b",
+        "#1d3b4a",
+        "#c8102e",
+        "#6e2a1f",
+        "#e0a526",
+        "#f5e1a4"
+      ],
+      "lighting": "volumetric god rays through cloud layers, golden rim light, emissive spiritual glow on weapons and robes against cool deep-teal shadows",
+      "source": {
+        "sha256": "9801d21a732beaa77d8ede7e9e707c06ad063ee90eed150746fd78eb9e4e5915",
+        "version": 2,
+        "url": "local-json:not-web-verified",
+        "path": "ShotFable/styles/cn-donghua.json"
+      }
+    },
+    {
+      "index": "S013",
+      "id": "cn-historical-real",
+      "name": {
+        "zh": "古装写实",
+        "en": "Chinese Period Drama"
+      },
+      "description": "古装写实；warm motivated practicals (candles, lanterns, paper windows); soft key with deep lacquer shadows; gentle haze",
+      "prompt": "realistic embroidered silk textures, warm gold and rouge colors, rich lacquer tones, subtle film grain.",
+      "palette": [
+        "#c9a25a",
+        "#a8323e",
+        "#3b1e17",
+        "#e8b56a",
+        "#2f4a45",
+        "#efe3c8"
+      ],
+      "lighting": "warm motivated practicals (candles, lanterns, paper windows); soft key with deep lacquer shadows; gentle haze",
+      "source": {
+        "sha256": "5adc9737d48c0ffac78335f8fb20ce8af86b9265d4d8a51b734cc36e4470884f",
+        "version": 2,
+        "url": "local-json:not-web-verified",
+        "path": "ShotFable/styles/cn-historical-real.json"
+      }
+    },
+    {
+      "index": "S014",
+      "id": "comic",
+      "name": {
+        "zh": "美式漫画",
+        "en": "American Comic"
+      },
+      "description": "美式漫画；graphic hard light with flat cel shading; strong rim highlights; heavy spot blacks instead of soft falloff",
+      "prompt": "bold black ink outlines, halftone dots, flat primary colors, heavy spot blacks.",
+      "palette": [
+        "#e63946",
+        "#1d4ed8",
+        "#ffd60a",
+        "#111111",
+        "#fafafa"
+      ],
+      "lighting": "graphic hard light with flat cel shading; strong rim highlights; heavy spot blacks instead of soft falloff",
+      "source": {
+        "sha256": "faeac88baa9a4b587090624c83f931746167d152af47b016e81d6a7fd19e3976",
+        "version": 3,
+        "url": "local-json:not-web-verified",
+        "path": "ShotFable/styles/comic.json"
+      }
+    },
+    {
+      "index": "S015",
+      "id": "cyberpunk",
+      "name": {
+        "zh": "赛博霓虹",
+        "en": "Neon Cyberpunk"
+      },
+      "description": "赛博霓虹；night; neon practicals as key; magenta/cyan rim light; volumetric fog and wet reflections; deep crushed shadows",
+      "prompt": "magenta and cyan neon palette, wet specular reflections, atmospheric volumetric fog, cinematic grain.",
+      "palette": [
+        "#0b0d1a",
+        "#1b2a4a",
+        "#ff2bd6",
+        "#00e5ff",
+        "#6a00ff",
+        "#ffd23f"
+      ],
+      "lighting": "night; neon practicals as key; magenta/cyan rim light; volumetric fog and wet reflections; deep crushed shadows",
+      "source": {
+        "sha256": "947418bc1eee04ef6bfaae2c1fb48164fa4402c124a797c32e1d5684314a55ba",
+        "version": 3,
+        "url": "local-json:not-web-verified",
+        "path": "ShotFable/styles/cyberpunk.json"
+      }
+    },
+    {
+      "index": "S016",
+      "id": "documentary",
+      "name": {
+        "zh": "纪录片",
+        "en": "Documentary"
+      },
+      "description": "纪录片；available light only: overcast daylight, window light and existing practicals; soft, slightly cool, no visible film lighting",
+      "prompt": "natural everyday textures, cool restrained natural colors, subtle digital sensor grain.",
+      "palette": [
+        "#dfe4e6",
+        "#9aa8ae",
+        "#5b6b70",
+        "#2f3a3e",
+        "#a88f6a"
+      ],
+      "lighting": "available light only: overcast daylight, window light and existing practicals; soft, slightly cool, no visible film lighting",
+      "source": {
+        "sha256": "2b8c5db06966b5f2deb061532354c0c35da5f826601085d4aa3fb6646d96ed2c",
+        "version": 2,
+        "url": "local-json:not-web-verified",
+        "path": "ShotFable/styles/documentary.json"
+      }
+    },
+    {
+      "index": "S017",
+      "id": "hyper-real",
+      "name": {
+        "zh": "超写实",
+        "en": "Hyper Real"
+      },
+      "description": "超写实；soft natural key through large diffusion, gentle fill and clean specular highlights; physically plausible HDR without crushed blacks",
+      "prompt": "photorealistic materials, natural skin pores, accurate colors, crisp surface detail, neutral grade.",
+      "palette": [
+        "#f2efe9",
+        "#c9c3b8",
+        "#b98d6a",
+        "#8a8578",
+        "#4a4a48",
+        "#1c1c1c"
+      ],
+      "lighting": "soft natural key through large diffusion, gentle fill and clean specular highlights; physically plausible HDR without crushed blacks",
+      "source": {
+        "sha256": "d2d36cc2d03c1fe1517dec544f6fa1f233b3cf3d34dff4d66837fb564033377d",
+        "version": 2,
+        "url": "local-json:not-web-verified",
+        "path": "ShotFable/styles/hyper-real.json"
+      }
+    },
+    {
+      "index": "S018",
+      "id": "ink-wash",
+      "name": {
+        "zh": "国风水墨",
+        "en": "Chinese Ink Wash"
+      },
+      "description": "国风水墨；no directional light; flat diffuse paper tone with depth carried by ink density and mist washes",
+      "prompt": "traditional ink wash, expressive brush strokes, graded black and grey ink, xuan paper texture, poetic negative space, sparse cinnabar.",
+      "palette": [
+        "#f4efe3",
+        "#d9d2c3",
+        "#8c8c8c",
+        "#3a3a3a",
+        "#111111",
+        "#b5302a"
+      ],
+      "lighting": "no directional light; flat diffuse paper tone with depth carried by ink density and mist washes",
+      "source": {
+        "sha256": "ec75d1ce1ea99870b93f84b6be6f8a22061734bd030c53d9278f1ec81b2b7d50",
+        "version": 2,
+        "url": "local-json:not-web-verified",
+        "path": "ShotFable/styles/ink-wash.json"
+      }
+    },
+    {
+      "index": "S019",
+      "id": "noir",
+      "name": {
+        "zh": "黑色电影",
+        "en": "Film Noir"
+      },
+      "description": "黑色电影；single hard key from a practical (streetlamp, window); venetian blind slats; deep low-key shadows; smoke catching the light",
+      "prompt": "high contrast monochrome, deep inky blacks, silver-halide grain, hard low-key light.",
+      "palette": [
+        "#0a0a0a",
+        "#2e2e2e",
+        "#6b6b6b",
+        "#bdbdbd",
+        "#f2f2f2"
+      ],
+      "lighting": "single hard key from a practical (streetlamp, window); venetian blind slats; deep low-key shadows; smoke catching the light",
+      "source": {
+        "sha256": "29a3b85ea93a9312937e136894127d3d75b84081f20717fd63e870b38498cfbb",
+        "version": 2,
+        "url": "local-json:not-web-verified",
+        "path": "ShotFable/styles/noir.json"
+      }
+    },
+    {
+      "index": "S020",
+      "id": "picture-book",
+      "name": {
+        "zh": "儿童绘本",
+        "en": "Children's Picture Book"
+      },
+      "description": "儿童绘本；bright even daylight; soft short shadows; no harsh contrast or darkness",
+      "prompt": "gouache illustration, rounded friendly shapes, bright warm colors, gentle textured brushwork.",
+      "palette": [
+        "#f2a541",
+        "#e85d4a",
+        "#f7d488",
+        "#6fa86b",
+        "#4f86c6",
+        "#fff4e0"
+      ],
+      "lighting": "bright even daylight; soft short shadows; no harsh contrast or darkness",
+      "source": {
+        "sha256": "4ef438a7ecf73d2c102e31e81c91787f18941c6f7be17f8ccf64b346bf2cebe7",
+        "version": 2,
+        "url": "local-json:not-web-verified",
+        "path": "ShotFable/styles/picture-book.json"
+      }
+    },
+    {
+      "index": "S021",
+      "id": "scene-classic-cel90",
+      "name": {
+        "zh": "九十年代赛璐璐风",
+        "en": "1990s Cel Anime"
+      },
+      "description": "九十年代赛璐璐风；painted hard-edged cel shadows with restrained highlights",
+      "prompt": "1990s hand-painted cel animation, slightly uneven ink contours, flat opaque paint, two-step shadow blocks, restrained facial proportions, painted background plates, subtle analog grain and mild color bleed.",
+      "palette": [
+        "#2c2b26",
+        "#6a9bcc",
+        "#dbb293",
+        "#f0aad4"
+      ],
+      "lighting": "painted hard-edged cel shadows with restrained highlights",
+      "source": {
+        "sha256": "a60ab57f6237a959612e9d7e9f0f325e21fdbbda8abca492a1cfcc4a3d1bf45c",
+        "version": 2,
+        "url": "local-json:not-web-verified",
+        "path": "ShotFable/styles/scene-classic-cel90.json"
+      }
+    },
+    {
+      "index": "S022",
+      "id": "scene-classic-felt-paper",
+      "name": {
+        "zh": "毛毡纸偶定格风",
+        "en": "Felt and Paper Puppet"
+      },
+      "description": "毛毡纸偶定格风；soft side light revealing fiber texture and layered paper shadows",
+      "prompt": "layered paper and needle-felt stop-motion miniature, original felt human puppets, visible wool fibers and stitched edges, cut-paper scenery, stacked shallow relief planes, handcrafted paper folds.",
+      "palette": [
+        "#f0eee6",
+        "#b7e396",
+        "#f7827e",
+        "#dbb293"
+      ],
+      "lighting": "soft side light revealing fiber texture and layered paper shadows",
+      "source": {
+        "sha256": "ef7a5508edb51bd920bd6608467d7aa333567d3cdbf27621330dc851212b743d",
+        "version": 2,
+        "url": "local-json:not-web-verified",
+        "path": "ShotFable/styles/scene-classic-felt-paper.json"
+      }
+    },
+    {
+      "index": "S023",
+      "id": "scene-classic-hero-comic",
+      "name": {
+        "zh": "美漫英雄墨线风",
+        "en": "Heroic Ink Comic"
+      },
+      "description": "美漫英雄墨线风；dramatic high-contrast side light with heavy ink shadow masses",
+      "prompt": "American adventure comic illustration, bold variable-width black ink, crosshatching and halftone dots, muscular but natural original adult figures, flat color blocks, no panels or lettering.",
+      "palette": [
+        "#141414",
+        "#6a9bcc",
+        "#d97757",
+        "#ffe292"
+      ],
+      "lighting": "dramatic high-contrast side light with heavy ink shadow masses",
+      "source": {
+        "sha256": "76e133da211be5b9145d7aaa020f6607892778e56151556ab422422e889c1120",
+        "version": 2,
+        "url": "local-json:not-web-verified",
+        "path": "ShotFable/styles/scene-classic-hero-comic.json"
+      }
+    },
+    {
+      "index": "S024",
+      "id": "scene-classic-luminous",
+      "name": {
+        "zh": "晴空光影动画风",
+        "en": "Luminous Sky Anime"
+      },
+      "description": "晴空光影动画风；bright sky backlight, luminous cloud edges and reflected sunset light",
+      "prompt": "luminous 2D anime, finely painted realistic urban backgrounds, understated original adult figures, towering cloud detail, translucent atmospheric layers, glints on glass and wet pavement, delicate thin linework.",
+      "palette": [
+        "#71bbde",
+        "#c1e1f0",
+        "#fcbe7c",
+        "#827dbd"
+      ],
+      "lighting": "bright sky backlight, luminous cloud edges and reflected sunset light",
+      "source": {
+        "sha256": "ed371dd45dc02aaa2a2e060046ba9fcb31fe127b21874ffe3058ae6bedc5cd77",
+        "version": 2,
+        "url": "local-json:not-web-verified",
+        "path": "ShotFable/styles/scene-classic-luminous.json"
+      }
+    },
+    {
+      "index": "S025",
+      "id": "scene-classic-webtoon",
+      "name": {
+        "zh": "清透网漫条漫风",
+        "en": "Clean Webtoon Romance"
+      },
+      "description": "清透网漫条漫风；soft luminous window light with smooth digital gradients",
+      "prompt": "Korean digital webtoon illustration, slender original adult figures, precise clean tapered outlines, smooth digital gradient shading, elegant fashion silhouettes, selective soft highlights, airy pastel urban setting.",
+      "palette": [
+        "#f8daec",
+        "#c1e1f0",
+        "#d1a7e8",
+        "#f0eee6"
+      ],
+      "lighting": "soft luminous window light with smooth digital gradients",
+      "source": {
+        "sha256": "3e59fd162d9cdeb0a53e44cdd83b61d3aafaf2988accf88ffa143177ea7fd944",
+        "version": 2,
+        "url": "local-json:not-web-verified",
+        "path": "ShotFable/styles/scene-classic-webtoon.json"
+      }
+    },
+    {
+      "index": "S026",
+      "id": "watercolor",
+      "name": {
+        "zh": "水彩",
+        "en": "Watercolor"
+      },
+      "description": "水彩；soft diffuse daylight; airy low-contrast values; light treated as untouched paper white",
+      "prompt": "hand-painted watercolor, pigment blooms and bleeding edges, cold-press paper texture, pastel hues, delicate pencil underdrawing.",
+      "palette": [
+        "#f4c7c3",
+        "#b9d7ea",
+        "#f6e7b4",
+        "#c8dcb4",
+        "#8a7f9e",
+        "#fbf7f0"
+      ],
+      "lighting": "soft diffuse daylight; airy low-contrast values; light treated as untouched paper white",
+      "source": {
+        "sha256": "6fe872433591ee0af434dc78a7a81a009a927a676cf848ad2785cc0434354af9",
+        "version": 2,
+        "url": "local-json:not-web-verified",
+        "path": "ShotFable/styles/watercolor.json"
+      }
+    }
+  ]
+}

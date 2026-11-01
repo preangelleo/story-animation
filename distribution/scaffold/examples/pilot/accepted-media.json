@@ -1,0 +1,29 @@
+{
+  "schema": "story-animation.accepted-media.v1",
+  "episode_id": "your-episode",
+  "source_review_only": true,
+  "accepted_burned_sha256": "REPLACE_WITH_YOUR_ACCEPTED_REVIEW_VIDEO_SHA256",
+  "mechanical_clock_passed": true,
+  "clean_video": {
+    "path": "your-reviewed-clean.mp4",
+    "sha256": "REPLACE_WITH_YOUR_CLEAN_VIDEO_SHA256"
+  },
+  "subtitles": {
+    "path": "your-final-delivery.srt",
+    "sha256": "REPLACE_WITH_YOUR_SUBTITLE_SHA256"
+  },
+  "reviews": {
+    "A": {
+      "path": "your-review-A.md",
+      "sha256": "REPLACE_WITH_YOUR_REVIEW_SHA256",
+      "verdict": "pass",
+      "reviewer": "YOUR_INDEPENDENT_REVIEWER_A"
+    },
+    "B": {
+      "path": "your-review-B.md",
+      "sha256": "REPLACE_WITH_YOUR_REVIEW_SHA256",
+      "verdict": "pass",
+      "reviewer": "YOUR_INDEPENDENT_REVIEWER_B"
+    }
+  }
+}

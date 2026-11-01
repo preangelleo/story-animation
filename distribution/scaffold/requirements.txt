@@ -1,0 +1,6 @@
+numpy>=1.26
+Pillow>=10
+opencc-python-reimplemented>=0.1.7
+faster-whisper>=1.1
+google-api-python-client>=2.0
+google-auth>=2.0

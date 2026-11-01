@@ -1,0 +1,5 @@
+# 公共pilot输入
+
+accepted-media.json 是公开收据结构示例，所有REPLACE/YOUR值必须换成使用者真实已接受媒体和实际独立QA证据。它不是批准、不是通过的测试报告，不能直接拿去发布。文件路径相对于该收据；SHA为实际内容字节SHA。两路review必须是真实独立审查人/上下文。无需制作方的旧报告格式、固定集ID或接受SHA。
+
+发布合同source_report指向这份公开收据；其余字段/输入由documentation/playbooks/pilot_release.md定义，所有视频、封面、授权原文、profile/channel/playlist都属于接收者。参考tests/test_multilingual_pilot.py的test_public_accepted_media_receipt_is_independent_of_private_layout可实际运行合成预检，无API/上传。

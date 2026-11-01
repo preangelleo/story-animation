@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "brand": {
+    "name": "{{project_name}}",
+    "english_name": "Story Animation",
+    "ceo": "Story CEO",
+    "promise": "每晚一个值得听到结尾的故事"
+  },
+  "channel": {
+    "id": null,
+    "youtube_profile": "story-animation",
+    "slug": "story-animation",
+    "timezone": "Asia/Tokyo",
+    "publish_hour": 20,
+    "publish_minute": 0,
+    "lead_days": 2,
+    "language": "zh-CN",
+    "production_hour": 8
+  },
+  "content": {
+    "language": "zh-CN",
+    "narration_first": true,
+    "standalone": true,
+    "target_minutes": {
+      "min": 15,
+      "max": null
+    },
+    "video_inserts": {
+      "max_count": 3,
+      "target_seconds_each": 10,
+      "placement": "key_story_moments",
+      "default_model": "bytedance/seedance-2.5",
+      "model_version": "0000635f6659d0b53dc4ab407a0abd1ab8f152fe7fa4dc50d291571be31a7d0a"
+    }
+  },
+  "budget": {
+    "per_episode_usd": 15,
+    "monthly_usd": 200,
+    "max_retries": 2
+  },
+  "storage": {
+    "database": "state/story.sqlite3",
+    "artifacts": "episodes",
+    "vector_collection": "story-animation",
+    "namespace": "story-animation"
+  },
+  "publication": {
+    "default_dry_run": true,
+    "allow_profile_fallback": false
+  },
+  "stage": "Build",
+  "voice": {
+    "provider": "elevenlabs",
+    "voice": "user-voice",
+    "model": "eleven_multilingual_v2",
+    "language": "zh"
+  },
+  "render": {
+    "width": 1920,
+    "height": 1080,
+    "static_image_motion": "static"
+  },
+  "quality": {
+    "require_visual_manifest": true,
+    "require_semantic_caption_units": true,
+    "min_script_chars": 2500,
+    "min_duration_seconds": 600
+  },
+  "revision_approval_gates": {},
+  "style_registry_file": "config/styles.json",
+  "series_mapping_file": "config/weekly_series.json"
+}

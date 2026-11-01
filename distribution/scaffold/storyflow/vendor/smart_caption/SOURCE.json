@@ -1,0 +1,20 @@
+{
+  "modules": [
+    {
+      "source": "smart_caption/segment.py",
+      "sha256": "e1a194d1ed079e6e33df69d630eea4db4135c77aa96237126c988663e8135573",
+      "local_sha256": "e1a194d1ed079e6e33df69d630eea4db4135c77aa96237126c988663e8135573"
+    },
+    {
+      "source": "smart_caption/convert.py",
+      "sha256": "97ee37c35887a132254c073d6f2e64a92ff322899a2adc3181f592f6b43d8123",
+      "local_sha256": "54bbec92946b8bd329a6156782aa5cf6e0c01bfb9c211a4a8b8a1e544281b1bc"
+    },
+    {
+      "source": "smart_caption/caption_units.py",
+      "sha256": "2d12b8103b9b42d441a3fdda2e4425dc63c6d0c6d8a074a8931be623f456aee2",
+      "local_sha256": "46746898b6aea79cfde9617567493ac7cfa60fa43eda8d5560a78b91029c84c1"
+    }
+  ],
+  "changes": "Only absolute imports changed to relative imports. No provider/alignment/API code copied."
+}

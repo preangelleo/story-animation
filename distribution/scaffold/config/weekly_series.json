@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "timezone": "Asia/Tokyo",
+  "series": [
+    {
+      "key": "destiny",
+      "display_name": "命运/励志",
+      "weekday": 1,
+      "default_style_index": "S001",
+      "description": "命运转折与行动选择"
+    },
+    {
+      "key": "mystery",
+      "display_name": "推理/悬疑",
+      "weekday": 2,
+      "default_style_index": "S002",
+      "description": "推理、悬念与真相"
+    },
+    {
+      "key": "wealth",
+      "display_name": "财富/创业",
+      "weekday": 3,
+      "default_style_index": "S003",
+      "description": "创业决策与财富代价"
+    },
+    {
+      "key": "history",
+      "display_name": "历史/名人",
+      "weekday": 4,
+      "default_style_index": "S004",
+      "description": "历史人物与公共事件"
+    },
+    {
+      "key": "love",
+      "display_name": "爱/情",
+      "weekday": 5,
+      "default_style_index": "S005",
+      "description": "爱情、亲情与友情"
+    },
+    {
+      "key": "women",
+      "display_name": "女性",
+      "weekday": 6,
+      "default_style_index": "S006",
+      "description": "女性人物、视角、选择与成就"
+    },
+    {
+      "key": "other",
+      "display_name": "其他",
+      "weekday": 7,
+      "default_style_index": "S007",
+      "description": "明确分类后未归入前六系列的故事"
+    }
+  ]
+}

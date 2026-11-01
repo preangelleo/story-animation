@@ -1,0 +1,197 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Portable chapter clip parameters v1",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "background_color": {
+      "type": "string",
+      "default": "#141414",
+      "pattern": "^#[0-9a-fA-F]{6}$"
+    },
+    "title_color": {
+      "type": "string",
+      "default": "#faf9f5",
+      "pattern": "^#[0-9a-fA-F]{6}$"
+    },
+    "number_color": {
+      "type": "string",
+      "default": "#faf9f5",
+      "pattern": "^#[0-9a-fA-F]{6}$"
+    },
+    "line_color": {
+      "type": "string",
+      "default": "#d97757",
+      "pattern": "^#[0-9a-fA-F]{6}$"
+    },
+    "title_text": {
+      "type": "string",
+      "default": "故事的新一章"
+    },
+    "chapter_number": {
+      "type": "string",
+      "default": "第二章"
+    },
+    "layout": {
+      "type": "string",
+      "default": "a",
+      "enum": [
+        "a",
+        "b"
+      ]
+    },
+    "title_font": {
+      "type": "string",
+      "default": "../../assets/fonts/title.ttf"
+    },
+    "title_family": {
+      "type": "string",
+      "default": "QYChapterF1"
+    },
+    "number_font": {
+      "type": "string",
+      "default": "../../assets/fonts/number.ttf"
+    },
+    "number_family": {
+      "type": "string",
+      "default": "QYChapterF3"
+    },
+    "font_weight": {
+      "type": "integer",
+      "default": 400,
+      "enum": [
+        400
+      ]
+    },
+    "title_size": {
+      "type": "number",
+      "default": 116
+    },
+    "number_size": {
+      "type": "number",
+      "default": 34
+    },
+    "title_line_height": {
+      "type": "number",
+      "default": 1.25
+    },
+    "number_line_height": {
+      "type": [
+        "number",
+        "string"
+      ],
+      "default": "normal"
+    },
+    "title_letter_spacing": {
+      "type": "number",
+      "default": 12
+    },
+    "number_letter_spacing": {
+      "type": "number",
+      "default": 10
+    },
+    "number_gap": {
+      "type": "number",
+      "default": 34
+    },
+    "group_x": {
+      "type": "number",
+      "default": 0
+    },
+    "group_y": {
+      "type": "number",
+      "default": 382
+    },
+    "group_width": {
+      "type": "number",
+      "default": 1920
+    },
+    "text_align": {
+      "type": "string",
+      "default": "center",
+      "enum": [
+        "left",
+        "center",
+        "right"
+      ]
+    },
+    "group_padding_left": {
+      "type": "number",
+      "default": 0
+    },
+    "line_enabled": {
+      "type": "boolean",
+      "default": true
+    },
+    "line_width": {
+      "type": "number",
+      "default": 64
+    },
+    "line_height": {
+      "type": "number",
+      "default": 4
+    },
+    "line_gap": {
+      "type": "number",
+      "default": 36
+    },
+    "line_x": {
+      "type": "number",
+      "default": 0
+    },
+    "line_y": {
+      "type": "number",
+      "default": 0
+    },
+    "duration": {
+      "type": "number",
+      "default": 1,
+      "minimum": 0.1,
+      "maximum": 10
+    },
+    "width": {
+      "type": "integer",
+      "default": 1920
+    },
+    "height": {
+      "type": "integer",
+      "default": 1080
+    },
+    "fps": {
+      "type": "integer",
+      "default": 30
+    },
+    "sound_path": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "default": null
+    },
+    "sound_name": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "default": null
+    },
+    "sound_volume": {
+      "type": "number",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 4
+    },
+    "muted": {
+      "type": "boolean",
+      "default": true
+    },
+    "entrance_y": {
+      "type": "number",
+      "default": 12
+    },
+    "entrance_duration": {
+      "type": "number",
+      "default": 0.13
+    }
+  }
+}

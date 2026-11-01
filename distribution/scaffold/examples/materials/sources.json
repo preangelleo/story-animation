@@ -1,0 +1,9 @@
+{
+  "sources": [
+    {
+      "url": "https://example.org/fictional-fixture",
+      "accessed_at": "2030-01-01",
+      "classification": "fictional_test_fixture_not_real_research"
+    }
+  ]
+}
