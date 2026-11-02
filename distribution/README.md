@@ -1,6 +1,6 @@
 # Story Animation · 广场分发包
 
-这里是 **分发包目录**，包含 manifest.json、params.schema.json 和 scaffold/。这里没有 bin/，不能在本目录直接运行安装后的命令。广场安装器会将 scaffold/ 的内容写入接收者选择的独立 Story Animation 工作区，并为 Codex 生成十二个角色。
+这里是 **分发包目录**，包含 manifest.json、params.schema.json 和 scaffold/。这里没有 bin/，不能在本目录直接运行安装后的命令。广场安装器会将 scaffold/ 的内容写入接收者选择的独立 Story Animation 工作区，并为 Codex 生成十四个角色。
 
 安装后进入那个独立工作区，才运行：
 ```sh
@@ -25,4 +25,6 @@ python3 bin/story-animation research check --material-dir examples/materials
 1.2 optional learning: SQL full-script facts, real embeddings/outbox, compact independent duplicate advice, comment intake/reply and topic ideas default off. After installation use `modules status` and `modules configure`; see scaffold/documentation/LEARNING.md. Authors may use Codex/Claude/Ark/custom providers; no vendor or learning subscription is mandatory.
 
 
-1.2.2 独立候选（未发布）：正常 pilot 发布/回读/恢复/最终可见性确认零 captions.download。保留本地质量/hash、成功 caption ID 回执、实时 serving 元数据和 unknown 不盲重发合同；content_matches=null，不冒称远端全文已比对。仅人工显式 --diagnostic-caption-download 诊断可下载。1.2.1 无损画面拼接、精确章节卡帧字幕遮罩、安装者显式字体合同全部保留。详见 scaffold/documentation/playbooks/pilot_release.md。
+1.2.2 已发布：正常 pilot 发布/回读/恢复/最终可见性确认零 captions.download。保留本地质量/hash、成功 caption ID 回执、实时 serving 元数据和 unknown 不盲重发合同；content_matches=null，不冒称远端全文已比对。仅人工显式 --diagnostic-caption-download 诊断可下载。1.2.1 无损画面拼接、精确章节卡帧字幕遮罩、安装者显式字体合同全部保留。详见 scaffold/documentation/playbooks/pilot_release.md。
+
+1.2.3 独立候选（未发布）：修复 opt-in 评论回复在真实 comments.list 缺失 videoId 时的实时归属核验；以 exact commentThreads 证据与 fresh public video 校验，保留精确批准文本、自评论拒绝、unknown 防重及 403 拒绝。不新增参数、供应商或 schema；既有评论自身带 videoId 时不额外调用 commentThreads。所有学习模块仍默认关闭。

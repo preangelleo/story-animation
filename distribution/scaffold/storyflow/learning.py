@@ -270,6 +270,30 @@ COMMIT;''')
                 self.db.execute('INSERT OR IGNORE INTO feedback_comments VALUES(?,?,?,?,?,?,?,NULL,NULL)',(channel,item['id'],item['video'],ep,item['created'],now.isoformat(),item['text']))
             self.db.execute('INSERT OR REPLACE INTO feedback_scans VALUES(?,?,?)',(channel,now.isoformat(),packed({'since':since.isoformat(),'observed':len(items),'scope':'public top-level comments; replies handled by reply reconciliation'})))
         return {'ok':True,'feedback_next':self.feedback_packet(),'observed':len(items),'unprocessed':self.db.execute('SELECT COUNT(*) FROM feedback_comments WHERE channel_id=? AND processed_at IS NULL',(channel,)).fetchone()[0],'watermark':now.isoformat(),'since':since.isoformat(),'catchup_truncated':bool(old and timestamp(old[0])<now-dt.timedelta(days=days))}
+    def reply_parent_binding(self,svc,comment_id,parent,row):
+        """Read-only proof; a missing comment videoId needs its exact live thread."""
+        channel=self.s.config['channel']['id']
+        require(not parent.get('parentId') and parent.get('textOriginal',parent.get('textDisplay'))==row['text'],'parent comment changed since assessment')
+        require(parent.get('moderationStatus','published')=='published','parent no longer published')
+        require(parent.get('channelId') in (None,channel),'parent comment belongs to another channel')
+        author=parent.get('authorChannelId',{}).get('value')
+        require(author!=channel,'refusing reply to own channel comment')
+        source='comments.list'
+        if parent.get('videoId') is None:
+            response=svc.commentThreads().list(part='snippet',id=comment_id,textFormat='plainText').execute()
+            threads=response.get('items',[])
+            require(len(threads)==1 and not response.get('nextPageToken') and threads[0].get('id')==comment_id,'exact parent thread missing/ambiguous')
+            thread=threads[0].get('snippet',{});top=thread.get('topLevelComment',{});live=top.get('snippet',{})
+            require(top.get('id')==comment_id and thread.get('channelId')==channel and thread.get('videoId')==row['video_id'] and thread.get('isPublic') is True and thread.get('canReply') is True,'parent thread identity/video/public binding missing')
+            require(not live.get('parentId') and live.get('channelId')==channel and live.get('videoId',row['video_id'])==row['video_id'] and live.get('textOriginal',live.get('textDisplay'))==row['text'] and live.get('moderationStatus') in (None,'published'),'live thread parent changed since assessment')
+            live_author=live.get('authorChannelId',{}).get('value')
+            require(isinstance(live_author,str) and live_author and live_author!=channel,'thread parent author unknown or own channel')
+            require(not author or author==live_author,'parent author changed between live reads')
+            source='commentThreads.list_exact_id'
+        else:require(parent['videoId']==row['video_id'],'parent comment changed since assessment')
+        videos=svc.videos().list(part='snippet,status',id=row['video_id']).execute().get('items',[])
+        require(len(videos)==1 and videos[0].get('id')==row['video_id'] and videos[0].get('snippet',{}).get('channelId')==channel and videos[0].get('status',{}).get('privacyStatus')=='public','reply video must remain public on own channel')
+        return {'source':source,'parent_id':comment_id,'video_id':row['video_id'],'public_on_own_channel':True,'is_owner_author':False}
     def reply(self,comment_id,text,execute=False,svc=None):
         channel=self.s.config['channel']['id'];row=self.db.execute('SELECT * FROM feedback_comments WHERE channel_id=? AND comment_id=?',(channel,comment_id)).fetchone();require(row,'comment not observed on own channel')
         assessment=json.loads(row['assessment'] or '{}');require(assessment.get('classification') in ('normal','useful') and assessment.get('reply_approved') is True and assessment.get('reviewer'),'reply needs non-sensitive independent approval')
@@ -286,10 +310,7 @@ COMMIT;''')
             parents=svc.comments().list(part='snippet',id=comment_id,textFormat='plainText').execute().get('items',[])
             require(len(parents)==1 and parents[0].get('id')==comment_id,'parent comment missing')
             parent=parents[0]['snippet']
-            require(not parent.get('parentId') and parent.get('videoId')==row['video_id'] and parent.get('textOriginal',parent.get('textDisplay'))==row['text'],'parent comment changed since assessment')
-            require(parent.get('moderationStatus','published')=='published','parent no longer published')
-            videos=svc.videos().list(part='snippet,status',id=row['video_id']).execute().get('items',[])
-            require(len(videos)==1 and videos[0].get('id')==row['video_id'] and videos[0].get('snippet',{}).get('channelId')==channel and videos[0].get('status',{}).get('privacyStatus')=='public','reply video must remain public on own channel')
+            self.reply_parent_binding(svc,comment_id,parent,row)
         except Exception as exc:return {'ok':False,'status':'preflight_failed','error':str(exc) if isinstance(exc,WorkflowError) else type(exc).__name__,'retry_after':self.api_error(exc)}
         # Durable intent precedes network. Unknown is never automatically reposted.
         with self.db:self.db.execute('INSERT INTO reply_ledger VALUES(?,?,?,?,?,?,?)',(channel,comment_id,sha(text),text,'unknown',None,utcnow()))

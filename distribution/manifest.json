@@ -5,8 +5,8 @@
   "files": [
     {
       "path": "README.md",
-      "sha256": "afe74ee6ed11c5eaaa092a8c954d19e8edaff18a11d87c2796a73196227472cf",
-      "bytes": 3208
+      "sha256": "aac7301951e89d7502ae3ca1386f6080a0183ef74a9f6eb407f24a3b6d509f2d",
+      "bytes": 3601
     },
     {
       "path": "params.schema.json",
@@ -145,8 +145,8 @@
     },
     {
       "path": "scaffold/documentation/CHANGELOG.md",
-      "sha256": "02efd250c05e00b34daf5b0152b74b41eeb35e5d43a95599f0b02282612b1002",
-      "bytes": 1070
+      "sha256": "a7f51e5246bc36de0f9c443e491ff6cbb514584bad9c05896b20a47cbcf42e51",
+      "bytes": 1693
     },
     {
       "path": "scaffold/documentation/FONTS.md",
@@ -480,8 +480,8 @@
     },
     {
       "path": "scaffold/storyflow/learning.py",
-      "sha256": "1116943fd4574dbc7172a70e9b2419ff9102a40a1684ac65cad4b81874c50a15",
-      "bytes": 41301
+      "sha256": "c61e37a5c5d17f65fb05d5238d3eff18824b422a2837c78f76489065f665805e",
+      "bytes": 43374
     },
     {
       "path": "scaffold/storyflow/learning_options.py",
@@ -705,8 +705,8 @@
     },
     {
       "path": "scaffold/tests/test_learning.py",
-      "sha256": "fc08148b317f9526e84ae3d4028f1eb65889f18ea97e6458f19bcc7552fb3a47",
-      "bytes": 13265
+      "sha256": "5ec3bd26027eb3984c5f778378846494c070635621fbb094c44421edd0d4b547",
+      "bytes": 20093
     },
     {
       "path": "scaffold/tests/test_learning_options.py",
@@ -987,5 +987,5 @@
   "title_en": "Story Animation",
   "title_zh": "Story Animation 动画故事工作流",
   "type": "workflow",
-  "version": "1.2.2"
+  "version": "1.2.3"
 }

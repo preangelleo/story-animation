@@ -1,4 +1,5 @@
 import datetime as dt
+import copy
 import hashlib
 import json
 from pathlib import Path
@@ -147,5 +148,63 @@ class LearningTests(unittest.TestCase):
         root=self.root/'disabled';s=Store(root)
         with self.assertRaises(WorkflowError):Learning(s)
         self.assertFalse(s.db.execute("SELECT name FROM sqlite_master WHERE name='schema_migrations'").fetchone());s.close()
+
+    def reply_fixture(self):
+        svc=self.service();svc.commentThreads.return_value.list.return_value.execute.return_value={'items':[self.comment()]}
+        self.l.comments(svc,dt.datetime(2026,11,2,10,tzinfo=dt.timezone.utc))
+        self.l.assess('c1',{'reviewer':'independent-feedback-agent','author':'audience','reply_approved':True,'reply_text':'谢谢你的鼓励！','classification':'normal','reason':'a short supportive audience comment'})
+        parent={'textOriginal':'How did he learn courage?','moderationStatus':'published','authorChannelId':{'value':'audience-author'}}
+        svc.comments.return_value.list.return_value.execute.return_value={'items':[{'id':'c1','snippet':parent}]}
+        thread={'id':'c1','snippet':{'channelId':'UC'+'A'*22,'videoId':'abcdefghijk','isPublic':True,'canReply':True,'topLevelComment':{'id':'c1','snippet':{**parent,'videoId':'abcdefghijk','channelId':'UC'+'A'*22}}}}
+        svc.commentThreads.return_value.list.reset_mock();svc.commentThreads.return_value.list.return_value.execute.return_value={'items':[thread]}
+        svc.comments.return_value.insert.return_value.execute.return_value={'id':'new-reply'}
+        return svc,thread,parent
+    def test_actual_parent_shape_missing_video_uses_exact_live_thread_binding(self):
+        svc,thread,parent=self.reply_fixture()
+        out=self.l.reply('c1','谢谢你的鼓励！',True,svc)
+        self.assertEqual(out['status'],'done',out)
+        svc.commentThreads.return_value.list.assert_called_once_with(part='snippet',id='c1',textFormat='plainText')
+        self.assertEqual(svc.comments.return_value.insert.call_count,1)
+
+    def assert_safe_reply_rejected(self,svc):
+        out=self.l.reply('c1','谢谢你的鼓励！',True,svc)
+        self.assertEqual(out['status'],'preflight_failed',out);svc.comments.return_value.insert.assert_not_called()
+        self.assertEqual(self.s.db.execute('SELECT COUNT(*) FROM reply_ledger').fetchone()[0],0)
+        return out
+    def test_fallback_wrong_missing_null_duplicate_and_text_identity_matrix(self):
+        cases=[('thread_id',lambda x:x.update(id='other')),('top_id',lambda x:x['snippet']['topLevelComment'].update(id='other'))]
+        for field in ('videoId','channelId','isPublic','canReply'):
+            for value in (None,'wrong' if field in ('videoId','channelId') else False):cases.append((field+str(value),lambda x,k=field,v=value:x['snippet'].update({k:v})))
+            cases.append(('missing_'+field,lambda x,k=field:x['snippet'].pop(k)))
+        cases += [('changed_text',lambda x:x['snippet']['topLevelComment']['snippet'].update(textOriginal='changed')),('nested_wrong_channel',lambda x:x['snippet']['topLevelComment']['snippet'].update(channelId='other')),('nested_wrong_video',lambda x:x['snippet']['topLevelComment']['snippet'].update(videoId='other')),('not_top',lambda x:x['snippet']['topLevelComment']['snippet'].update(parentId='other')),('owner_author',lambda x:x['snippet']['topLevelComment']['snippet'].update(authorChannelId={'value':'UC'+'A'*22})),('unknown_author',lambda x:x['snippet']['topLevelComment']['snippet'].pop('authorChannelId'))]
+        for label,mutate in cases:
+            with self.subTest(label=label):
+                svc,thread,parent=self.reply_fixture();mutate(thread);self.assert_safe_reply_rejected(svc)
+        for items in ([],None):
+            svc,thread,parent=self.reply_fixture();svc.commentThreads.return_value.list.return_value.execute.return_value={'items':items};self.assert_safe_reply_rejected(svc)
+        svc,thread,parent=self.reply_fixture();svc.commentThreads.return_value.list.return_value.execute.return_value={'items':[thread,copy.deepcopy(thread)]};self.assert_safe_reply_rejected(svc)
+        svc,thread,parent=self.reply_fixture();svc.commentThreads.return_value.list.return_value.execute.return_value={'items':[thread],'nextPageToken':'ambiguous'};self.assert_safe_reply_rejected(svc)
+    def test_existing_video_binding_needs_no_thread_read_and_refuses_owner_or_cross_video(self):
+        svc,thread,parent=self.reply_fixture();parent['videoId']='abcdefghijk'
+        self.assertEqual(self.l.reply('c1','谢谢你的鼓励！',True,svc)['status'],'done');svc.commentThreads.return_value.list.assert_not_called()
+        self.s.db.execute('DELETE FROM reply_ledger');self.s.db.commit()
+        for change in ({'videoId':'other'},{'authorChannelId':{'value':'UC'+'A'*22}},{'channelId':'other'},{'textOriginal':'changed'}):
+            svc,thread,parent=self.reply_fixture();parent['videoId']='abcdefghijk';parent.update(change);self.assert_safe_reply_rejected(svc);svc.commentThreads.return_value.list.assert_not_called()
+    def test_realtime_video_private_wrong_channel_missing_duplicate_reject_before_intent(self):
+        for items in ([],[{'id':'abcdefghijk','snippet':{'channelId':'UC'+'A'*22},'status':{'privacyStatus':'private'}}],[{'id':'abcdefghijk','snippet':{'channelId':'other'},'status':{'privacyStatus':'public'}}],[{'id':'other','snippet':{'channelId':'UC'+'A'*22},'status':{'privacyStatus':'public'}}]):
+            svc,thread,parent=self.reply_fixture();svc.videos.return_value.list.return_value.execute.return_value={'items':items};self.assert_safe_reply_rejected(svc)
+        svc,thread,parent=self.reply_fixture();video={'id':'abcdefghijk','snippet':{'channelId':'UC'+'A'*22},'status':{'privacyStatus':'public'}};svc.videos.return_value.list.return_value.execute.return_value={'items':[video,copy.deepcopy(video)]};self.assert_safe_reply_rejected(svc)
+    def test_fallback403_persists_quota_without_unknown_post_intent(self):
+        svc,thread,parent=self.reply_fixture()
+        class QuotaError(Exception):pass
+        exc=QuotaError('quota');exc.resp=Mock(status=403);svc.commentThreads.return_value.list.return_value.execute.side_effect=exc
+        out=self.assert_safe_reply_rejected(svc);self.assertIsNotNone(out['retry_after'])
+        with self.assertRaises(WorkflowError):self.l.quota_gate()
+    def test_fallback_post_unknown_never_rechecks_parent_or_reposts(self):
+        svc,thread,parent=self.reply_fixture();svc.comments.return_value.insert.return_value.execute.side_effect=TimeoutError('response lost')
+        first=self.l.reply('c1','谢谢你的鼓励！',True,svc);self.assertEqual(first['status'],'unknown')
+        svc.channels.return_value.list.reset_mock();svc.commentThreads.return_value.list.reset_mock();svc.comments.return_value.list.reset_mock()
+        second=self.l.reply('c1','谢谢你的鼓励！',True,svc);self.assertEqual(second['status'],'unknown');self.assertTrue(second['idempotent'])
+        svc.channels.return_value.list.assert_not_called();svc.commentThreads.return_value.list.assert_not_called();svc.comments.return_value.list.assert_not_called();self.assertEqual(svc.comments.return_value.insert.call_count,1)
 
 if __name__=='__main__':unittest.main()
