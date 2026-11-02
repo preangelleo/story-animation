@@ -1,5 +1,6 @@
 """Project-owned source render -> immutable subtitle derivation -> artifact registration."""
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -49,6 +50,33 @@ def verify_derivation(store, ep, value, source_binding):
             proof=read_json(value['evidence']['first_frame_final']['path'])
             if proof.get('video',{}).get('sha256')!=value['output_sha256'] or proof.get('thumbnail')!=thumb or proof.get('status')!='pass' or not result.get('first_frame_cover'):raise WorkflowError('burn first-frame final proof mismatch')
     command=read_json(value['evidence']['command']['path'])
+    if 'frame_mask' in value.get('inputs',{}):
+        from .caption_mask import validate_mask,caption_filter,notice_filter
+        mask=validate_mask(value['inputs']['frame_mask'],store.root/value['source']['path'])
+        if mask['episode_id']!=ep:raise WorkflowError('burn caption mask episode mismatch')
+        mask_path=Path(value['evidence']['frame_mask']['path'])
+        if read_json(mask_path)!=mask:raise WorkflowError('burn caption mask snapshot mismatch')
+        expected_tools={'tool':store.root/'tools/burn_subtitles_masked.py','legacy_helper':store.root/'tools/burn_subtitles.py','caption_mask_helper':store.root/'storyflow/caption_mask.py'}
+        for key,path in expected_tools.items():
+            hash_key={'tool':'tool_sha256','legacy_helper':'legacy_helper_sha256','caption_mask_helper':'caption_mask_helper_sha256'}[key]
+            if value['evidence'][key]!=proof_file(path) or value['inputs'][hash_key]!=digest(path):raise WorkflowError('burn caption mask tool binding changed')
+        invocation=read_json(value['evidence']['invocation']['path'])['argv']
+        expected_argv=[sys.executable,str(expected_tools['tool']),'--video',str(store.root/value['source']['path']),'--srt',delivery['subtitles']['path'],'--output',result['output'],'--work',str(Path(value['evidence']['result']['path']).parent),'--execute','--frame-mask',str(mask_path),'--font',value['inputs']['subtitle_font'],'--font-family',value['inputs']['subtitle_family'],'--font-index',value['inputs']['subtitle_font_index']]
+        if value['inputs'].get('first_frame'):expected_argv+=['--first-frame-cover']
+        if value['inputs']['illustrated_reconstruction']:expected_argv+=['--illustrated-reconstruction']
+        if digest(value['inputs']['subtitle_font'])!=value['inputs']['subtitle_font_sha256'] or result['font']!=value['inputs']['subtitle_font'] or 'FontName='+value['inputs']['subtitle_family']+',' not in result['force_style']:raise WorkflowError('burn configured subtitle font binding mismatch')
+        if invocation!=expected_argv:raise WorkflowError('burn caption mask invocation mismatch')
+        for receipt in (result,command):
+            if (receipt.get('frame_mask')!=mask or receipt.get('frame_mask_path')!=str(mask_path)
+                    or receipt.get('frame_mask_sha256')!=digest(mask_path)
+                    or receipt.get('legacy_helper_sha256')!=value['inputs']['legacy_helper_sha256']
+                    or receipt.get('caption_mask_helper_sha256')!=value['inputs']['caption_mask_helper_sha256']):
+                raise WorkflowError('burn caption mask command/result mismatch')
+            expected_filter=caption_filter(Path(value['evidence']['srt_snapshot']['path']),Path(receipt['font']),receipt['force_style'],mask,receipt['first_frame_cover'])
+            actual_filter=receipt['command'][receipt['command'].index('-vf')+1]
+            if value['inputs']['illustrated_reconstruction']:expected_filter+=notice_filter(Path(receipt['font']),receipt['first_frame_cover'])
+            if actual_filter!=expected_filter:
+                raise WorkflowError('burn caption mask actual ffmpeg filter mismatch')
     if value.get('delivery_inputs',delivery)!=delivery:raise WorkflowError('burn delivery binding changed')
     before={'video_sha256':value['source']['sha256'],'audio_sha256':delivery['audio']['sha256'],'srt_sha256':delivery['subtitles']['sha256']}
     if value['input_hashes_before']!=before or value['input_hashes_after']!=before:
@@ -86,6 +114,16 @@ def burn(store, ep, execute=False, illustrated=False):
         if thumbnail and (source.get('inputs',{}).get('first_frame')!=thumbnail or not source.get('first_frame_receipt')):raise WorkflowError('new final requires current thumbnail source consumption receipt')
         if source.get('burn_subtitles') is not False or digest(source_path)!=source_artifact['sha256']:raise WorkflowError('bound unburned source required')
         inputs={'source_binding_sha256':digest(binding),'audio_sha256':delivery['audio']['sha256'],'srt_sha256':delivery['subtitles']['sha256'],'chapter_binding_sha256':digest(chapter) if chapter.exists() else None,'tool_sha256':digest(root/'tools/burn_subtitles.py'),'burn_ops_sha256':digest(__file__),'video_stream_gate_version':1,'illustrated_reconstruction':illustrated,'first_frame':thumbnail}
+        tool=root/'tools/burn_subtitles.py';mask=None
+        if chapter.exists():
+            from .caption_mask import create_mask
+            mask=create_mask(chapter,source_path)
+            if mask['episode_id']!=ep:raise WorkflowError('burn caption mask episode mismatch')
+            tool=root/'tools/burn_subtitles_masked.py'
+            font=Path(os.environ.get('STORY_SUBTITLE_FONT','assets/fonts/subtitle.ttf')).expanduser().resolve(strict=True)
+            inputs.update(subtitle_font=str(font),subtitle_font_sha256=digest(font),subtitle_family=os.environ.get('STORY_SUBTITLE_FAMILY',''),subtitle_font_index=os.environ.get('STORY_SUBTITLE_FONT_INDEX','0'))
+            if not inputs['subtitle_family']:raise WorkflowError('STORY_SUBTITLE_FAMILY must name the user-supplied registered font')
+            inputs.update(frame_mask=mask,tool_sha256=digest(tool),legacy_helper_sha256=digest(root/'tools/burn_subtitles.py'),caption_mask_helper_sha256=digest(root/'storyflow/caption_mask.py'))
         target=work/'burns'/fingerprint(inputs);out=target/'final.mp4';evidence=target/'evidence'
         plan={'ok':True,'executed':False,'operation':'burn','inputs':inputs,'output':str(out),'clock_output':str(target/'clock')}
         if derived.exists() and read_json(derived).get('inputs')==inputs:
@@ -99,7 +137,10 @@ def burn(store, ep, execute=False, illustrated=False):
         (target/'burn_ops.py').write_bytes(Path(__file__).read_bytes())
         if digest(target/'burn_ops.py')!=inputs['burn_ops_sha256']:raise WorkflowError('burn implementation changed during invocation')
         before={'video_sha256':digest(source_path),'audio_sha256':digest(delivery['audio']['path']),'srt_sha256':digest(delivery['subtitles']['path'])}
-        argv=[sys.executable,str(root/'tools/burn_subtitles.py'),'--video',str(source_path),'--srt',delivery['subtitles']['path'],'--output',str(out),'--work',str(evidence),'--execute']
+        if mask:atomic_json(target/'frame-mask.json',mask)
+        argv=[sys.executable,str(tool),'--video',str(source_path),'--srt',delivery['subtitles']['path'],'--output',str(out),'--work',str(evidence),'--execute']
+        if mask:argv+=['--frame-mask',str(target/'frame-mask.json'),'--font',inputs['subtitle_font'],'--font-family',inputs['subtitle_family'],'--font-index',inputs['subtitle_font_index']]
+        atomic_json(target/'invocation.json',{'argv':argv+(['--first-frame-cover'] if thumbnail else [])+(['--illustrated-reconstruction'] if illustrated else [])})
         if thumbnail:argv+=['--first-frame-cover']
         if illustrated:argv+=['--illustrated-reconstruction']
         with (target/'invocation.log').open('x') as log:
@@ -113,8 +154,16 @@ def burn(store, ep, execute=False, illustrated=False):
         atomic_json(target/'video-stream-gate.json',stream_gate)
         after={'video_sha256':digest(source_path),'audio_sha256':digest(delivery['audio']['path']),'srt_sha256':digest(delivery['subtitles']['path'])}
         if before!=after or digest(binding)!=inputs['source_binding_sha256'] or store.render_binding_errors(ep):raise WorkflowError('source/input drift during burn')
+        if mask:
+            from .caption_mask import validate_mask
+            validate_mask(mask,source_path)
+            for path,key in ((tool,'tool_sha256'),(root/'tools/burn_subtitles.py','legacy_helper_sha256'),(root/'storyflow/caption_mask.py','caption_mask_helper_sha256')):
+                if digest(path)!=inputs[key]:raise WorkflowError('burn tool changed during invocation')
         if result['output_sha256']!=digest(out) or result['video_sha256']!=before['video_sha256'] or result['srt_sha256']!=before['srt_sha256']:raise WorkflowError('burn result mismatch')
-        value={'episode_id':ep,'inputs':inputs,'source':source_artifact,'delivery_inputs':delivery,'source_binding_sha256':digest(binding),'input_artifacts':{k:arts[k]['sha256'] for k in ('audio','subtitles')},'input_hashes_before':before,'input_hashes_after':after,'output_sha256':digest(out),'clock_output':str(target/'clock'),'evidence':{k:proof_file(p) for k,p in {'source':target/'source-render.binding.json','result':evidence/'result.json','command':evidence/'command.json','log':evidence/'ffmpeg.log','srt_snapshot':evidence/'subtitles.srt','tool':root/'tools/burn_subtitles.py','video_stream_gate':target/'video-stream-gate.json','burn_ops_snapshot':target/'burn_ops.py'}.items()}}
+        value={'episode_id':ep,'inputs':inputs,'source':source_artifact,'delivery_inputs':delivery,'source_binding_sha256':digest(binding),'input_artifacts':{k:arts[k]['sha256'] for k in ('audio','subtitles')},'input_hashes_before':before,'input_hashes_after':after,'output_sha256':digest(out),'clock_output':str(target/'clock'),'evidence':{k:proof_file(p) for k,p in {'source':target/'source-render.binding.json','result':evidence/'result.json','command':evidence/'command.json','log':evidence/'ffmpeg.log','srt_snapshot':evidence/'subtitles.srt','tool':tool,'video_stream_gate':target/'video-stream-gate.json','burn_ops_snapshot':target/'burn_ops.py'}.items()}}
+        value['evidence']['invocation']=proof_file(target/'invocation.json')
+        if mask:
+            value['evidence'].update({key:proof_file(path) for key,path in {'frame_mask':target/'frame-mask.json','legacy_helper':root/'tools/burn_subtitles.py','caption_mask_helper':root/'storyflow/caption_mask.py'}.items()})
         if thumbnail:value['evidence']['first_frame_final']=proof_file(target/'first-frame-final.json')
         # Normal registration invalidates persisted QA/media reviews. No PASS is created.
         value['artifact']=store.register(ep,'video',out)

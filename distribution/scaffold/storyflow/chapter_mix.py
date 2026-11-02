@@ -141,6 +141,43 @@ def canonical_card(source,destination,frame_count,log):
           '-frames:v',str(frame_count),'-an','-c:v','libx264','-preset','fast','-crf','0','-bf','0','-threads','4','-pix_fmt','yuv420p','-video_track_timescale','15360',*flags,destination],log)
 
 
+def concat_pictures(segments, audio, output, log):
+    """Join whole clips through compatible lossless H264 carriers.
+
+    A CRF18 video can decode differently after a CRF0 still in a copied MP4
+    stream. Re-encoding that video's decoded pixels at CRF0 removes the mixed
+    SPS/PPS context. The caller still proves every final frame against the
+    ORIGINAL whole clips, so a carrier cannot silently change their pixels.
+    """
+    output=Path(output)
+    carriers=[];records=[]
+    for index,source in enumerate(segments):
+        source=Path(source)
+        probe=subprocess.run(['ffprobe','-v','error','-select_streams','v:0',
+            '-show_entries','stream=profile','-of','json',str(source)],capture_output=True,text=True)
+        if probe.returncode:raise WorkflowError('picture carrier profile probe failed')
+        streams=json.loads(probe.stdout).get('streams',[])
+        if len(streams)!=1 or not streams[0].get('profile'):raise WorkflowError('picture carrier profile missing')
+        carrier=source
+        if streams[0]['profile']!='High 4:4:4 Predictive':
+            carrier=output.parent/f'lossless-picture-{index}.mp4'
+            if carrier.exists():raise WorkflowError('picture carrier exists; preserve and use fresh output')
+            _run(['ffmpeg','-nostdin','-v','error','-i',source,'-map','0:v:0','-an',
+                '-c:v','libx264','-preset','fast','-crf','0','-bf','0','-threads','4',
+                '-pix_fmt','yuv420p','-video_track_timescale','15360',carrier],log)
+        carriers.append(carrier)
+        records.append({'source':str(source),'source_sha256':digest(source),
+            'carrier':str(carrier),'carrier_sha256':digest(carrier),
+            'source_profile':streams[0]['profile'],'lossless_reencoded':carrier!=source})
+    listing=output.parent/'pictures.txt'
+    listing.write_text(''.join(f"file '{p.resolve()}'\n" for p in carriers))
+    _run(['ffmpeg','-nostdin','-v','error','-f','concat','-safe','0','-i',listing,'-i',audio,
+          '-map','0:v:0','-map','1:a:0','-c:v','copy','-c:a','aac','-b:a','192k','-use_editlist','1','-movflags','+faststart',output],log)
+    atomic_json(output.parent/'picture-carriers.json',{'schema':'qy.picture-carriers.v1',
+        'policy':'lossless transport only; final proof must compare original whole clips',
+        'segments':records})
+
+
 def derive(source_video, dry_audio, source_srt, payload, output, cues=()):
     """Render real clean video + mapped subtitles + mix, with immutable evidence.
 
@@ -218,9 +255,7 @@ def derive(source_video, dry_audio, source_srt, payload, output, cues=()):
         segments.append(segment);segment_frames.append(node['frame_count'])
     segment_contract=validate_picture_segments(segments,segment_frames)
     atomic_json(output/'picture-stream-contract.json',segment_contract)
-    listing=output/'pictures.txt';listing.write_text(''.join(f"file '{p.resolve()}'\n" for p in segments))
-    _run(['ffmpeg','-nostdin','-v','error','-f','concat','-safe','0','-i',listing,'-i',output/'mix.wav',
-          '-map','0:v:0','-map','1:a:0','-c:v','copy','-c:a','aac','-b:a','192k','-use_editlist','1','-movflags','+faststart',output/'clean.mp4'],log)
+    concat_pictures(segments,output/'mix.wav',output/'clean.mp4',log)
     clean_stream=picture_stream(output/'clean.mp4')
     validate_picture_segments([output/'clean.mp4'],[sum(segment_frames)])
     atomic_json(output/'clean-stream-contract.json',clean_stream)

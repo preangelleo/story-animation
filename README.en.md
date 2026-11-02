@@ -14,14 +14,14 @@ The pilot is a showcase, not an MIT-licensed media asset. It includes authorized
 
 ## Give this prompt to Agent J
 
-> Find **Story Animation** in Agent J Plaza: ID `story-animation`, version `1.2.0`. Authors may use Codex, Claude, Ark or my own adapter. Keep all learning modules off initially; explain the requirements and costs of SQL facts, real embeddings/outbox, independent dedup, comments and topic suggestions. Replies remain read-only unless I explicitly enable them. Read its manifest, README, skills and provider requirements. Preview installation in a new independent workspace and explain permissions, verification status and the native confirmation process. Check my models, image generation, narration, forced alignment, fonts and rendering environment. Use a secret card or my approved secret manager for credentials. Distinguish verified integrations from alternatives that need adaptation. Report missing setup, propose research and a production budget, and wait for my approval before paid work. Do not purchase services, inherit another channel's account, publish or enable automation. If parameters cannot meet my needs, propose source changes first.
+> Find **Story Animation** in Agent J Plaza: ID `story-animation`, version `1.2.1`. Authors may use Codex, Claude, Ark or my own adapter. Keep all learning modules off initially; explain the requirements and costs of SQL facts, real embeddings/outbox, independent dedup, comments and topic suggestions. Replies remain read-only unless I explicitly enable them. Read its manifest, README, skills and provider requirements. Preview installation in a new independent workspace and explain permissions, verification status and the native confirmation process. Check my models, image generation, narration, forced alignment, fonts and rendering environment. Use a secret card or my approved secret manager for credentials. Distinguish verified integrations from alternatives that need adaptation. Report missing setup, propose research and a production budget, and wait for my approval before paid work. Do not purchase services, inherit another channel's account, publish or enable automation. If parameters cannot meet my needs, propose source changes first.
 
 ## Install or inspect
 
 Full Plaza downloads require an account with a paid seat. This repository is publicly readable and clonable. Third-party services have separate costs. The native command previews installation by default:
 
 ```sh
-agentj plaza install story-animation --version 1.2.0 --workspace /your/new/story-workspace --harness codex
+agentj plaza install story-animation --version 1.2.1 --workspace /your/new/story-workspace --harness codex
 ```
 
 Replace the example path. Follow your installed CLI's `--help`, permission, digest and confirmation flow. Community availability does not imply official certification; do not bypass verification.
@@ -41,7 +41,7 @@ Install or copy the scaffold to your own independent workspace before real produ
 | Capability | Accepted pilot / public implementation | Alternatives |
 |---|---|---|
 | Orchestration and images | Codex with built-in `image_gen`; thumbnail role configured as `gpt-6.1-sol` | Other harnesses or image providers need explicit adapters and verification of references and output contracts |
-| Script author | The 1.1.0 pilot used OpenCode + Ark Agent Plan `doubao-seed-2.1-pro`; 1.2.0 reads configurable author.provider | Codex/Claude/custom tool-free handoff or installer-owned adapter; verify authentication, costs and quality; no silent metered fallback |
+| Script author | The 1.1.0 pilot used OpenCode + Ark Agent Plan `doubao-seed-2.1-pro`; 1.2.1 reads configurable author.provider | Codex/Claude/custom tool-free handoff or installer-owned adapter; verify authentication, costs and quality; no silent metered fallback |
 | Narration and alignment | Own ElevenLabs key and authorized voice; pilot used `eleven_v4`, public default is `eleven_multilingual_v2` | Fish Audio or Volcengine can be adapted, but are not advertised as validated drop-in integrations |
 | Rendering | Python 3.11+, ffmpeg/ffprobe, Fontconfig, Node, HyperFrames 0.8.225 and browser dependencies | Supply fonts you have the right to use |
 | Video inserts | Pilot: Seedance2.5; optional Replicate integration, up to three clips of about ten seconds | Model/version parameters do not guarantee provider availability, prices or access |
@@ -79,3 +79,8 @@ Tests use synthetic fixtures, not production acceptance. See [CONTRIBUTING.md](C
 ## Optional learning in 1.2.0
 
 Accepted-script SQL facts, real embeddings/outbox, independent duplicate advice, comment intake/replies and feedback topics are individually optional and all off by default. The SQLite production safety ledger remains. After installing, inspect `modules status`, `modules configure --help` and `author --help`; see [LEARNING.md](distribution/scaffold/documentation/LEARNING.md). Codex/Claude/custom authors use an explicit tool-free handoff or installer-owned adapter; Ark is optional. Missing or unverified embeddings are reported as SQL/lexical-only capability, never semantic proof. The existing film remains the 1.1.0 pilot; no new media was generated.
+
+
+## 1.2.1 picture and chapter-caption patch
+
+Decode segments independently into lossless picture carriers and verify every output picture against its source. Normal chapter burns mask body captions on exact bound typed-EDL frames, removing first/last-card cue residue without editing source SRT, forced alignment or five-language tracks. Supply your licensed subtitle font explicitly with `STORY_SUBTITLE_FONT`, `STORY_SUBTITLE_FAMILY` and, for collections when needed, `STORY_SUBTITLE_FONT_INDEX`; register it through Fontconfig and pass the actual preflight. No font or private font default is distributed. The actual installed synthetic/mock suite passed 335 tests, plus nine tests with a second supplied font. These prove installation and technical regression only, not a new provider, real semantic search or a new film.

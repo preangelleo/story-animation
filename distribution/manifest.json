@@ -174,6 +174,11 @@
       "bytes": 466
     },
     {
+      "path": "scaffold/documentation/RELEASE-1.2.1-CANDIDATE.md",
+      "sha256": "9de49f49bf67efe982c8c669d8a9b544f9962bbb6ccf552018f1d3f2ee722654",
+      "bytes": 2012
+    },
+    {
       "path": "scaffold/documentation/RELEASE.md",
       "sha256": "908b545a3d083d8facdb62e2c90686e4a6667c1ce695dd123ea93a4911bb109b",
       "bytes": 1394
@@ -405,8 +410,13 @@
     },
     {
       "path": "scaffold/storyflow/burn_ops.py",
-      "sha256": "e65c2302a200ca815e4d23b88e4dd886f62a8e8a0d1e8b11b0dc07e168819c70",
-      "bytes": 11812
+      "sha256": "f0ed9f49445f52fd82fb708c347f9785df59717370b13784710169a53fc65f5a",
+      "bytes": 17037
+    },
+    {
+      "path": "scaffold/storyflow/caption_mask.py",
+      "sha256": "ba27051a74d483ae6dafadfbc652d919c254946e5035115391653e60eb4ad8be",
+      "bytes": 4755
     },
     {
       "path": "scaffold/storyflow/captions.py",
@@ -425,8 +435,8 @@
     },
     {
       "path": "scaffold/storyflow/chapter_mix.py",
-      "sha256": "066160054f19e151008a339148c6bdeb90fbbcab9838e36846a104988fe2d38e",
-      "bytes": 31514
+      "sha256": "1b59b17d3e747de272129d0fd8bb37967ce4d2fc26031595c55de7e373a6360b",
+      "bytes": 33564
     },
     {
       "path": "scaffold/storyflow/chapter_render.py",
@@ -619,6 +629,11 @@
       "bytes": 1716
     },
     {
+      "path": "scaffold/tests/test_burn_frame_mask.py",
+      "sha256": "745f1ba7f31403e501833ee72f99e5df2b62ec9a6e8317d65785d7143623633a",
+      "bytes": 7703
+    },
+    {
       "path": "scaffold/tests/test_burn_timestamps.py",
       "sha256": "38d5b0a1de3ea1e954499a4e400c16b8f4698c87695fca7a0c90ab4641cc42dd",
       "bytes": 2214
@@ -639,9 +654,14 @@
       "bytes": 6863
     },
     {
+      "path": "scaffold/tests/test_chapter_concat_context.py",
+      "sha256": "3769d73e83f43694507c6369f530185a03391a133bb11f1419e1a85641889869",
+      "bytes": 1916
+    },
+    {
       "path": "scaffold/tests/test_chapter_mix.py",
-      "sha256": "4ec28e8e9829c818d76e4e16caca9f1f0c3acac161399d997a86d6bc9173c41c",
-      "bytes": 12315
+      "sha256": "dbf608529b31a3ea473039040bf882a491f89efafa3e8df0ea520abae0d541f7",
+      "bytes": 14792
     },
     {
       "path": "scaffold/tests/test_chapter_render.py",
@@ -770,8 +790,13 @@
     },
     {
       "path": "scaffold/tools/burn_subtitles.py",
-      "sha256": "b2f4266fc57675d9fded90b740b93225b4b0656650d47c328f01367627f11c4c",
-      "bytes": 10273
+      "sha256": "588712bba7cf47c4414a9a3aadddcc67ac0642fb64e25736712618ac8caf94c2",
+      "bytes": 10361
+    },
+    {
+      "path": "scaffold/tools/burn_subtitles_masked.py",
+      "sha256": "fcd59fa44dcfa1b78b044685755d7c6004ae3552eaa2aa2ed6ce943b34f6a01a",
+      "bytes": 6554
     },
     {
       "path": "scaffold/tools/chinese_author.py",
@@ -952,5 +977,5 @@
   "title_en": "Story Animation",
   "title_zh": "Story Animation 动画故事工作流",
   "type": "workflow",
-  "version": "1.2.0"
+  "version": "1.2.1"
 }

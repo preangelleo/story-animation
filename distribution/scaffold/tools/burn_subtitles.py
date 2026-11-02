@@ -85,7 +85,9 @@ def main():
     font = Path(os.environ.get('STORY_SUBTITLE_FONT','assets/fonts/subtitle.ttf')).expanduser().resolve()
     if not font.is_file():
         raise SystemExit('实际指定字体不存在；拒绝fallback')
-    family = os.environ.get('STORY_SUBTITLE_FAMILY','AidianFengYaHeiChangTi')
+    family = os.environ.get('STORY_SUBTITLE_FAMILY')
+    if not family:
+        raise SystemExit('STORY_SUBTITLE_FAMILY must name the user-supplied registered font')
     matched = subprocess.check_output(['fc-match', '-f', '%{file}', family], text=True).strip()
     if Path(matched).resolve() != font.resolve():
         raise SystemExit('fontconfig没有选中指定TTF；拒绝fallback')

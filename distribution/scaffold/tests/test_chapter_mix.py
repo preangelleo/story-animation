@@ -64,6 +64,8 @@ class ChapterChain(unittest.TestCase):
    r,s,ep=fx.root,fx.store,fx.ep;work=it.folder(s,ep)
    cfg=json.loads((r/'documentation/configuration.json').read_text());cfg['quality']={'min_script_chars':1,'min_duration_seconds':.1};atomic_json(r/'documentation/configuration.json',cfg);s.config['quality']=cfg['quality']
    (r/'tools').mkdir();shutil.copyfile(ROOT/'tools/burn_subtitles.py',r/'tools/burn_subtitles.py')
+   shutil.copyfile(ROOT/'tools/burn_subtitles_masked.py',r/'tools/burn_subtitles_masked.py')
+   (r/'storyflow').mkdir();shutil.copyfile(ROOT/'storyflow/caption_mask.py',r/'storyflow/caption_mask.py')
    audio=r/'audio.wav';data=(np.random.default_rng(719).normal(0,.08,20*16000)*32767).astype('<i2')
    with wave.open(str(audio),'w') as w:w.setnchannels(1);w.setsampwidth(2);w.setframerate(16000);w.writeframes(data.tobytes())
    image=r/'scene.png'
@@ -88,6 +90,36 @@ class ChapterChain(unittest.TestCase):
    self.assertEqual(derived['pcm_audit']['delivery_samples'],22*48000)
    self.assertEqual(derived['mapping']['transitions'][0]['source_frame'],181)
    with patch.dict(os.environ,{'PYTHONPATH':str(ROOT)}):result=burn(s,ep,True)
+   # A rejected prior final remains immutable in its old target. Restore clean
+   # through normal artifact registration, then produce a new normal fingerprint.
+   old_final=r/s.artifacts(ep)['video']['path'];old_target=Path(result['derivation']).parent
+   old_snapshot={p:digest(p) for p in old_target.rglob('*') if p.is_file()}
+   s.register(ep,'video',target/'clean.mp4')
+   self.assertEqual(s.render_binding_errors(ep),[])
+   with patch.dict(os.environ,{'PYTHONPATH':str(ROOT)}):result=burn(s,ep,True,illustrated=True)
+   self.assertNotEqual(Path(result['derivation']).parent,old_target)
+   self.assertEqual(old_snapshot,{p:digest(p) for p in old_snapshot});self.assertTrue(old_final.exists())
+   new_proof=json.loads((work/'burned.binding.json').read_text())
+   self.assertEqual(new_proof['inputs']['frame_mask']['ranges'],[[181,211],[391,421]])
+   self.assertEqual(new_proof['inputs']['subtitle_font'],str(Path(os.environ['STORY_SUBTITLE_FONT']).resolve()))
+   invocation=json.loads(Path(new_proof['evidence']['invocation']['path']).read_text())['argv']
+   self.assertEqual(invocation[invocation.index('--font')+1],new_proof['inputs']['subtitle_font'])
+   self.assertEqual(invocation[invocation.index('--font-family')+1],os.environ['STORY_SUBTITLE_FAMILY'])
+   from storyflow.burn_ops import verify_derivation
+   # Even self-consistent rewritten evidence hashes cannot excuse a changed
+   # command/result mask or missing actual invocation flag.
+   archive=Path(result['derivation']);binding_path=work/'burned.binding.json'
+   original_binding=binding_path.read_bytes();original_archive=archive.read_bytes()
+   for kind in ('result','command','invocation'):
+    record=Path(new_proof['evidence'][kind]['path']);saved=record.read_bytes();bad=json.loads(saved)
+    if kind=='invocation':bad['argv']=bad['argv'][:-1]
+    else:bad['frame_mask']['ranges']=[[1,659]]
+    atomic_json(record,bad);altered=copy.deepcopy(new_proof);altered['evidence'][kind]['sha256']=digest(record)
+    atomic_json(archive,altered);atomic_json(binding_path,altered)
+    with self.assertRaises(WorkflowError):verify_derivation(s,ep,altered,work/'render.binding.json')
+    record.write_bytes(saved);archive.write_bytes(original_archive);binding_path.write_bytes(original_binding)
+
+
    self.assertEqual(s.render_binding_errors(ep),[])
    final_probe=json.loads(subprocess.check_output(['ffprobe','-v','error','-select_streams','v:0','-show_entries','stream=duration,nb_frames','-of','json',str(r/s.artifacts(ep)['video']['path'])]))['streams'][0]
    self.assertEqual(int(final_probe['nb_frames']),660,final_probe)
@@ -117,7 +149,7 @@ class ChapterChain(unittest.TestCase):
    self.assertTrue(clock['full_decode']['black_intervals'])
    self.assertFalse(clock['full_decode']['unexpected_black_intervals'])
    self.assertEqual(clock['audio_sha256'],digest(target/'mix.wav'))
-   self.assertTrue(burn(s,ep,True)['idempotent'])
+   self.assertTrue(burn(s,ep,True,illustrated=True)['idempotent'])
    cover=r/'cover.png'
    subprocess.run(['ffmpeg','-v','error','-f','lavfi','-i','color=c=blue:s=640x360','-frames:v','1','-threads','1',str(cover)],check=True)
    s.register(ep,'cover',cover);episode=s.episode(ep)
