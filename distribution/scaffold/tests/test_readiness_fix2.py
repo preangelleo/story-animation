@@ -42,7 +42,7 @@ class ContinuousChain(unittest.TestCase):
    arts=s.artifacts(ep);atomic_json(work/'alignment.binding.json',{'inputs':{'script_sha256':arts['script']['sha256'],'audio_sha256':arts['audio']['sha256']},'artifact':sub})
    atomic_json(work/'scenes.json',{'scenes':[{'id':'s01','image':'scene.png','duration':20,'provenance':'synthetic offline test'}]})
    # The real source renderer creates its own binding. No hand-assembled render proof.
-   args=fx.args();args.execute=True;render=it.render(args)
+   fx.prepare_thumbnail();args=fx.args();args.execute=True;render=it.render(args)
    binding=work/'render.binding.json';source_hash=digest(binding);source=r/render['artifact']['path'];source_bytes=digest(source)
    self.assertEqual(s.render_binding_errors(ep),[])
    s.register(ep,'cover',cover);episode=s.episode(ep)
@@ -63,6 +63,9 @@ class ContinuousChain(unittest.TestCase):
    self.assertTrue(burn(s,ep,True)['idempotent']);self.assertEqual(snapshots,{x:digest(x) for x in snapshots})
    # Full real audit, then normal review/validate, then only HTTP/provider edges mocked.
    clock=audit(burned,r/s.artifacts(ep)['audio']['path'],r/s.artifacts(ep)['subtitles']['path'],plan['clock_output'])
+   if os.environ.get('QY_THUMBNAIL_EVIDENCE'):
+    destination=Path(os.environ['QY_THUMBNAIL_EVIDENCE'])/'continuous'
+    if not destination.exists():shutil.copytree(r,destination)
    self.assertTrue(clock['mechanical_passed'],clock);review();self.assertTrue(s.validate(ep)['passed'])
    self.assertTrue(burn(s,ep,True)['idempotent']);self.assertFalse(s.media_review_errors(ep))
    self.assertFalse(p.share(r,ep,burned,False)['executed'])
@@ -94,4 +97,3 @@ class ContinuousChain(unittest.TestCase):
    self.assertTrue(s.render_binding_errors(ep));self.assertFalse(s.validate(ep)['passed']);self.assertTrue(s.media_review_errors(ep))
    self.assertEqual(source_hash,digest(binding));self.assertEqual(source_bytes,digest(source))
   finally:fx.tearDown()
-

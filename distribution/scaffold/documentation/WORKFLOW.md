@@ -27,3 +27,13 @@ burn 归零 PTS、30fps、48k音轨、15360视频时钟；默认白字20/深灰9
 正常review_only终身禁ship不变。用户接受样片并另行明确上传授权后，可用pilot-release建立独立publication合同，绑定同一已审无烧录母片/音轨和主人实际看过的烧录片SHA；不改原集模式和账本。多语言来自最终delivery.srt冻结FA时轴，简体逐cue、繁体OpenCC、英语/日语/韩语真实译稿按1—4连续cue覆盖，不能跨章或自动改时轴。阅读性与人名金额独审后上传，五轨serving前不能公开。见documentation/playbooks/multilingual_captions.md与pilot_release.md。
 
 封面由专职thumbnail-designer使用Codex gpt-6.1-sol内置image_gen；本集风格、角色参考、色卡、字体气质、标题/比例均参数化。先选传播命题，实际核320/160px小图；导出使用tools/export_cover.py，不裁横图冒充竖构图。没有Codex/image_gen则报告能力缺口，不换付费API。规范与独立技能随包提供，模型角色需tools/configure_roles.py --execute显式本地配置。
+
+## 1.2 正式合成 gate
+
+合成前完成 thumbnail-preproducer 与现有 Codex thumbnail-designer 协作。先冻结 final canvas 并完成设计、小图与来源审查，再 prepare/verify。完整 scene/章节 EDL 合成后 consume 替换第 0 帧，随后 UltraSafe、字幕烧录、clock QA；新 final 必须绑定新版 receipt。细节见 playbooks/thumbnail_first_frame.md 和 PARAMETERS.md。
+
+
+Optional SQL/vector/comment intake/reply/topic ideas/dedup: all off by default. See documentation/LEARNING.md, schemas/learning.schema.json and `modules configure --help`. Author provider is configurable; research stays in the orchestrator and writers receive frozen materials plus compact independent angle advice.
+
+
+Optional learning daily closure: first `modules status`. Preserve frozen plan and publication-day series; when enabled, independent dedup-adviser runs learning dedup and returns compact advice. The orchestrator researches and freezes sources/themes before configured-author writes. With SQL enabled, freeze episodes/EP/learning/final-brief.json including topic/summary/1–3 core_ideas/sources/acceptance_evidence path+SHA. Publication receipt hook queues facts without network. Run learning drain EP at close; inspect separate index/comment states, never retry an upload due to learning failure. With comments enabled, nonempty learning feedback-packet goes to independent feedback-analyst and story-feedback; disabled modules remain off, replies remain preview until installer explicitly enables auto_reply. Keep actual remote zero distinct from API failure/local zero. Future public verification updates facts only when remote status actually public.

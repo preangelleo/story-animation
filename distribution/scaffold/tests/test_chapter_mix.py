@@ -72,7 +72,7 @@ class ChapterChain(unittest.TestCase):
    sub=s.register(ep,'subtitles',fx.file('sub.srt',''.join(f'{i+1}\n00:00:{i*3+1:02d},000 --> 00:00:{i*3+2:02d},000\n测试字幕\n\n' for i in range(6))))
    arts=s.artifacts(ep);atomic_json(work/'alignment.binding.json',{'inputs':{'script_sha256':arts['script']['sha256'],'audio_sha256':arts['audio']['sha256']},'artifact':sub})
    atomic_json(work/'scenes.json',{'scenes':[{'id':sid,'image':'scene.png','duration':duration,'provenance':'synthetic offline test'} for sid,duration in [('s01',6.02),('s02',6),('s03',7.98)]]})
-   args=fx.args();args.execute=True;source=it.render(args);original_arts=s.artifacts(ep);source_bytes=digest(work/'render.binding.json')
+   fx.prepare_thumbnail();args=fx.args();args.execute=True;source=it.render(args);original_arts=s.artifacts(ep);source_bytes=digest(work/'render.binding.json')
    card=r/'card.mp4'
    subprocess.run(['ffmpeg','-v','error','-f','lavfi','-i','color=c=0x141414:s=64x64:r=30:d=1','-f','lavfi','-i','sine=frequency=550:sample_rate=48000:duration=1','-c:v','libx264','-bf','0','-threads','1','-color_range','tv','-colorspace','bt709','-color_trc','bt709','-color_primaries','bt709','-c:a','aac','-shortest',str(card)],check=True)
    review=r/'clip-review.json';atomic_json(review,{'status':'pass','reviewer':'synthetic fixture only','clips':[{'path':str(card),'sha256':digest(card),'status':'pass','reason':'synthetic fixture only','evidence':['dark chapter fixture']} ]})
@@ -110,6 +110,9 @@ class ChapterChain(unittest.TestCase):
    delivery=m.delivery_inputs(s,ep)
    self.assertNotEqual(delivery['audio']['sha256'],s.artifacts(ep)['audio']['sha256'])
    clock=audit(r/s.artifacts(ep)['video']['path'],delivery['audio']['path'],delivery['subtitles']['path'],result['clock_output'],chapter={'mapping':m.plan(payload),'binding_sha256':digest(work/'chapter-revision.binding.json')})
+   if os.environ.get('QY_THUMBNAIL_EVIDENCE'):
+    destination=Path(os.environ['QY_THUMBNAIL_EVIDENCE'])/'chapters'
+    if not destination.exists():shutil.copytree(r,destination)
    self.assertTrue(clock['mechanical_passed'],clock)
    self.assertTrue(clock['full_decode']['black_intervals'])
    self.assertFalse(clock['full_decode']['unexpected_black_intervals'])

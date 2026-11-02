@@ -61,10 +61,20 @@ class VisualGateTests(unittest.TestCase):
         # render planning and hash comparison all run without mocking a pass.
         args=argparse.Namespace(root=str(self.root),episode=self.ep,execute=False)
         with patch.object(it,'checked',return_value=(self.store.episode(self.ep),self.store.artifacts(self.ep))),patch.object(Store,'_probe',return_value={'duration':1,'streams':[]}):
+            from tests.test_integrations import IntegrationTests
+            # Prepare a real canvas-sized thumbnail for this planning fixture.
+            from storyflow.first_frame import prepare,review_context
+            cfg=json.loads((self.root/'documentation/configuration.json').read_text()).get('render',{})
+            image=self.root/'thumbnail.png'
+            if not image.exists():
+                import subprocess
+                subprocess.run(['ffmpeg','-v','error','-f','lavfi','-i',f"color=c=orange:s={cfg.get('width',1920)}x{cfg.get('height',1080)}",'-frames:v','1','-threads','1',str(image)],check=True)
+            review=self.root/'thumbnail-review.json';atomic_json(review,{'episode_id':self.ep,'image_sha256':digest(image),'status':'pass','reviewer':'synthetic editor','reason':'synthetic only','references_reviewed':True,'references':[],'context':review_context(self.store,self.ep)})
+            prepare(self.store,self.ep,image,review,True)
             return it.render(args)
 
     def bound(self):
-        plan=self.plan();p=self.root/'manual-video.mp4';p.write_bytes(b'synthetic video placeholder for binding-only unit test')
+        plan=self.plan();plan.pop('first_frame');p=self.root/'manual-video.mp4';p.write_bytes(b'synthetic video placeholder for binding-only unit test')
         artifact=self.store.register(self.ep,'video',p)
         binding={'episode_id':self.ep,'artifact':artifact,'inputs':plan}
         atomic_json(self.work/'render.binding.json',binding)

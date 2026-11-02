@@ -846,8 +846,20 @@ def render(args):
         plan={'episode_id':ep,'mode':'plan','operation':'render','scenes':inputs,'duration':total,'size':[width,height],'burn_subtitles':False,'fps':30,'scene_manifest':{'source':source,'path':str(manifest),'sha256':manifest_sha},'artifact_hashes':{k:arts[k]['sha256'] for k in ('structure','script','audio','subtitles')}}
         if visual_contract: plan['visual_contract']=visual_contract
         if caption_contract: plan['caption_contract']=caption_contract
+        from .first_frame import consume as consume_thumbnail
+        thumbnail=consume_thumbnail(store,ep)
+        plan['first_frame']=thumbnail
+        plan['renderer_sha256']=digest(__file__)
+        plan['scene_assembly_sha256']=digest(Path(__file__).with_name('scene_assembly.py'))
         if not args.execute: return plan
-        target=work/'render'/fingerprint({'plan':plan,'audio':arts['audio']['sha256']}); target.mkdir(parents=True,exist_ok=True)
+        target=work/'render'/fingerprint({'plan':plan,'audio':arts['audio']['sha256']})
+        if target.exists():
+            archived=target/'render-result.json'
+            if archived.is_file():
+                cached=read_json(archived)
+                if cached.get('inputs')==plan and cached.get('artifact',{}).get('sha256')==digest(target/'video.mp4') and not store.render_binding_errors(ep):return {**cached,'idempotent':True}
+            raise WorkflowError('render evidence exists without valid matching current receipt; preserve and inspect',409)
+        target.mkdir(parents=True)
         out=target/'video.mp4'
         clip_dir=target/'clips';clip_dir.mkdir(exist_ok=True)
         scene_clips=[]
@@ -861,6 +873,12 @@ def render(args):
                 if count<1: raise WorkflowError('镜头短于一帧')
                 source_args=(['-ss',str(scene['trim_start']),'-i',scene['image']] if scene.get('media_type')=='video' else ['-loop','1','-framerate','30','-i',scene['image']])
                 run(['ffmpeg','-v','error','-nostdin','-y',*source_args,'-vf',scene_filter(scene,width,height)+',scale=iw:ih:out_range=tv:out_color_matrix=bt709,format=yuv420p,setparams=range=limited:color_primaries=bt709:color_trc=bt709:colorspace=bt709','-frames:v',str(count),'-r','30','-c:v','libx264','-preset','fast','-crf',('0' if scene['motion']=='static' and scene.get('media_type')!='video' else '18'),'-bf','0','-threads','4','-pix_fmt','yuv420p','-video_track_timescale','15360','-color_range','tv','-colorspace','bt709','-color_trc','bt709','-color_primaries','bt709','-an',str(clip)])
+                if digest(manifest)!=manifest_sha:raise WorkflowError('scene manifest changed during render')
+                if i==0 and thumbnail:
+                    from .first_frame import replace as replace_first_frame
+                    original=clip.with_name('000-original.mp4');clip.replace(original)
+                    first_frame_receipt=replace_first_frame(original,clip,thumbnail)
+                    atomic_json(target/'first-frame.json',first_frame_receipt)
                 scene_clips.append({'id':scene['id'],'source_start':start_time,'source_end':elapsed,'start_frame':start_frame,'end_frame':next_end,'frame_count':count,'source_path':scene['image'],'source_sha256':scene['sha256'],'clip_path':str(clip),'clip_sha256':digest(clip)})
             from .chapter_mix import validate_picture_segments
             validate_picture_segments(clips,[r['frame_count'] for r in scene_clips])
@@ -875,11 +893,14 @@ def render(args):
                 try:
                     if verify_store_caption_binding(store,ep,arts,require_semantic=True)['contract']!=caption_contract: raise ValueError('渲染期间字幕消费绑定变化')
                 except ValueError as exc: raise WorkflowError(str(exc)) from exc
+            if consume_thumbnail(store,ep)!=thumbnail:raise WorkflowError('thumbnail/references/review changed during render')
             staged.replace(out)
         result={'episode_id':ep,'status':'done','duration':actual['duration'],'burn_subtitles':False,'artifact':store.register(ep,'video',out),'inputs':plan}
         clip_manifest=target/'scene-clips.json'
         atomic_json(clip_manifest,{'schema':'qy.scene.clips.v1','fps':30,'project_root':str(store.root),'scene_manifest':plan['scene_manifest'],'visual_contract':plan.get('visual_contract'),'artifact_hashes':plan['artifact_hashes'],'scenes':scene_clips})
         result['scene_clips']={'path':str(clip_manifest),'sha256':digest(clip_manifest)}
+        if thumbnail:result['first_frame_receipt']={'path':str(target/'first-frame.json'),'sha256':digest(target/'first-frame.json')}
+        atomic_json(target/'render-result.json',result)
         atomic_json(work/'render.binding.json',result); return result
     finally: store.close()
 
@@ -935,6 +956,21 @@ def check_remote(store,plan,video_id):
     return receipt
 
 
+def learning_receipt_hook(store,ep):
+    """Post-commit local learning work never invalidates successful publication.
+
+    Used by ordinary ship, verify, observe and scheduled-release through their
+    common persist_receipt call. Network work is drained separately by daily CEO.
+    """
+    if not store.config.get('learning',{}).get('enabled'):return
+    try:
+        from .learning import after_publication
+        after_publication(store,ep,network=False)
+    except Exception as exc:
+        try:atomic_json(store.root/'episodes'/ep/'learning/finalize-status.json',{'status':'pending','episode_id':ep,'error':type(exc).__name__,'publication_untouched':True})
+        except OSError:pass
+
+
 def persist_receipt(store,receipt):
     path=folder(store,receipt['episode_id'])/'publication.json'
     existing=store.db.execute('SELECT data FROM publications WHERE episode_id=?',(receipt['episode_id'],)).fetchone()
@@ -942,8 +978,10 @@ def persist_receipt(store,receipt):
         old=json.loads(existing['data'])
         if old.get('artifact_hashes') and old['artifact_hashes']!=receipt['artifact_hashes']: raise WorkflowError('已发布视频的产物绑定不符，禁止换稿后恢复旧视频')
         if old.get('video_id')==receipt['video_id'] and old.get('scheduled_at')==receipt['scheduled_at'] and old.get('channel_id')==receipt['channel_id'] and old.get('status')==receipt['status']:
+            learning_receipt_hook(store,receipt['episode_id'])
             return old
     atomic_json(path,receipt); store.publication(receipt['episode_id'],path,verified=True)
+    learning_receipt_hook(store,receipt['episode_id'])
     return receipt
 
 

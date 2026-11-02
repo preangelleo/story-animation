@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Final canvas first-frame policy",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "enabled": {
+      "type": "boolean",
+      "default": true
+    },
+    "frame_count": {
+      "type": "integer",
+      "const": 1,
+      "default": 1
+    },
+    "fit": {
+      "type": "string",
+      "const": "strict",
+      "default": "strict"
+    }
+  }
+}

@@ -325,6 +325,9 @@ def revise(store, ep, payload, output, execute=False):
     if store.verify_hashes(ep) or store.render_binding_errors(ep):
         raise WorkflowError('current original render and dry artifacts required')
     source=read_json(source_binding)
+    from .first_frame import consume as consume_thumbnail
+    thumbnail=consume_thumbnail(store,ep)
+    if thumbnail and (source.get('inputs',{}).get('first_frame')!=thumbnail or not source.get('first_frame_receipt')):raise WorkflowError('new chapter synthesis requires current thumbnail source receipt')
     if source.get('burn_subtitles') is not False:
         raise WorkflowError('chapter requires original uncaptioned source render')
     out=Path(output).resolve()

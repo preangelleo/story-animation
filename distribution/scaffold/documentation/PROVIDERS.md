@@ -6,7 +6,7 @@ Python 3.11+、ffmpeg/ffprobe、Fontconfig。将 requirements.txt 装入你自�
 ElevenLabs：包内 adapters/el.py 支持 speak、align、sfx、music，直接调用官方 API，凭据仅读当前进程的 ELEVENLABS_API_KEY；声音只用使用者的 ELEVENLABS_VOICE_ID。模型可配置，默认 eleven_multilingual_v2，不假定有新模型权限。每次付费调用由上游 begin/预算/confirm-cost 控制，不自动重试。切勿把 key 或 voice ID 写进公开包；在 Agent J 密钥卡/自己的秘密管理器中配置环境。
 参考 https://elevenlabs.io/docs/api-reference/text-to-speech/convert ，https://elevenlabs.io/docs/api-reference/forced-alignment/create ，https://elevenlabs.io/docs/api-reference/text-to-sound/convert ，https://elevenlabs.io/docs/api-reference/music/compose 。
 
-国产作者：安装 OpenCode 并配置 ARK_AGENT_PLAN_API_KEY 的进程环境；tools/chinese_author.py 使用头less run --pure、冻结材料和禁工具权限。STORY_AUTHOR_MODEL/ENDPOINT 可以选自己的订阅允许型号/地址；默认方舟 Agent Plan，不自动降级到按量付费。其他国产兼容端点需要使用者确认认证方式和套餐条款；不能把接口兼容当套餐可用证据。
+可配置作者：先用 modules configure --author-provider 选择 Codex、Claude、Ark 或自己的 provider。实际 author CLI 消费该配置：未配置 author.command 时生成独立、禁工具写作的冻结交接包；配置安装者自有 command argv 后以 JSON stdin/stdout 调用该适配器。见 LEARNING.md 的 Configured author execution。Ark 仅为可选路线，需另行安装 OpenCode、配置 ARK_AGENT_PLAN_API_KEY 后显式运行 tools/chinese_author.py；它不代表默认或必需供应商。费用、订阅与工具权限由使用者核验；不自动改为按量付费。
 
 图像：优先 harness 内置 image_gen（角色参考图必须实际附带）。本包保存生成输入、SHA、参考和独审，不携带任何人的图片/声音。没有 image_gen 时 doctor/CEO 必须如实报告并让使用者选择可用能力。
 

@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Optional learning configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "enabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "vector": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": false
+        },
+        "endpoint": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "model": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "dimensions": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "batch_size": {
+          "type": "integer",
+          "minimum": 1,
+          "default": 16
+        },
+        "api_key_env": {
+          "type": "string",
+          "default": "STORY_EMBEDDING_API_KEY"
+        },
+        "collection": {
+          "type": "string",
+          "default": "story-animation"
+        }
+      }
+    },
+    "comments": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": false
+        },
+        "auto_reply": {
+          "type": "boolean",
+          "default": false
+        },
+        "lookback_hours": {
+          "type": "integer",
+          "minimum": 1,
+          "default": 24
+        },
+        "catchup_days": {
+          "type": "integer",
+          "minimum": 1,
+          "default": 7
+        },
+        "max_pages": {
+          "type": "integer",
+          "minimum": 1,
+          "default": 5
+        },
+        "not_before": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "description": "Optional installer-chosen earliest API time; no inherited priority date"
+        }
+      }
+    },
+    "topics": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "dedup": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    }
+  }
+}

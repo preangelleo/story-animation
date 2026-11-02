@@ -15,3 +15,8 @@ python3 bin/story-animation episode create --production-date 2030-01-07 --title 
 `python3 -m unittest discover -s tests -q` 验证合成夹具，不写真实队列。每集自身 SQLite/table 与 vector 索引独立；上传默认演练，review_only永禁公开。
 
 1.1新增：最终FA字幕的简/繁/英/日/韩可切换轨；保留review_only原集的独立pilot发布（private→封面→字幕→列表→显式privacy）；Codex gpt-6.1-sol专职thumbnail-designer。安装后阅读documentation/playbooks/，并显式运行python3 tools/configure_roles.py --execute配置本工作区角色。需要自己的force-ssl字幕OAuth授权；不继承制作方账号/授权/媒体。
+
+1.2.0：正式合成前必须完成 thumbnail-preproducer → Codex thumbnail-designer → prepare/verify/consume；读取 documentation/playbooks/thumbnail_first_frame.md 和 documentation/PARAMETERS.md。第 0 帧禁止字幕，第 1 帧恢复原 cue，不移动整条字幕；新 final 必须有新版首帧 receipt。
+
+
+Optional SQL/vector/comment intake/reply/topic ideas/dedup: all off by default. See documentation/LEARNING.md, schemas/learning.schema.json and `modules configure --help`. Author provider is configurable; research stays in the orchestrator and writers receive frozen materials plus compact independent angle advice.

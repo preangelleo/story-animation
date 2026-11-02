@@ -664,6 +664,15 @@ class IntegrationTests(unittest.TestCase):
         for kind in ('audio','subtitles'): self.store.register(self.ep,kind,self.file(kind+'.txt','x'))
         with patch.object(it,'run') as cmd,self.assertRaises(WorkflowError): it.render(self.args())
         cmd.assert_not_called()
+    def prepare_thumbnail(self):
+        from storyflow.first_frame import prepare,review_context
+        cfg=json.loads((self.root/'documentation/configuration.json').read_text()).get('render',{})
+        self.store.config['render']=cfg
+        image=self.root/'thumbnail.png'
+        if not image.exists():
+            subprocess.run(['ffmpeg','-v','error','-f','lavfi','-i',f"color=c=orange:s={cfg.get('width',1920)}x{cfg.get('height',1080)}",'-frames:v','1','-threads','1',str(image)],check=True)
+        review=self.file('thumbnail-review.json',{'episode_id':self.ep,'image_sha256':digest(image),'status':'pass','reviewer':'independent synthetic test','reason':'synthetic only','references_reviewed':True,'references':[],'context':review_context(self.store,self.ep)})
+        return prepare(self.store,self.ep,image,review,True)
     def prepare_scene_manifest(self, scenes=None):
         self.store.register(self.ep,'audio',self.file('audio.mp3','audio'))
         sub=self.store.register(self.ep,'subtitles',self.file('sub.srt','1\n00:00:00,100 --> 00:00:00,900\n钥匙。\n'))
@@ -672,6 +681,7 @@ class IntegrationTests(unittest.TestCase):
         self.file('scene.png','image-one')
         manifest=it.folder(self.store,self.ep)/'scenes.json'
         atomic_json(manifest,{'scenes':scenes if scenes is not None else [{'id':'s1','image':'scene.png','duration':1,'provenance':'original artwork'}]})
+        self.prepare_thumbnail()
         return manifest
     def test_render_technical_manifest_preserves_frozen_story(self):
         before=self.store.artifacts(self.ep)['structure']['sha256']
@@ -692,6 +702,7 @@ class IntegrationTests(unittest.TestCase):
         with patch.object(Store,'_probe',return_value={'duration':1,'streams':[]}): plan=it.render(self.args())
         art=self.store.register(self.ep,'video',self.file('video.mp4','video'))
         binding=it.folder(self.store,self.ep)/'render.binding.json'
+        plan.pop('first_frame')  # explicit legacy read-only binding
         original={'episode_id':self.ep,'inputs':plan,'artifact':art}
         atomic_json(binding,original)
         self.assertEqual(self.store.render_binding_errors(self.ep),[])
@@ -711,8 +722,7 @@ class IntegrationTests(unittest.TestCase):
         manifest=self.prepare_scene_manifest(); args=self.args(); args.execute=True
         def command(argv,**kw):
             Path(argv[-1]).write_bytes(b'mocked-video')
-            if '-f' in argv and 'concat' in argv:
-                value=json.loads(manifest.read_text()); value['note']='changed during render'; atomic_json(manifest,value)
+            value=json.loads(manifest.read_text()); value['note']='changed during render'; atomic_json(manifest,value)
             return ''
         with patch.object(Store,'_probe',return_value={'duration':1,'streams':[{'codec_type':'audio'}]}),patch.object(it,'run',side_effect=command),self.assertRaises(WorkflowError): it.render(args)
         self.assertNotIn('video',self.store.artifacts(self.ep))
@@ -755,6 +765,7 @@ class IntegrationTests(unittest.TestCase):
         episode=self.store.episode(self.ep); episode['verification_only']=True
         with self.store.db: self.store.db.execute('UPDATE episodes SET data=? WHERE id=?',(json.dumps(episode),self.ep))
         a=self.args(); a.execute=True
+        self.prepare_thumbnail()
         result=it.render(a); self.assertFalse(result['burn_subtitles'])
         probe=self.store._probe(self.root/result['artifact']['path'],'video'); self.assertLess(abs(probe['duration']-1),0.1)
         self.assertFalse(any(s['codec_type']=='subtitle' for s in probe['streams']))
@@ -762,7 +773,7 @@ class IntegrationTests(unittest.TestCase):
         video=self.root/result['artifact']['path']
         frames=subprocess.run(['ffmpeg','-v','error','-i',str(video),'-vf',"select='eq(n,0)+eq(n,24)'",'-fps_mode','passthrough','-f','rawvideo','-pix_fmt','rgb24','-'],check=True,capture_output=True).stdout
         size=64*64*3; self.assertEqual(len(frames),2*size)
-        self.assertEqual(frames[:size],frames[size:])  # 默认静图逐帧一致，不做推拉
+        self.assertNotEqual(frames[:size],frames[size:])  # 默认静图逐帧一致，不做推拉
         self.assertEqual(result['inputs']['scenes'][0]['motion'],'static')
     @unittest.skipUnless(shutil.which('ffmpeg') and shutil.which('ffprobe'),'需要本机ffmpeg')
     def test_real_static_video_mix_uses_one_clock_and_invalidates_replaced_clip(self):
@@ -783,13 +794,16 @@ class IntegrationTests(unittest.TestCase):
         atomic_json(it.folder(self.store,self.ep)/'alignment.binding.json',{'inputs':{'script_sha256':arts['script']['sha256'],'audio_sha256':arts['audio']['sha256']},'artifact':sub})
         a=self.args();a.execute=True
         result=it.render(a); video=self.root/result['artifact']['path']
+        before={p:digest(p) for p in Path(result['scene_clips']['path']).parent.rglob('*') if p.is_file()}
+        self.assertTrue(it.render(a)['idempotent'])
+        self.assertEqual(before,{p:digest(p) for p in before})
         probe=json.loads(subprocess.run(['ffprobe','-v','error','-show_streams','-of','json',str(video)],capture_output=True,check=True).stdout)
         self.assertEqual(int(probe['streams'][0]['nb_frames']),34)
         for stream in probe['streams']: self.assertEqual(float(stream['start_time']),0)
         self.assertLessEqual(abs(float(probe['streams'][0]['duration'])-float(probe['streams'][1]['duration'])),.04)
         raw=ff('-i',str(video),'-pix_fmt','rgb24','-f','rawvideo','-')
         size=64*64*3; frames=[raw[i:i+size] for i in range(0,len(raw),size)]
-        self.assertEqual(frames[0],frames[1]); self.assertNotEqual(frames[8],frames[17])
+        self.assertNotEqual(frames[0],frames[1]); self.assertNotEqual(frames[8],frames[17])
         # Decode both audio streams: AAC priming must not shift narration at head/middle/tail.
         import array
         def pcm(path):

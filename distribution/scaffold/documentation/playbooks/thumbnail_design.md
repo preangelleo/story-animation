@@ -21,3 +21,5 @@
 - [YouTube API thumbnails.set](https://developers.google.com/youtube/data/reference/rest/v3/thumbnails/set)：发布前以API文档媒体限制核验，采用小于2MB的保守文件。
 - [Paddy Galloway本人访谈及逐字稿](https://creatorscience.com/podcast/paddy-galloway/)：先想值得点击的命题，短暂扫视能理解，不同方案要有不同概念而非只换衣服颜色。中文4–10字与320/160px检查为本项目实践，不冒充该创作者定律。
 
+
+正式合成前由 thumbnail-preproducer 提供最终 canvas 与冻结参考。先产出等尺寸首帧封面，再单独导出平台上传版；两者各有 SHA。设计和实际小图审查完成后交 prepare/verify；生成工具、模型和既有职责保持。见 documentation/playbooks/thumbnail_first_frame.md。

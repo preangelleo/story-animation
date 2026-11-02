@@ -58,7 +58,12 @@
   "render": {
     "width": 1920,
     "height": 1080,
-    "static_image_motion": "static"
+    "static_image_motion": "static",
+    "first_frame": {
+      "enabled": true,
+      "frame_count": 1,
+      "fit": "strict"
+    }
   },
   "quality": {
     "require_visual_manifest": true,
@@ -68,5 +73,34 @@
   },
   "revision_approval_gates": {},
   "style_registry_file": "config/styles.json",
-  "series_mapping_file": "config/weekly_series.json"
+  "series_mapping_file": "config/weekly_series.json",
+  "learning": {
+    "enabled": false,
+    "vector": {
+      "enabled": false,
+      "endpoint": null,
+      "model": null,
+      "dimensions": null,
+      "batch_size": 16,
+      "api_key_env": "STORY_EMBEDDING_API_KEY",
+      "collection": "story-animation"
+    },
+    "comments": {
+      "enabled": false,
+      "auto_reply": false,
+      "lookback_hours": 24,
+      "catchup_days": 7,
+      "max_pages": 5
+    },
+    "topics": {
+      "enabled": false
+    },
+    "dedup": {
+      "enabled": false
+    }
+  },
+  "author": {
+    "provider": "configured-harness",
+    "network_tools": false
+  }
 }

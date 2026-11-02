@@ -41,6 +41,13 @@ def verify_derivation(store, ep, value, source_binding):
         gate=read_json(value['evidence']['video_stream_gate']['path'])
         if gate.get('status')!='pass' or gate.get('source_sha256')!=value['source']['sha256'] or gate.get('output_sha256')!=value['output_sha256']:raise WorkflowError('burn video stream gate mismatch')
     result=read_json(value['evidence']['result']['path'])
+    if 'first_frame' in value.get('inputs',{}):
+        from .first_frame import consume as consume_thumbnail
+        thumb=consume_thumbnail(store,ep)
+        if value['inputs']['first_frame']!=thumb:raise WorkflowError('burn thumbnail dependency stale')
+        if thumb:
+            proof=read_json(value['evidence']['first_frame_final']['path'])
+            if proof.get('video',{}).get('sha256')!=value['output_sha256'] or proof.get('thumbnail')!=thumb or proof.get('status')!='pass' or not result.get('first_frame_cover'):raise WorkflowError('burn first-frame final proof mismatch')
     command=read_json(value['evidence']['command']['path'])
     if value.get('delivery_inputs',delivery)!=delivery:raise WorkflowError('burn delivery binding changed')
     before={'video_sha256':value['source']['sha256'],'audio_sha256':delivery['audio']['sha256'],'srt_sha256':delivery['subtitles']['sha256']}
@@ -74,8 +81,11 @@ def burn(store, ep, execute=False, illustrated=False):
             revision=verify_revision(store,ep)
             source_artifact={'path':str(Path(revision['delivery']['video']['path']).relative_to(root)),'sha256':revision['delivery']['video']['sha256']}
         source_path=root/source_artifact['path']
+        from .first_frame import consume as consume_thumbnail
+        thumbnail=consume_thumbnail(store,ep)
+        if thumbnail and (source.get('inputs',{}).get('first_frame')!=thumbnail or not source.get('first_frame_receipt')):raise WorkflowError('new final requires current thumbnail source consumption receipt')
         if source.get('burn_subtitles') is not False or digest(source_path)!=source_artifact['sha256']:raise WorkflowError('bound unburned source required')
-        inputs={'source_binding_sha256':digest(binding),'audio_sha256':delivery['audio']['sha256'],'srt_sha256':delivery['subtitles']['sha256'],'chapter_binding_sha256':digest(chapter) if chapter.exists() else None,'tool_sha256':digest(root/'tools/burn_subtitles.py'),'burn_ops_sha256':digest(__file__),'video_stream_gate_version':1,'illustrated_reconstruction':illustrated}
+        inputs={'source_binding_sha256':digest(binding),'audio_sha256':delivery['audio']['sha256'],'srt_sha256':delivery['subtitles']['sha256'],'chapter_binding_sha256':digest(chapter) if chapter.exists() else None,'tool_sha256':digest(root/'tools/burn_subtitles.py'),'burn_ops_sha256':digest(__file__),'video_stream_gate_version':1,'illustrated_reconstruction':illustrated,'first_frame':thumbnail}
         target=work/'burns'/fingerprint(inputs);out=target/'final.mp4';evidence=target/'evidence'
         plan={'ok':True,'executed':False,'operation':'burn','inputs':inputs,'output':str(out),'clock_output':str(target/'clock')}
         if derived.exists() and read_json(derived).get('inputs')==inputs:
@@ -90,16 +100,22 @@ def burn(store, ep, execute=False, illustrated=False):
         if digest(target/'burn_ops.py')!=inputs['burn_ops_sha256']:raise WorkflowError('burn implementation changed during invocation')
         before={'video_sha256':digest(source_path),'audio_sha256':digest(delivery['audio']['path']),'srt_sha256':digest(delivery['subtitles']['path'])}
         argv=[sys.executable,str(root/'tools/burn_subtitles.py'),'--video',str(source_path),'--srt',delivery['subtitles']['path'],'--output',str(out),'--work',str(evidence),'--execute']
+        if thumbnail:argv+=['--first-frame-cover']
         if illustrated:argv+=['--illustrated-reconstruction']
         with (target/'invocation.log').open('x') as log:
             subprocess.run(argv,stdout=log,stderr=subprocess.STDOUT,check=True)
         result=read_json(evidence/'result.json')
         stream_gate=video_stream_gate(source_path,out)
+        if thumbnail:
+            from .first_frame import final_pixels
+            atomic_json(target/'first-frame-final.json',final_pixels(out,thumbnail))
+            if not result.get('first_frame_cover'):raise WorkflowError('burn did not suppress frame-zero captions')
         atomic_json(target/'video-stream-gate.json',stream_gate)
         after={'video_sha256':digest(source_path),'audio_sha256':digest(delivery['audio']['path']),'srt_sha256':digest(delivery['subtitles']['path'])}
         if before!=after or digest(binding)!=inputs['source_binding_sha256'] or store.render_binding_errors(ep):raise WorkflowError('source/input drift during burn')
         if result['output_sha256']!=digest(out) or result['video_sha256']!=before['video_sha256'] or result['srt_sha256']!=before['srt_sha256']:raise WorkflowError('burn result mismatch')
         value={'episode_id':ep,'inputs':inputs,'source':source_artifact,'delivery_inputs':delivery,'source_binding_sha256':digest(binding),'input_artifacts':{k:arts[k]['sha256'] for k in ('audio','subtitles')},'input_hashes_before':before,'input_hashes_after':after,'output_sha256':digest(out),'clock_output':str(target/'clock'),'evidence':{k:proof_file(p) for k,p in {'source':target/'source-render.binding.json','result':evidence/'result.json','command':evidence/'command.json','log':evidence/'ffmpeg.log','srt_snapshot':evidence/'subtitles.srt','tool':root/'tools/burn_subtitles.py','video_stream_gate':target/'video-stream-gate.json','burn_ops_snapshot':target/'burn_ops.py'}.items()}}
+        if thumbnail:value['evidence']['first_frame_final']=proof_file(target/'first-frame-final.json')
         # Normal registration invalidates persisted QA/media reviews. No PASS is created.
         value['artifact']=store.register(ep,'video',out)
         atomic_json(target/'derivation.json',value)

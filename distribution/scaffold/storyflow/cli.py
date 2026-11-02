@@ -40,7 +40,7 @@ def parser():
     q=s.add_parser('memory'); a=q.add_subparsers(dest='action',required=True); z=a.add_parser('add'); z.add_argument('--kind',required=True,choices=('source','character','world','plot','lesson')); z.add_argument('--file',required=True)
     z=a.add_parser('list'); z.add_argument('--kind'); z=a.add_parser('show'); z.add_argument('id'); z.add_argument('--version',type=int)
     q=s.add_parser('vector'); a=q.add_subparsers(dest='action',required=True); z=a.add_parser('import'); z.add_argument('--file',required=True); z=a.add_parser('search'); z.add_argument('--query-file',required=True); a.add_parser('status')
-    for name in ('integrations','production','sound_library','chapters','research_contract','styles_cli','voice_rewrite','portable','captions_multilingual','pilot_release'):
+    for name in ('integrations','production','sound_library','chapters','research_contract','styles_cli','voice_rewrite','portable','captions_multilingual','pilot_release','first_frame','learning','learning_options','author_route'):
         try: module=importlib.import_module('storyflow.'+name)
         except ModuleNotFoundError as e:
             if e.name!='storyflow.'+name: raise
@@ -48,6 +48,8 @@ def parser():
     return p
 
 def run(args):
+    from .learning_options import guard
+    guard(args)
     if hasattr(args,'handler'): return args.handler(args)
     if args.command=='schedule':
         cfg=config(args.root);dates=schedule(args.production_date,cfg)

@@ -395,6 +395,16 @@ class Store:
             elif value.get('episode_id')!=ep or value.get('artifact',{}).get('sha256')!=arts.get('video',{}).get('sha256') or 'video' not in arts:
                 raise WorkflowError('渲染绑定与当前视频不符')
             plan=value['inputs']; manifest=plan['scene_manifest']; source=manifest['source']
+            # Legacy bindings remain readable; all new synthesis carries this key.
+            if 'first_frame' in plan:
+                from .first_frame import consume,verify_replacement
+                if plan.get('renderer_sha256')!=digest(Path(__file__).with_name('integrations.py')) or plan.get('scene_assembly_sha256')!=digest(Path(__file__).with_name('scene_assembly.py')):raise WorkflowError('render implementation changed; new render required')
+                thumb=consume(self,ep)
+                if plan['first_frame']!=thumb:raise WorkflowError('thumbnail dependency stale')
+                if thumb:
+                    receipt=value['first_frame_receipt']
+                    if digest(receipt['path'])!=receipt['sha256']:raise WorkflowError('thumbnail consumption receipt changed')
+                    verify_replacement(read_json(receipt['path']),thumb)
             if self.config.get('quality',{}).get('require_semantic_caption_units'):
                 from .captions import verify_store_caption_binding
                 current=verify_store_caption_binding(self,ep,arts,require_semantic=True)['contract']

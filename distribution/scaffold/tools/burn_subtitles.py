@@ -78,6 +78,7 @@ def main():
     p.add_argument('--sample-seconds', type=float)
     p.add_argument('--check-existing', action='store_true', help='只核已存在本次同命令导出，不重新编码')
     p.add_argument('--execute', action='store_true')
+    p.add_argument('--first-frame-cover', action='store_true', help='Keep frame zero free of all caption/notice overlays; original cue windows resume on frame one')
     p.add_argument('--illustrated-reconstruction', action='store_true', help='片头5秒注明真实事件改编、部分演绎与卡通画面，不改变旁白和字幕')
     a = p.parse_args()
     video, srt, out, work = (x.expanduser().resolve() for x in (a.video, a.srt, a.output, a.work))
@@ -99,13 +100,20 @@ def main():
     style = f'FontName={family},Fontsize=20,PrimaryColour=&H00FFFFFF,BorderStyle=3,Outline=6,Shadow=0,BackColour=&H0D141414,OutlineColour=&H0D141414,MarginV=16,Alignment=2'
     snapshot = work / 'subtitles.srt'
     vf = f"setpts=PTS-STARTPTS,fps=30,format=yuv420p,subtitles=filename='{snapshot}':fontsdir='{font.parent}':force_style='{style}'"
+    if a.first_frame_cover:
+        # subtitles/libass has no timeline enable support: split, overlay only its
+        # rendered result from frame one; the untouched branch supplies frame zero.
+        base="setpts=PTS-STARTPTS,fps=30,format=yuv420p"
+        caption=vf.split('format=yuv420p,',1)[1]
+        vf=base+",split[plain][caption];[caption]"+caption+"[sub];[plain][sub]overlay=enable='gte(n,1)':format=yuv420"
     if a.illustrated_reconstruction:
-        vf += f",drawtext=fontfile='{font}':text='真实事件改编  部分情节演绎  卡通画面':fontsize=28:fontcolor=white:box=1:boxcolor=black@0.65:boxborderw=10:x=48:y=36:enable='lt(t,5)'"
+        notice_enable='between(t,0.03333333333333333,5)' if a.first_frame_cover else 'lt(t,5)'
+        vf += f",drawtext=fontfile='{font}':text='真实事件改编  部分情节演绎  卡通画面':fontsize=28:fontcolor=white:box=1:boxcolor=black@0.65:boxborderw=10:x=48:y=36:enable='{notice_enable}'"
     command = ['ffmpeg', '-nostdin', '-hide_banner', '-nostats', '-loglevel', 'info', '-i', str(video), '-map', '0:v:0', '-map', '0:a:0', '-vf', vf, '-af', 'asetpts=PTS-STARTPTS,aresample=async=1:first_pts=0', '-c:v', 'libx264', '-preset', 'fast', '-profile:v', 'high', '-bf', '0', '-b:v', f'{bitrate//1000}k', '-maxrate', f'{max(int(bitrate*1.5),bitrate+100000)//1000}k', '-bufsize', f'{max(int(bitrate*2),bitrate+200000)//1000}k', '-r', '30', '-video_track_timescale', '15360', '-c:a', 'aac', '-ar', '48000', '-ac', '2', '-b:a', '192k', '-movflags', '+faststart', '-avoid_negative_ts', 'disabled', '-use_editlist', '1']
     if a.sample_seconds:
         command += ['-t', str(a.sample_seconds)]
     command += [str(out)]
-    receipt = {'caption_quality': caption_quality, 'font_coverage_preflight': coverage, 'video': str(video), 'video_sha256': sha(video), 'srt': str(srt), 'srt_sha256': sha(srt), 'font': str(font), 'font_sha256': sha(font), 'force_style': style, 'srt_offset_seconds': 0, 'preset': 'fast', 'command': command}
+    receipt = {'caption_quality': caption_quality, 'first_frame_cover': a.first_frame_cover, 'font_coverage_preflight': coverage, 'video': str(video), 'video_sha256': sha(video), 'srt': str(srt), 'srt_sha256': sha(srt), 'font': str(font), 'font_sha256': sha(font), 'force_style': style, 'srt_offset_seconds': 0, 'preset': 'fast', 'command': command}
     work.mkdir(parents=True, exist_ok=True)
     if a.check_existing:
         old = json.loads((work / 'command.json').read_text())
