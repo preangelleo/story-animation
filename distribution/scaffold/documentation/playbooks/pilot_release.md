@@ -31,7 +31,7 @@ python3 bin/story-animation pilot-release privacy --plan pilot-plan.json --priva
 
 先落盘unknown再POST；成功回执持久后才继续。任何unknown阻止后续写，不能换publication_id逃避。网络异常只记安全类型，不存可能带凭据的异常全文。持久文件锁防并发。state/pilot-publications.json按channel与母片SHA登记唯一发布，换ID/新输出路径也拒绝重复上传；这是新的无秘密索引，不修改旧episode数据库。同输入done操作幂等回读；上传成功但本地最后写断电可从done结果续接，不重新传。
 
-未知上传仅显式`recover --operation upload --remote-id ID --reason ...`只读核channel、标识、标题、处理状态及private；字幕恢复还须下载并逐cue比对冻结正文/时码。列表恢复核唯一video与item ID，可见性恢复核video与privacy。缩略图无法从YouTube转码产物证明原文件字节相等，未知状态保持待人工核图，不自动假定成功或重新提交。
+未知上传仅显式`recover --operation upload --remote-id ID --reason ...`只读核channel、标识、标题、处理状态及private；字幕恢复仅 captions.list 核唯一 caption ID、video/language/name 及 serving，不下载；failed 明确失败。unknown 始终只对账，不重发。列表恢复核唯一video与item ID，可见性恢复核video与privacy。缩略图无法从YouTube转码产物证明原文件字节相等，未知状态保持待人工核图，不自动假定成功或重新提交。
 
 最终回读：video/channel/visibility；自定义缩略图提交回执及远端各尺寸URL（最终图须独立目视）；五个确切caption ID、对应语言且status=serving；唯一playlist membership。字幕可能异步processing，重复readback不重复字幕POST，全部serving之前不改最终可见性。
 
@@ -43,3 +43,10 @@ python3 bin/story-animation pilot-release privacy --plan pilot-plan.json --priva
 source_report可用`schema=story-animation.accepted-media.v1`，样例与字段见examples/pilot/accepted-media.json。直接绑定本人的episode_id、source_review_only、accepted_burned_sha256、clean_video/subtitles path+SHA、mechanical_clock_passed，以及reviews.A/B的path/SHA/verdict/reviewer。路径相对收据，真实两个独审不同上下文；未知示例占位必须替换。此公开格式不依赖制作方私有报告、固定集号/目录或接受SHA。兼容旧本地报告只为迁移，不要求接收者获取私有文件。
 
 修改可见性时videos.update是status部分替换；必须保留真实回读的license/embeddable/publicStatsViewable/selfDeclaredMadeForKids/containsSyntheticMedia等可写已存在字段（包括false），仅覆盖privacyStatus；不注入缺失字段、不回传uploadStatus/madeForKids等只读项。
+
+
+## 1.2.2：正常流程零字幕下载
+
+本地五语正文、时码、hash 与独立语言审稿仍必须通过。上传只接受真正成功的 API 响应及非空 caption ID；正常 readback、privacy 最终可见性确认和 recover 只消费持久成功 ID 回执与实时 captions.list，核对应 video/language/name、唯一 ID 和 serving。processing 保持等待，不改最终可见性；failed 明确拒绝。unknown、异常、403 和损坏回执不能假成功或盲重发。content_matches 为 null；upload_receipt_verified / metadata_serving_verified 不表示远端全文比对。旧成功 ID-only 回执兼容，旧全文/cache 证据保留为历史。
+
+仅人工显式 `pilot-release readback --plan PLAN --diagnostic-caption-download` 或 `pilot-release recover --plan PLAN --operation caption:LANG --remote-id ID --reason TEXT --diagnostic-caption-download` 才下载真实远端字幕并比较 cue；普通默认不下载，后台不会自动开启。完整五语 readback 诊断下载5次，不依赖私有 scheduled_release 模块；recover 诊断按实际可验证轨执行，不能把它当正常恢复前置。传入诊断参数不能授权其它 API 写入。

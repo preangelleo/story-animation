@@ -131,16 +131,67 @@ def remote_video(service,plan):
     if len(rows)!=1 or rows[0]['snippet']['channelId']!=plan['contract']['expected_channel_id'] or plan['marker'] not in rows[0]['snippet'].get('description',''):raise WorkflowError('远端视频/频道/发布标识不匹配')
     return rows[0]
 
-def inspect(service,plan):
-    video=remote_video(service,plan);vid=plan['video_id']
-    caps=service.captions().list(part='snippet',videoId=vid).execute().get('items',[])
-    expected=plan.get('caption_ids',{})
-    caprows={row['id']:row['snippet'] for row in caps}
-    serving={lang:bool(cid in caprows and caprows[cid].get('status')=='serving' and caprows[cid].get('language')==lang and caprows[cid].get('videoId')==vid) for lang,cid in expected.items()}
-    playlist=service.playlistItems().list(part='snippet,contentDetails',playlistId=plan['contract']['playlist_id'],videoId=vid,maxResults=50).execute().get('items',[])
-    return {'video_id':vid,'channel_id':video['snippet']['channelId'],'privacy':video['status']['privacyStatus'],'thumbnail_urls':{k:v.get('url') for k,v in video['snippet'].get('thumbnails',{}).items()},'caption_ids':expected,'captions_serving':serving,'all_five_captions_serving':len(serving)==5 and all(serving.values()),'playlist_matches':sum(r.get('contentDetails',{}).get('videoId')==vid for r in playlist),'checked_at':dt.datetime.now(dt.timezone.utc).isoformat()}
+def verified_caption(service,plan,lang,resource,track,evidence_dir,force_download=True):
+    """Explicit public diagnostic: compare fresh remote SRT cues, no schedule dependency."""
+    from .captions_multilingual import cues
+    identity(service,plan['contract']['expected_channel_id'])
+    data=service.captions().download(id=resource['id'],tfmt='srt').execute()
+    data=data.encode('utf-8') if isinstance(data,str) else data
+    folder=Path(evidence_dir);folder.mkdir(parents=True,exist_ok=True)
+    path=folder/(lang+'.srt');path.write_bytes(data)
+    return {'content_matches':cues(path)==cues(track['path']),'download_sha256':digest(path),
+            'path':str(path),'download_reused':False,'checked_at':dt.datetime.now(dt.timezone.utc).isoformat()}
 
-def run(path,action,execute=False,privacy=None,service_factory=None,media_factory=None):
+
+def caption_receipt_verified(plan,lang,cid,track):
+    """Accept legacy successful ID receipts; unknown/error/malformed never pass."""
+    if not isinstance(track,dict) or not track.get('name'):return False
+    op=plan.get('operations',{}).get('caption:'+lang,{})
+    result=op.get('result') if isinstance(op,dict) else None
+    if (not isinstance(cid,str) or not cid.strip() or not isinstance(result,dict)
+            or op.get('status')!='done' or result.get('id')!=cid
+            or any(result.get(k) or op.get(k) for k in ('error','errors','error_type'))):return False
+    snippet=result.get('snippet')
+    if snippet is not None and (not isinstance(snippet,dict) or any(
+            snippet.get(k)!=v for k,v in {'videoId':plan['video_id'],'language':lang,'name':track['name']}.items())):return False
+    return True
+
+
+def caption_checks(service,plan,diagnostic_caption_download=False,evidence_dir=None):
+    """Normal verification consumes upload receipts and live metadata only."""
+    tracks=load_json(plan['files']['captions_manifest']['path'])['tracks']
+    rows=service.captions().list(part='snippet',videoId=plan['video_id']).execute().get('items',[])
+    captions={};ids=plan.get('caption_ids',{})
+    for lang in LANGUAGES:
+        track=tracks.get(lang,{});cid=ids.get(lang)
+        found=[r for r in rows if isinstance(r,dict) and r.get('id')==cid]
+        resource=found[0] if len(found)==1 else {};row=resource.get('snippet',{})
+        if not isinstance(row,dict):row={}
+        receipt=caption_receipt_verified(plan,lang,cid,track)
+        unique=bool(cid) and list(ids.values()).count(cid)==1
+        metadata=unique and len(found)==1 and all(row.get(k)==v for k,v in {
+            'videoId':plan['video_id'],'language':lang,'name':track.get('name'),'status':'serving'}.items())
+        result={'caption_id':cid,'upload_receipt_verified':receipt,'metadata_serving_verified':bool(metadata),
+                'serving':bool(metadata),'remote_status':row.get('status'),'video_id':row.get('videoId'),
+                'language':row.get('language'),'name':row.get('name'),'content_matches':None}
+        if row.get('status')=='failed':raise WorkflowError('caption processing failed: '+lang)
+        if diagnostic_caption_download and receipt and metadata:
+            if evidence_dir is None:raise WorkflowError('diagnostic caption download requires evidence directory')
+            result.update(verified_caption(service,plan,lang,resource,track,evidence_dir,force_download=True))
+        captions[lang]=result
+    return captions
+
+
+def inspect(service,plan,diagnostic_caption_download=False,evidence_dir=None):
+    video=remote_video(service,plan);vid=plan['video_id']
+    captions=caption_checks(service,plan,diagnostic_caption_download,evidence_dir)
+    serving={lang:row['metadata_serving_verified'] for lang,row in captions.items()}
+    verified=all(row['upload_receipt_verified'] and row['metadata_serving_verified'] for row in captions.values())
+    playlist=service.playlistItems().list(part='snippet,contentDetails',playlistId=plan['contract']['playlist_id'],videoId=vid,maxResults=50).execute().get('items',[])
+    return {'video_id':vid,'channel_id':video['snippet']['channelId'],'privacy':video['status']['privacyStatus'],'thumbnail_urls':{k:v.get('url') for k,v in video['snippet'].get('thumbnails',{}).items()},'caption_ids':plan.get('caption_ids',{}),'captions':captions,'captions_serving':serving,'all_five_captions_serving':all(serving.values()),'all_five_captions_metadata_serving_verified':verified,'playlist_matches':sum(r.get('contentDetails',{}).get('videoId')==vid for r in playlist),'checked_at':dt.datetime.now(dt.timezone.utc).isoformat()}
+
+def run(path,action,execute=False,privacy=None,service_factory=None,media_factory=None,diagnostic_caption_download=False):
+    if diagnostic_caption_download and action!='readback':raise WorkflowError('caption download diagnostic is readback-only')
     path=Path(path)
     # Separate per-publication lock guards all intent/receipt updates, including crash recovery.
     with path.with_suffix(path.suffix+'.lock').open('a') as lock:
@@ -151,7 +202,8 @@ def run(path,action,execute=False,privacy=None,service_factory=None,media_factor
         if not execute and action!='readback':return {'ok':True,'mode':'dry-run','action':action,'privacy':privacy or 'private','profile':contract['profile'],'expected_channel_id':contract['expected_channel_id'],'video_sha256':plan['files']['video']['sha256'],'source_review_only_unchanged':True}
         factory=service_factory or youtube_service;service=factory(contract['profile']);identity(service,contract['expected_channel_id'])
         if action=='readback':
-            result=inspect(service,plan);plan['last_readback']=result;atomic_json(path,plan);return result
+            folder=path.parent/'readbacks'/dt.datetime.now(dt.timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')
+            result=inspect(service,plan,diagnostic_caption_download,folder);plan['last_readback']=result;atomic_json(path,plan);return result
         operations=plan['operations']
         pending=[k for k,v in operations.items() if v.get('status')=='unknown']
         if pending:raise WorkflowError('已有未决远端操作，禁止进一步写入：'+', '.join(pending))
@@ -200,9 +252,11 @@ def run(path,action,execute=False,privacy=None,service_factory=None,media_factor
                 track=tracks[lang]
                 def upload_caption(lang=lang,track=track):
                     result=service.captions().insert(part='snippet',body={'snippet':{'videoId':plan['video_id'],'language':lang,'name':track['name'],'isDraft':False}},media_body=media_factory(track['path'],mimetype='application/octet-stream')).execute()
-                    if not isinstance(result.get('id'),str) or not result['id']:raise WorkflowError('字幕响应缺少caption_id')
+                    if not isinstance(result,dict) or not isinstance(result.get('id'),str) or not result['id'].strip() or result.get('error') or result.get('errors'):raise WorkflowError('字幕响应缺少成功caption_id')
                     return result
                 result=mutate('caption:'+lang,upload_caption)
+                candidate={**plan,'caption_ids':{**plan['caption_ids'],lang:result.get('id') if isinstance(result,dict) else None}}
+                if not caption_receipt_verified(candidate,lang,candidate['caption_ids'][lang],track):raise WorkflowError('字幕成功回执损坏或不匹配')
                 plan['caption_ids'][lang]=result['id'];atomic_json(path,plan)
             return inspect(service,plan)
         if action=='playlist':
@@ -214,7 +268,7 @@ def run(path,action,execute=False,privacy=None,service_factory=None,media_factor
             return inspect(service,plan)
         if action=='privacy':
             readback=inspect(service,plan)
-            if not readback['all_five_captions_serving'] or readback['playlist_matches']!=1 or operations.get('thumbnail',{}).get('status')!='done':raise WorkflowError('字幕尚未全部serving/播放列表未确认/缩略图未确认，保留private')
+            if not readback['all_five_captions_metadata_serving_verified'] or readback['playlist_matches']!=1 or operations.get('thumbnail',{}).get('status')!='done':raise WorkflowError('字幕尚未全部serving/播放列表未确认/缩略图未确认，保留private')
             # videos.update replaces writable fields in the status part. Preserve
             # actual remote values, including explicit False; never echo readonly
             # uploadStatus/madeForKids or invent absent optional flags.
@@ -226,10 +280,8 @@ def run(path,action,execute=False,privacy=None,service_factory=None,media_factor
             if result['privacy']!=privacy:raise WorkflowError('最终可见性回读不一致')
             return result
 
-def recover(path,operation,remote_id,reason,service_factory=None):
+def recover(path,operation,remote_id,reason,service_factory=None,diagnostic_caption_download=False):
     """Readonly explicit reconciliation. Never creates another upload/caption."""
-    import io
-    from .captions_multilingual import cues
     path=Path(path)
     if not reason or not reason.strip():raise WorkflowError('恢复必须保留人工核查理由')
     with path.with_suffix(path.suffix+'.lock').open('a') as lock:
@@ -247,16 +299,13 @@ def recover(path,operation,remote_id,reason,service_factory=None):
             lang=operation.split(':',1)[1]
             if lang not in LANGUAGES:raise WorkflowError('未知字幕语言')
             remote_video(service,plan)
-            rows=service.captions().list(part='snippet',videoId=plan['video_id']).execute().get('items',[])
-            found=[r for r in rows if r['id']==remote_id]
-            track=load_json(plan['files']['captions_manifest']['path'])['tracks'][lang]
-            if len(found)!=1 or found[0]['snippet'].get('language')!=lang or found[0]['snippet'].get('name')!=track['name'] or found[0]['snippet'].get('status')!='serving':raise WorkflowError('候选字幕不匹配/尚未serving')
-            # Server SRT serialization may differ. Compare all timestamps and texts.
-            data=service.captions().download(id=remote_id,tfmt='srt').execute()
-            import tempfile
-            with tempfile.TemporaryDirectory() as tmp:
-                p=Path(tmp)/'readback.srt';p.write_bytes(data)
-                if cues(p)!=cues(track['path']):raise WorkflowError('回下载字幕与本地冻结轨不相同')
+            candidate={**plan,'caption_ids':{**plan.get('caption_ids',{}),lang:remote_id},
+                       'operations':{**plan['operations'],operation:{'status':'done','result':{'id':remote_id}}}}
+            folder=path.parent/'readbacks'/('recover-'+dt.datetime.now(dt.timezone.utc).strftime('%Y%m%dT%H%M%S%fZ'))
+            result=caption_checks(service,candidate,diagnostic_caption_download,folder)[lang]
+            if not result['metadata_serving_verified']:raise WorkflowError('候选字幕video/language/name不匹配或尚未serving')
+            if diagnostic_caption_download and result['content_matches'] is not True:raise WorkflowError('诊断字幕全文不匹配')
+            folder.mkdir(parents=True,exist_ok=True);atomic_json(folder/'caption-reconciliation.json',result)
             plan.setdefault('caption_ids',{})[lang]=remote_id
         elif operation=='playlist':
             remote_video(service,plan)
@@ -274,8 +323,9 @@ def register(subparsers):
     p=subparsers.add_parser('pilot-release',help='已接受review媒体的新发布记录，不改变原episode模式');s=p.add_subparsers(dest='action',required=True)
     a=s.add_parser('preflight');a.add_argument('--contract',required=True);a.set_defaults(handler=lambda x:create(x.contract,Path(x.contract).with_name('pilot-plan.json'),True))
     a=s.add_parser('create');a.add_argument('--contract',required=True);a.add_argument('--output',required=True);a.set_defaults(handler=lambda x:create(x.contract,x.output))
-    a=s.add_parser('recover');a.add_argument('--plan',required=True);a.add_argument('--operation',required=True);a.add_argument('--remote-id',required=True);a.add_argument('--reason',required=True);a.set_defaults(handler=lambda x:recover(x.plan,x.operation,x.remote_id,x.reason))
+    a=s.add_parser('recover');a.add_argument('--plan',required=True);a.add_argument('--operation',required=True);a.add_argument('--remote-id',required=True);a.add_argument('--reason',required=True);a.add_argument('--diagnostic-caption-download',action='store_true');a.set_defaults(handler=lambda x:recover(x.plan,x.operation,x.remote_id,x.reason,diagnostic_caption_download=x.diagnostic_caption_download))
     for action in ACTIONS:
         a=s.add_parser(action);a.add_argument('--plan',required=True);a.add_argument('--execute',action='store_true')
+        if action=='readback':a.add_argument('--diagnostic-caption-download',action='store_true')
         if action=='privacy':a.add_argument('--privacy',required=True,choices=('private','unlisted','public'))
-        a.set_defaults(handler=lambda x:run(x.plan,x.action,x.execute,getattr(x,'privacy',None)))
+        a.set_defaults(handler=lambda x:run(x.plan,x.action,x.execute,getattr(x,'privacy',None),diagnostic_caption_download=getattr(x,'diagnostic_caption_download',False)))

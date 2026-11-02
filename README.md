@@ -12,14 +12,14 @@
 
 ## 复制给 Agent J
 
-> 请从 Agent J 广场查看工作流 **Story Animation**（ID：`story-animation`，版本 `1.2.1`）。作者可选Codex、Claude、Ark或我自己的适配器；全部学习模块默认关闭，逐项说明SQL事实记忆、真实embedding/outbox、独立查重、评论与选题的前置和费用；默认只读预览评论回复，未经我显式启用不发送。阅读清单、README、技能和供应商要求，在我选择的独立新目录预览安装；说明所需权限和未验证状态，由我按原生安装流程确认。逐项检查我已有的模型、图像、配音、强制对齐、字体和渲染能力；密钥只使用密钥卡或我认可的秘密管理器。把已验证能力与需适配的替代供应商区分清楚，先给出配置报告、选题研究计划和成本预算，等我批准再付费制作。不要购买套餐、继承其他频道账号、自动发布或开启定时任务。参数不能满足的个性化需求，请先提出代码修改方案。
+> 请从 Agent J 广场查看工作流 **Story Animation**（ID：`story-animation`，版本 `1.2.2`）。作者可选Codex、Claude、Ark或我自己的适配器；全部学习模块默认关闭，逐项说明SQL事实记忆、真实embedding/outbox、独立查重、评论与选题的前置和费用；默认只读预览评论回复，未经我显式启用不发送。阅读清单、README、技能和供应商要求，在我选择的独立新目录预览安装；说明所需权限和未验证状态，由我按原生安装流程确认。逐项检查我已有的模型、图像、配音、强制对齐、字体和渲染能力；密钥只使用密钥卡或我认可的秘密管理器。把已验证能力与需适配的替代供应商区分清楚，先给出配置报告、选题研究计划和成本预算，等我批准再付费制作。不要购买套餐、继承其他频道账号、自动发布或开启定时任务。参数不能满足的个性化需求，请先提出代码修改方案。
 
 ## 安装与本地预览
 
 广场的完整下载需要具有付费席位的账户；这个 GitHub 源码可公开查看与克隆。第三方服务费用另计。广场安装命令默认先预览，不代表已执行安装：
 
 ```sh
-agentj plaza install story-animation --version 1.2.1 --workspace /your/new/story-workspace --harness codex
+agentj plaza install story-animation --version 1.2.2 --workspace /your/new/story-workspace --harness codex
 ```
 
 替换示例路径，使用 `--help` 查看本机安装器的确认、权限与 digest 流程，不跳过校验。社区包的状态不等于官方认证。
@@ -39,7 +39,7 @@ python3 distribution/scaffold/bin/story-animation doctor
 | 能力 | 首个验收版本采用的组合 | 替换的边界 |
 |---|---|---|
 | 编排与图像 | Codex；内置 `image_gen`，角色参考图；封面角色 `gpt-6.1-sol` | 其他 harness 或第三方图像服务需要配置适配器，并重新验证参考图与交付合同 |
-| 中文创作 | 1.1.0试播集使用OpenCode + 方舟Agent Plan `doubao-seed-2.1-pro`；1.2.1读取自配author.provider | Codex/Claude/自选作者可用独立禁工具交接或自有适配器；认证、费用与质量须验证，不自动转按量计费 |
+| 中文创作 | 1.1.0试播集使用OpenCode + 方舟Agent Plan `doubao-seed-2.1-pro`；1.2.2读取自配author.provider | Codex/Claude/自选作者可用独立禁工具交接或自有适配器；认证、费用与质量须验证，不自动转按量计费 |
 | 旁白、强制对齐、声音 | 自有 ElevenLabs API 与授权声音；试播集 `eleven_v4`，公开默认 `eleven_multilingual_v2` | Fish Audio、火山等可作为适配方向；当前包不保证它们开箱即用，也不把识别字幕当原稿强制对齐 |
 | 渲染 | Python 3.11+、ffmpeg/ffprobe、Fontconfig；Node、HyperFrames 0.8.225 与浏览器 | 艺术字体必须由使用者提供并拥有使用权 |
 | 关键剧情视频 | 试播集 Seedance2.5，包内可选 Replicate 接口，每期最多三段、约十秒 | 模型/version 是参数；账户权限、价格和实际可用性需制作前核查 |

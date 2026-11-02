@@ -5,8 +5,8 @@
   "files": [
     {
       "path": "README.md",
-      "sha256": "d8b81dc7925f51acd9701e1a60767908e9682ef3cd4d7494cc5ce771887d9da0",
-      "bytes": 2714
+      "sha256": "afe74ee6ed11c5eaaa092a8c954d19e8edaff18a11d87c2796a73196227472cf",
+      "bytes": 3208
     },
     {
       "path": "params.schema.json",
@@ -144,6 +144,11 @@
       "bytes": 1356
     },
     {
+      "path": "scaffold/documentation/CHANGELOG.md",
+      "sha256": "02efd250c05e00b34daf5b0152b74b41eeb35e5d43a95599f0b02282612b1002",
+      "bytes": 1070
+    },
+    {
       "path": "scaffold/documentation/FONTS.md",
       "sha256": "c185454d9588ebca7edf46be69e0e31724f4204bbd6c41eb338f9fc576d50ac2",
       "bytes": 2204
@@ -205,8 +210,8 @@
     },
     {
       "path": "scaffold/documentation/playbooks/pilot_release.md",
-      "sha256": "1e5b9f689134ca9536c49bb1357d67362b9d25c6b06d0a2324c9d98bbf15343a",
-      "bytes": 6352
+      "sha256": "c31f18e2bb3e2452f6867a0ac107e8f3afdae580cf12333a2c13b4fe368e98ab",
+      "bytes": 7642
     },
     {
       "path": "scaffold/documentation/playbooks/thumbnail_design.md",
@@ -490,8 +495,8 @@
     },
     {
       "path": "scaffold/storyflow/pilot_release.py",
-      "sha256": "e905553963b423bd8132950dc70b1f4b8bd152b2bc60216d823eb871abd790d1",
-      "bytes": 23854
+      "sha256": "86109269bc80a730a4684dd0a8b4756f583308ac8ada2bd47db7b2a5ec826ac7",
+      "bytes": 28066
     },
     {
       "path": "scaffold/storyflow/portable.py",
@@ -647,6 +652,11 @@
       "path": "scaffold/tests/test_caption_pipeline.py",
       "sha256": "ef2902572102a1c6add6dc87ede17291437c1c2aad938a56de2087cd8611e908",
       "bytes": 3341
+    },
+    {
+      "path": "scaffold/tests/test_caption_upload_only.py",
+      "sha256": "5c1e3866d0eab82555a1c6b953c1e0a745f15e388480aed115c76fbbe76b722f",
+      "bytes": 10730
     },
     {
       "path": "scaffold/tests/test_chapter_clip_gate.py",
@@ -977,5 +987,5 @@
   "title_en": "Story Animation",
   "title_zh": "Story Animation 动画故事工作流",
   "type": "workflow",
-  "version": "1.2.1"
+  "version": "1.2.2"
 }

@@ -19,7 +19,10 @@ python3 bin/story-animation research check --material-dir examples/materials
 
 1.1新增：最终FA字幕的简/繁/英/日/韩可切换轨；保留review_only原集的独立pilot发布（private→封面→字幕→列表→显式privacy）；Codex gpt-6.1-sol专职thumbnail-designer。安装后阅读documentation/playbooks/，并显式运行python3 tools/configure_roles.py --execute配置本工作区角色。需要自己的force-ssl字幕OAuth授权；不继承制作方账号/授权/媒体。
 
-1.2.0 独立候选（未发布）：正式合成前预制并核验与 final canvas 等大的封面；以封面替换第 0 帧，随后进行 UltraSafe、字幕烧录和时钟 QA。总帧数、音轨与字幕时间轴保持。提供首帧封面；各客户端自行决定预览取帧。新流程见 scaffold/documentation/playbooks/thumbnail_first_frame.md。
+1.2.0 首帧封面：正式合成前预制并核验与 final canvas 等大的封面；以封面替换第 0 帧，随后进行 UltraSafe、字幕烧录和时钟 QA。总帧数、音轨与字幕时间轴保持。提供首帧封面；各客户端自行决定预览取帧。新流程见 scaffold/documentation/playbooks/thumbnail_first_frame.md。
 
 
 1.2 optional learning: SQL full-script facts, real embeddings/outbox, compact independent duplicate advice, comment intake/reply and topic ideas default off. After installation use `modules status` and `modules configure`; see scaffold/documentation/LEARNING.md. Authors may use Codex/Claude/Ark/custom providers; no vendor or learning subscription is mandatory.
+
+
+1.2.2 独立候选（未发布）：正常 pilot 发布/回读/恢复/最终可见性确认零 captions.download。保留本地质量/hash、成功 caption ID 回执、实时 serving 元数据和 unknown 不盲重发合同；content_matches=null，不冒称远端全文已比对。仅人工显式 --diagnostic-caption-download 诊断可下载。1.2.1 无损画面拼接、精确章节卡帧字幕遮罩、安装者显式字体合同全部保留。详见 scaffold/documentation/playbooks/pilot_release.md。
