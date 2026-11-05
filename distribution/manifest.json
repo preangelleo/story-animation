@@ -1,832 +1,834 @@
 {
+  "author": "community",
   "automations": [],
   "category": "workflow",
+  "certified": false,
   "entry": "README.md",
   "files": [
     {
+      "bytes": 3601,
       "path": "README.md",
-      "sha256": "aac7301951e89d7502ae3ca1386f6080a0183ef74a9f6eb407f24a3b6d509f2d",
-      "bytes": 3601
+      "sha256": "aac7301951e89d7502ae3ca1386f6080a0183ef74a9f6eb407f24a3b6d509f2d"
     },
     {
+      "bytes": 176,
       "path": "params.schema.json",
-      "sha256": "74bc8814e1db27861e873f955b627377d8cfc2a739717a2e072e4515a26eb7bd",
-      "bytes": 176
+      "sha256": "74bc8814e1db27861e873f955b627377d8cfc2a739717a2e072e4515a26eb7bd"
     },
     {
+      "bytes": 326,
       "path": "scaffold/.claude/agents/audience-analyst.md",
-      "sha256": "0cc468bf916ed12d888dff3ba61fea39dc1a23512e8c3944dcc163dfe353521a",
-      "bytes": 326
+      "sha256": "0cc468bf916ed12d888dff3ba61fea39dc1a23512e8c3944dcc163dfe353521a"
     },
     {
+      "bytes": 388,
       "path": "scaffold/.claude/agents/chapter-transition-designer.md",
-      "sha256": "858d80c16e6974536edf743525d3385239d43ff6fc716ef2359e636be00f9ef0",
-      "bytes": 388
+      "sha256": "858d80c16e6974536edf743525d3385239d43ff6fc716ef2359e636be00f9ef0"
     },
     {
+      "bytes": 330,
       "path": "scaffold/.claude/agents/character-designer.md",
-      "sha256": "45fb49fd5877b53a1cdfbb66c7083831fa3fdce39668070363f6781a111d042c",
-      "bytes": 330
+      "sha256": "45fb49fd5877b53a1cdfbb66c7083831fa3fdce39668070363f6781a111d042c"
     },
     {
+      "bytes": 284,
       "path": "scaffold/.claude/agents/dedup-adviser.md",
-      "sha256": "f4298a8faae602c8efdd897c94caafee9ff0a5ffec0df17d7c9235c5c09a6d84",
-      "bytes": 284
+      "sha256": "f4298a8faae602c8efdd897c94caafee9ff0a5ffec0df17d7c9235c5c09a6d84"
     },
     {
+      "bytes": 306,
       "path": "scaffold/.claude/agents/dev-maintainer.md",
-      "sha256": "bf6e583f88ece81240835d31c567a1142ef8d34dc414f35fbea85f3b45d06e08",
-      "bytes": 306
+      "sha256": "bf6e583f88ece81240835d31c567a1142ef8d34dc414f35fbea85f3b45d06e08"
     },
     {
+      "bytes": 314,
       "path": "scaffold/.claude/agents/feedback-analyst.md",
-      "sha256": "2303a0f9127ea985afa917347eeafe01ab8a3c5037621ad30d3da46f5716280d",
-      "bytes": 314
+      "sha256": "2303a0f9127ea985afa917347eeafe01ab8a3c5037621ad30d3da46f5716280d"
     },
     {
+      "bytes": 335,
       "path": "scaffold/.claude/agents/media-producer.md",
-      "sha256": "7c7ddceb54cbf61059de01c3081d2ff4aa6cf1cc4f8a93c2aa29840826261c51",
-      "bytes": 335
+      "sha256": "7c7ddceb54cbf61059de01c3081d2ff4aa6cf1cc4f8a93c2aa29840826261c51"
     },
     {
+      "bytes": 327,
       "path": "scaffold/.claude/agents/release-operator.md",
-      "sha256": "e66222f4c1bc74e95c1c3d0bd99acb3499970669aa4edaec372f0d93be82d4ae",
-      "bytes": 327
+      "sha256": "e66222f4c1bc74e95c1c3d0bd99acb3499970669aa4edaec372f0d93be82d4ae"
     },
     {
+      "bytes": 1130,
       "path": "scaffold/.claude/agents/story-author.md",
-      "sha256": "24bc2a9eaf81d3ec6162f41013cb5fb92aa7be44001a2c9ba62fe3c9df804bcc",
-      "bytes": 1130
+      "sha256": "24bc2a9eaf81d3ec6162f41013cb5fb92aa7be44001a2c9ba62fe3c9df804bcc"
     },
     {
+      "bytes": 307,
       "path": "scaffold/.claude/agents/story-editor.md",
-      "sha256": "3370e4d22706a230d9513383214a972b5635791d4ff56f7c4134670e24997726",
-      "bytes": 307
+      "sha256": "3370e4d22706a230d9513383214a972b5635791d4ff56f7c4134670e24997726"
     },
     {
+      "bytes": 312,
       "path": "scaffold/.claude/agents/story-researcher.md",
-      "sha256": "2a399a626a072c8519d9901885ce365cd96bd4fc7b76291fbb7f956a8634f40f",
-      "bytes": 312
+      "sha256": "2a399a626a072c8519d9901885ce365cd96bd4fc7b76291fbb7f956a8634f40f"
     },
     {
+      "bytes": 318,
       "path": "scaffold/.claude/agents/theme-planner.md",
-      "sha256": "7fec3e5faca1b2487ff146edf4636ad042df33342dbf5b1f6607fd1f80a14859",
-      "bytes": 318
+      "sha256": "7fec3e5faca1b2487ff146edf4636ad042df33342dbf5b1f6607fd1f80a14859"
     },
     {
+      "bytes": 1167,
       "path": "scaffold/.claude/agents/thumbnail-designer.md",
-      "sha256": "b0d80769ce7b910bceb14ceb1141c58528f053302178d2f210823ecd0db3b8f9",
-      "bytes": 1167
+      "sha256": "b0d80769ce7b910bceb14ceb1141c58528f053302178d2f210823ecd0db3b8f9"
     },
     {
+      "bytes": 1009,
       "path": "scaffold/.claude/agents/thumbnail-preproducer.md",
-      "sha256": "78071d717e71ed54072d281f46bb4b60c501a15ad99f978b38abdd6aa958aceb",
-      "bytes": 1009
+      "sha256": "78071d717e71ed54072d281f46bb4b60c501a15ad99f978b38abdd6aa958aceb"
     },
     {
+      "bytes": 1133,
       "path": "scaffold/AGENTS.md",
-      "sha256": "62c77dc2aa467311cfc71e15eb13473ad050fee61d0894eaae8709bc5c29701d",
-      "bytes": 1133
+      "sha256": "62c77dc2aa467311cfc71e15eb13473ad050fee61d0894eaae8709bc5c29701d"
     },
     {
+      "bytes": 662,
       "path": "scaffold/NOTICE.md",
-      "sha256": "fef754a0a0f2501ba6ba20b1500246f175f732096adecf3657d97ec12a3ee4ab",
-      "bytes": 662
+      "sha256": "fef754a0a0f2501ba6ba20b1500246f175f732096adecf3657d97ec12a3ee4ab"
     },
     {
+      "bytes": 2202,
       "path": "scaffold/README.md",
-      "sha256": "379ac4efeecb1d262bd4f6a709f9350ae2d0b8326aedc6141963f2904140e9f5",
-      "bytes": 2202
+      "sha256": "379ac4efeecb1d262bd4f6a709f9350ae2d0b8326aedc6141963f2904140e9f5"
     },
     {
+      "bytes": 4309,
       "path": "scaffold/SKILL.md",
-      "sha256": "842452125a6a202f518e6d91c11b4409e8cf6fc70799350824117e8d1b28f4ff",
-      "bytes": 4309
+      "sha256": "842452125a6a202f518e6d91c11b4409e8cf6fc70799350824117e8d1b28f4ff"
     },
     {
+      "bytes": 1179,
       "path": "scaffold/adapters/el.py",
-      "sha256": "1421e05df1d3636af34e9a927906079c46341599e637b102ce8ced4348631de2",
-      "bytes": 1179
+      "sha256": "1421e05df1d3636af34e9a927906079c46341599e637b102ce8ced4348631de2"
     },
     {
+      "bytes": 1274,
       "path": "scaffold/adapters/replicate.py",
-      "sha256": "ee3ca5117c44e1aff565d5d0ff0e76369f6a22e6490fb4a4ee9667f06ac9600d",
-      "bytes": 1274
+      "sha256": "ee3ca5117c44e1aff565d5d0ff0e76369f6a22e6490fb4a4ee9667f06ac9600d"
     },
     {
+      "bytes": 501,
       "path": "scaffold/adapters/review-upload.py",
-      "sha256": "5ab3a34002ed239300c768db900ce353b7597aa90a3cbd0bdd1f98e4be70df9a",
-      "bytes": 501
+      "sha256": "5ab3a34002ed239300c768db900ce353b7597aa90a3cbd0bdd1f98e4be70df9a"
     },
     {
+      "bytes": 2005,
       "path": "scaffold/adapters/yt.py",
-      "sha256": "18ce0514e907e67b4b4dfe99f68a375bbe2aba622f20201e46c95e21e73f7bee",
-      "bytes": 2005
+      "sha256": "18ce0514e907e67b4b4dfe99f68a375bbe2aba622f20201e46c95e21e73f7bee"
     },
     {
+      "bytes": 257,
       "path": "scaffold/bin/qy",
-      "sha256": "d7a8071fef6c9f07a449804297bf50d8c9ce6cdaf11570e70c8f394249195b2e",
-      "bytes": 257
+      "sha256": "d7a8071fef6c9f07a449804297bf50d8c9ce6cdaf11570e70c8f394249195b2e"
     },
     {
+      "bytes": 257,
       "path": "scaffold/bin/story-animation",
-      "sha256": "3f57d164a0889b19077427148ae516181cc1df9a0dbbc597400ae608a059dc65",
-      "bytes": 257
+      "sha256": "3f57d164a0889b19077427148ae516181cc1df9a0dbbc597400ae608a059dc65"
     },
     {
+      "bytes": 24259,
       "path": "scaffold/config/styles.json",
-      "sha256": "d58bc9d9aa78996aac09f8b382853e4ea6abf1e8310473896aa7c1685bb83582",
-      "bytes": 24259
+      "sha256": "d58bc9d9aa78996aac09f8b382853e4ea6abf1e8310473896aa7c1685bb83582"
     },
     {
+      "bytes": 1356,
       "path": "scaffold/config/weekly_series.json",
-      "sha256": "2f6b471a10bd6bdf27edfd0e36d587b097e129a1ecebd05315f8d467872bd6ac",
-      "bytes": 1356
+      "sha256": "2f6b471a10bd6bdf27edfd0e36d587b097e129a1ecebd05315f8d467872bd6ac"
     },
     {
+      "bytes": 1693,
       "path": "scaffold/documentation/CHANGELOG.md",
-      "sha256": "a7f51e5246bc36de0f9c443e491ff6cbb514584bad9c05896b20a47cbcf42e51",
-      "bytes": 1693
+      "sha256": "a7f51e5246bc36de0f9c443e491ff6cbb514584bad9c05896b20a47cbcf42e51"
     },
     {
+      "bytes": 2204,
       "path": "scaffold/documentation/FONTS.md",
-      "sha256": "c185454d9588ebca7edf46be69e0e31724f4204bbd6c41eb338f9fc576d50ac2",
-      "bytes": 2204
+      "sha256": "c185454d9588ebca7edf46be69e0e31724f4204bbd6c41eb338f9fc576d50ac2"
     },
     {
+      "bytes": 6484,
       "path": "scaffold/documentation/LEARNING.md",
-      "sha256": "09089072fe38143adeab644edb10f68ad95ef15a49e9aa62e39d904eb3765756",
-      "bytes": 6484
+      "sha256": "09089072fe38143adeab644edb10f68ad95ef15a49e9aa62e39d904eb3765756"
     },
     {
+      "bytes": 3025,
       "path": "scaffold/documentation/PARAMETERS.md",
-      "sha256": "59256bf327e4615dac28c542c60b6b09b3e81c494124c56b3eeb01a323c39202",
-      "bytes": 3025
+      "sha256": "59256bf327e4615dac28c542c60b6b09b3e81c494124c56b3eeb01a323c39202"
     },
     {
+      "bytes": 4786,
       "path": "scaffold/documentation/PROVIDERS.md",
-      "sha256": "837fb6666b9798a9989353621202d25b4e4895bc676091e2d88d04b20589e54b",
-      "bytes": 4786
+      "sha256": "837fb6666b9798a9989353621202d25b4e4895bc676091e2d88d04b20589e54b"
     },
     {
+      "bytes": 1042,
       "path": "scaffold/documentation/RELEASE-1.2.0-CANDIDATE.md",
-      "sha256": "750f1f911ab88f63195efdff84d68dcaa4a8ad29b1917e64919eed7e7791e9c8",
-      "bytes": 1042
+      "sha256": "750f1f911ab88f63195efdff84d68dcaa4a8ad29b1917e64919eed7e7791e9c8"
     },
     {
+      "bytes": 466,
       "path": "scaffold/documentation/RELEASE-1.2.0-LEARNING-CANDIDATE.md",
-      "sha256": "872dd5f795d4d6a00631befdc8fbab55d1ae63860a573786037f9fe966f67c9c",
-      "bytes": 466
+      "sha256": "872dd5f795d4d6a00631befdc8fbab55d1ae63860a573786037f9fe966f67c9c"
     },
     {
+      "bytes": 2012,
       "path": "scaffold/documentation/RELEASE-1.2.1-CANDIDATE.md",
-      "sha256": "9de49f49bf67efe982c8c669d8a9b544f9962bbb6ccf552018f1d3f2ee722654",
-      "bytes": 2012
+      "sha256": "9de49f49bf67efe982c8c669d8a9b544f9962bbb6ccf552018f1d3f2ee722654"
     },
     {
+      "bytes": 1394,
       "path": "scaffold/documentation/RELEASE.md",
-      "sha256": "908b545a3d083d8facdb62e2c90686e4a6667c1ce695dd123ea93a4911bb109b",
-      "bytes": 1394
+      "sha256": "908b545a3d083d8facdb62e2c90686e4a6667c1ce695dd123ea93a4911bb109b"
     },
     {
+      "bytes": 6032,
       "path": "scaffold/documentation/STRUCTURE.json",
-      "sha256": "4eaa858a204706f532962e45de3916ebace827be010284935770249dd2388ed4",
-      "bytes": 6032
+      "sha256": "4eaa858a204706f532962e45de3916ebace827be010284935770249dd2388ed4"
     },
     {
+      "bytes": 6601,
       "path": "scaffold/documentation/WORKFLOW.md",
-      "sha256": "087ea91deca9a7e262e2d2ab87de1fdb6e0c5e09f3c082130b5387801afb481c",
-      "bytes": 6601
+      "sha256": "087ea91deca9a7e262e2d2ab87de1fdb6e0c5e09f3c082130b5387801afb481c"
     },
     {
+      "bytes": 2466,
       "path": "scaffold/documentation/configuration.json",
-      "sha256": "3a24b923f73f675339e2ca31534473ca9bdf0857b24f5dd5c174e5b424886f6f",
-      "bytes": 2466
+      "sha256": "3a24b923f73f675339e2ca31534473ca9bdf0857b24f5dd5c174e5b424886f6f"
     },
     {
+      "bytes": 2543,
       "path": "scaffold/documentation/playbooks/multilingual_captions.md",
-      "sha256": "c8af0028f06c16dbbf01d50c9d95b6e5bb7a68008955ff270bc71be94ebfb3e9",
-      "bytes": 2543
+      "sha256": "c8af0028f06c16dbbf01d50c9d95b6e5bb7a68008955ff270bc71be94ebfb3e9"
     },
     {
+      "bytes": 7642,
       "path": "scaffold/documentation/playbooks/pilot_release.md",
-      "sha256": "c31f18e2bb3e2452f6867a0ac107e8f3afdae580cf12333a2c13b4fe368e98ab",
-      "bytes": 7642
+      "sha256": "c31f18e2bb3e2452f6867a0ac107e8f3afdae580cf12333a2c13b4fe368e98ab"
     },
     {
+      "bytes": 3789,
       "path": "scaffold/documentation/playbooks/thumbnail_design.md",
-      "sha256": "ebc068a916b44414b0831607befb85afe606437c0289ef2d519b18ceff7e2c54",
-      "bytes": 3789
+      "sha256": "ebc068a916b44414b0831607befb85afe606437c0289ef2d519b18ceff7e2c54"
     },
     {
+      "bytes": 2968,
       "path": "scaffold/documentation/playbooks/thumbnail_first_frame.md",
-      "sha256": "0392498e4ccc79b96fe840311be2e7cfa8cd03f3514213af47af74e4f3e19e4d",
-      "bytes": 2968
+      "sha256": "0392498e4ccc79b96fe840311be2e7cfa8cd03f3514213af47af74e4f3e19e4d"
     },
     {
+      "bytes": 342,
       "path": "scaffold/examples/author-brief.md",
-      "sha256": "4c64347540c736a41a79548e0d4de59d52cdd24f6f5095e9b571e9b08b2ecbf5",
-      "bytes": 342
+      "sha256": "4c64347540c736a41a79548e0d4de59d52cdd24f6f5095e9b571e9b08b2ecbf5"
     },
     {
+      "bytes": 738,
       "path": "scaffold/examples/chapter-sound-recipe.json",
-      "sha256": "cfe46a189b4776512961b91019111d0375cf596b62901f4bb54c2dc97c4a9993",
-      "bytes": 738
+      "sha256": "cfe46a189b4776512961b91019111d0375cf596b62901f4bb54c2dc97c4a9993"
     },
     {
+      "bytes": 193,
       "path": "scaffold/examples/materials/dossier.md",
-      "sha256": "f5ad061755067f007880e348759a3ac4f43a7844331376f697931436a550cefb",
-      "bytes": 193
+      "sha256": "f5ad061755067f007880e348759a3ac4f43a7844331376f697931436a550cefb"
     },
     {
+      "bytes": 191,
       "path": "scaffold/examples/materials/sources.json",
-      "sha256": "c309c2e22bbf46f5597bb426960fb90da3d563407bf5c9ed83d19c1698a6977e",
-      "bytes": 191
+      "sha256": "c309c2e22bbf46f5597bb426960fb90da3d563407bf5c9ed83d19c1698a6977e"
     },
     {
+      "bytes": 125,
       "path": "scaffold/examples/materials/themes.json",
-      "sha256": "6fb41d59cd474dd869d30c5dd1d43a79f38900f2041e3e39c926326ca75b959b",
-      "bytes": 125
+      "sha256": "6fb41d59cd474dd869d30c5dd1d43a79f38900f2041e3e39c926326ca75b959b"
     },
     {
+      "bytes": 779,
       "path": "scaffold/examples/pilot/README.md",
-      "sha256": "2bad0969c59ccd8438a737c7a25ec4585f7da394aeb9c38bfe226a0c8625fbbf",
-      "bytes": 779
+      "sha256": "2bad0969c59ccd8438a737c7a25ec4585f7da394aeb9c38bfe226a0c8625fbbf"
     },
     {
+      "bytes": 825,
       "path": "scaffold/examples/pilot/accepted-media.json",
-      "sha256": "e557dac3a9c1e9af069281ac4202ed25ec0065b015b05203880457a2978df17a",
-      "bytes": 825
+      "sha256": "e557dac3a9c1e9af069281ac4202ed25ec0065b015b05203880457a2978df17a"
     },
     {
+      "bytes": 125,
       "path": "scaffold/requirements.txt",
-      "sha256": "4d3274c7cbb28f96a0e881ad86604c3ecf6a285ce063ba1a3b3b19475f68049d",
-      "bytes": 125
+      "sha256": "4d3274c7cbb28f96a0e881ad86604c3ecf6a285ce063ba1a3b3b19475f68049d"
     },
     {
+      "bytes": 277,
       "path": "scaffold/roles/audience-analyst.md",
-      "sha256": "6c81e4d47f4c9c78f78df0fa6fad0c1c31ae17ba6386d8f1053b50ecb1e740e1",
-      "bytes": 277
+      "sha256": "6c81e4d47f4c9c78f78df0fa6fad0c1c31ae17ba6386d8f1053b50ecb1e740e1"
     },
     {
+      "bytes": 328,
       "path": "scaffold/roles/chapter-transition-designer.md",
-      "sha256": "e59aa56f3afc696d571c882ab7e143a4ec48abf4b4d09def03dd57d78315eb4b",
-      "bytes": 328
+      "sha256": "e59aa56f3afc696d571c882ab7e143a4ec48abf4b4d09def03dd57d78315eb4b"
     },
     {
+      "bytes": 279,
       "path": "scaffold/roles/character-designer.md",
-      "sha256": "bdad2d6c21b4747f1c0ae60611cc978711919f72f7694e89c07f4c186687bb11",
-      "bytes": 279
+      "sha256": "bdad2d6c21b4747f1c0ae60611cc978711919f72f7694e89c07f4c186687bb11"
     },
     {
+      "bytes": 558,
       "path": "scaffold/roles/dedup-adviser.md",
-      "sha256": "0a0bb545228dcc41f1408563465cab2ecc568153245bd765e26109e06da48242",
-      "bytes": 558
+      "sha256": "0a0bb545228dcc41f1408563465cab2ecc568153245bd765e26109e06da48242"
     },
     {
+      "bytes": 259,
       "path": "scaffold/roles/dev-maintainer.md",
-      "sha256": "3598191f40d27776501aab491ad77a386332ede442781498c9c8643e1bf550b1",
-      "bytes": 259
+      "sha256": "3598191f40d27776501aab491ad77a386332ede442781498c9c8643e1bf550b1"
     },
     {
+      "bytes": 654,
       "path": "scaffold/roles/feedback-analyst.md",
-      "sha256": "a0e67dc8c4335825761b59354864e2a7a8c0151d52fee6bc7f44b3fba9d6d9e2",
-      "bytes": 654
+      "sha256": "a0e67dc8c4335825761b59354864e2a7a8c0151d52fee6bc7f44b3fba9d6d9e2"
     },
     {
+      "bytes": 288,
       "path": "scaffold/roles/media-producer.md",
-      "sha256": "ad1db60ab11b7e6c70d1a00f8fe1e3a8f3da01f6bec442f42b1a32506e1d47aa",
-      "bytes": 288
+      "sha256": "ad1db60ab11b7e6c70d1a00f8fe1e3a8f3da01f6bec442f42b1a32506e1d47aa"
     },
     {
+      "bytes": 278,
       "path": "scaffold/roles/release-operator.md",
-      "sha256": "4a6dad4830005f5a232d7bfa75a5953a881d15aed2b6f2d06a1ca96be0c74481",
-      "bytes": 278
+      "sha256": "4a6dad4830005f5a232d7bfa75a5953a881d15aed2b6f2d06a1ca96be0c74481"
     },
     {
+      "bytes": 1085,
       "path": "scaffold/roles/story-author.md",
-      "sha256": "babc8fe8a5440ac693e0efb7b2ed827649baec05d00c5db448d83670c1dc8a62",
-      "bytes": 1085
+      "sha256": "babc8fe8a5440ac693e0efb7b2ed827649baec05d00c5db448d83670c1dc8a62"
     },
     {
+      "bytes": 262,
       "path": "scaffold/roles/story-editor.md",
-      "sha256": "a3d573dfcfbaa5aa0d47afcc037925420cb4d6e952c11013aff3d46995893174",
-      "bytes": 262
+      "sha256": "a3d573dfcfbaa5aa0d47afcc037925420cb4d6e952c11013aff3d46995893174"
     },
     {
+      "bytes": 263,
       "path": "scaffold/roles/story-researcher.md",
-      "sha256": "c0eb091f9d59ae1376d286f5b6fee77e0ad3dc403eb091645b17f7adcaf32279",
-      "bytes": 263
+      "sha256": "c0eb091f9d59ae1376d286f5b6fee77e0ad3dc403eb091645b17f7adcaf32279"
     },
     {
+      "bytes": 272,
       "path": "scaffold/roles/theme-planner.md",
-      "sha256": "a9f27a69e3acad92d132ed7142809c76b2f5ddebfba89d6da50e45fcc3f2cbc5",
-      "bytes": 272
+      "sha256": "a9f27a69e3acad92d132ed7142809c76b2f5ddebfba89d6da50e45fcc3f2cbc5"
     },
     {
+      "bytes": 607,
       "path": "scaffold/roles/thumbnail-designer.md",
-      "sha256": "7cc70814698892dc5fd27985b321663a3928c9783c5f5c956cb862419d12e7bb",
-      "bytes": 607
+      "sha256": "7cc70814698892dc5fd27985b321663a3928c9783c5f5c956cb862419d12e7bb"
     },
     {
+      "bytes": 1023,
       "path": "scaffold/roles/thumbnail-designer.toml",
-      "sha256": "d76f3356669fd777478f781aa20ff3753d0e6b56aa2e143e83921e70ffbc0438",
-      "bytes": 1023
+      "sha256": "d76f3356669fd777478f781aa20ff3753d0e6b56aa2e143e83921e70ffbc0438"
     },
     {
+      "bytes": 896,
       "path": "scaffold/roles/thumbnail-preproducer.md",
-      "sha256": "8f14d759acdc3ad0bccbfdd52dcfe96f24396d5b27b9cc2ae8042ccd7f2bf8dd",
-      "bytes": 896
+      "sha256": "8f14d759acdc3ad0bccbfdd52dcfe96f24396d5b27b9cc2ae8042ccd7f2bf8dd"
     },
     {
+      "bytes": 633,
       "path": "scaffold/roles/thumbnail-preproducer.toml",
-      "sha256": "9cbebd96a90314c5c11b26c95c7e0e239dbe6c3fb17f604630ae34b6380369fa",
-      "bytes": 633
+      "sha256": "9cbebd96a90314c5c11b26c95c7e0e239dbe6c3fb17f604630ae34b6380369fa"
     },
     {
+      "bytes": 2252,
       "path": "scaffold/schemas/learning.schema.json",
-      "sha256": "c1ababd18af043af2df49dfc43f3cc20ce4bdc3a0b53902e6ad3cf00fa962781",
-      "bytes": 2252
+      "sha256": "c1ababd18af043af2df49dfc43f3cc20ce4bdc3a0b53902e6ad3cf00fa962781"
     },
     {
+      "bytes": 2942,
       "path": "scaffold/schemas/styles.schema.json",
-      "sha256": "9ba97c7a11bf41f3b60d74305d3974c20cb5c5f3ba53e763ab06a614b468401f",
-      "bytes": 2942
+      "sha256": "9ba97c7a11bf41f3b60d74305d3974c20cb5c5f3ba53e763ab06a614b468401f"
     },
     {
+      "bytes": 441,
       "path": "scaffold/schemas/thumbnail-first-frame.schema.json",
-      "sha256": "b32746acca8a23bf873377c0cd9319ebf2f20a834cc173be25c76a35f9d33d3f",
-      "bytes": 441
+      "sha256": "b32746acca8a23bf873377c0cd9319ebf2f20a834cc173be25c76a35f9d33d3f"
     },
     {
+      "bytes": 1449,
       "path": "scaffold/schemas/weekly_series.schema.json",
-      "sha256": "5eff166cfc3511cba6ff0878a92b26940de258e8a6d7d850788233ad932fc384",
-      "bytes": 1449
+      "sha256": "5eff166cfc3511cba6ff0878a92b26940de258e8a6d7d850788233ad932fc384"
     },
     {
+      "bytes": 1318,
       "path": "scaffold/skills/story-captions-multilingual/SKILL.md",
-      "sha256": "7b2afc39199b6c8e11174e119a5f1a067c9f7e5d35740c846959f9a4d7c946c8",
-      "bytes": 1318
+      "sha256": "7b2afc39199b6c8e11174e119a5f1a067c9f7e5d35740c846959f9a4d7c946c8"
     },
     {
+      "bytes": 1124,
       "path": "scaffold/skills/story-dedup/SKILL.md",
-      "sha256": "8bd1e50a8daf6af47234e747d4c59b2c792c5c571b46106a9544c8e0a55f1d89",
-      "bytes": 1124
+      "sha256": "8bd1e50a8daf6af47234e747d4c59b2c792c5c571b46106a9544c8e0a55f1d89"
     },
     {
+      "bytes": 2184,
       "path": "scaffold/skills/story-feedback/SKILL.md",
-      "sha256": "bb19caf344a1345810dc7ee0c40334c906984744e95823260fca013b61da57e2",
-      "bytes": 2184
+      "sha256": "bb19caf344a1345810dc7ee0c40334c906984744e95823260fca013b61da57e2"
     },
     {
+      "bytes": 1489,
       "path": "scaffold/skills/story-learning/SKILL.md",
-      "sha256": "9805ac9b80022157d650a8b9cf344821ab84e013e1771ff26a6818a42a0fa0d4",
-      "bytes": 1489
+      "sha256": "9805ac9b80022157d650a8b9cf344821ab84e013e1771ff26a6818a42a0fa0d4"
     },
     {
+      "bytes": 1608,
       "path": "scaffold/skills/story-pilot-release/SKILL.md",
-      "sha256": "1ab5758aab65328f208efaa3c93040e1c3b8b6d7e0f8dd057677b80292524032",
-      "bytes": 1608
+      "sha256": "1ab5758aab65328f208efaa3c93040e1c3b8b6d7e0f8dd057677b80292524032"
     },
     {
-      "path": "scaffold/skills/story-thumbnail/SKILL.md",
-      "sha256": "fca329a28dd569431ebc3d9613afd0cc4fefabc11aa413a59ad1ec00480eca70",
-      "bytes": 1728
-    },
-    {
+      "bytes": 1036,
       "path": "scaffold/skills/story-thumbnail-preproduction/SKILL.md",
-      "sha256": "bb4298a347fab25b901ed7278a9e38e643af42c97d4436fe5a1cd901cf2b372f",
-      "bytes": 1036
+      "sha256": "bb4298a347fab25b901ed7278a9e38e643af42c97d4436fe5a1cd901cf2b372f"
     },
     {
+      "bytes": 1728,
+      "path": "scaffold/skills/story-thumbnail/SKILL.md",
+      "sha256": "fca329a28dd569431ebc3d9613afd0cc4fefabc11aa413a59ad1ec00480eca70"
+    },
+    {
+      "bytes": 40,
       "path": "scaffold/storyflow/__init__.py",
-      "sha256": "5b9e8a187bfc4d9b75412cd3c116472301f5ec3b36ed9a1ec41b238887c4a598",
-      "bytes": 40
+      "sha256": "5b9e8a187bfc4d9b75412cd3c116472301f5ec3b36ed9a1ec41b238887c4a598"
     },
     {
+      "bytes": 3385,
       "path": "scaffold/storyflow/asr_variants.py",
-      "sha256": "48cc035b25d55c20b0d2f70ab7c55c11bb60249cd05aa3e465f4324768839840",
-      "bytes": 3385
+      "sha256": "48cc035b25d55c20b0d2f70ab7c55c11bb60249cd05aa3e465f4324768839840"
     },
     {
+      "bytes": 4150,
       "path": "scaffold/storyflow/author_route.py",
-      "sha256": "78319382e8aa84bc232dfe1300a692e26a2f0dcaf840690f2b91eda85cbf81db",
-      "bytes": 4150
+      "sha256": "78319382e8aa84bc232dfe1300a692e26a2f0dcaf840690f2b91eda85cbf81db"
     },
     {
+      "bytes": 17037,
       "path": "scaffold/storyflow/burn_ops.py",
-      "sha256": "f0ed9f49445f52fd82fb708c347f9785df59717370b13784710169a53fc65f5a",
-      "bytes": 17037
+      "sha256": "f0ed9f49445f52fd82fb708c347f9785df59717370b13784710169a53fc65f5a"
     },
     {
+      "bytes": 4755,
       "path": "scaffold/storyflow/caption_mask.py",
-      "sha256": "ba27051a74d483ae6dafadfbc652d919c254946e5035115391653e60eb4ad8be",
-      "bytes": 4755
+      "sha256": "ba27051a74d483ae6dafadfbc652d919c254946e5035115391653e60eb4ad8be"
     },
     {
+      "bytes": 18454,
       "path": "scaffold/storyflow/captions.py",
-      "sha256": "d6b831013d6c5fd9b32dbff2a47f89e0492cd1a70ced8204dcb2b19bf223aacd",
-      "bytes": 18454
+      "sha256": "d6b831013d6c5fd9b32dbff2a47f89e0492cd1a70ced8204dcb2b19bf223aacd"
     },
     {
+      "bytes": 9851,
       "path": "scaffold/storyflow/captions_multilingual.py",
-      "sha256": "4573bb9525879355b2b2505231585928fa3da5907b75537f6364e5a069fe0082",
-      "bytes": 9851
+      "sha256": "4573bb9525879355b2b2505231585928fa3da5907b75537f6364e5a069fe0082"
     },
     {
+      "bytes": 8128,
       "path": "scaffold/storyflow/chapter_clip_gate.py",
-      "sha256": "08a1b7a7fd2cfbdf9b9030da6a05650026cf2a67e29a8358ce439e5c98ad067b",
-      "bytes": 8128
+      "sha256": "08a1b7a7fd2cfbdf9b9030da6a05650026cf2a67e29a8358ce439e5c98ad067b"
     },
     {
+      "bytes": 33564,
       "path": "scaffold/storyflow/chapter_mix.py",
-      "sha256": "1b59b17d3e747de272129d0fd8bb37967ce4d2fc26031595c55de7e373a6360b",
-      "bytes": 33564
+      "sha256": "1b59b17d3e747de272129d0fd8bb37967ce4d2fc26031595c55de7e373a6360b"
     },
     {
+      "bytes": 15855,
       "path": "scaffold/storyflow/chapter_render.py",
-      "sha256": "d6b55c405d7568209731dee8b3db825becf960fc21c96a7daa52144cf7cf2858",
-      "bytes": 15855
+      "sha256": "d6b55c405d7568209731dee8b3db825becf960fc21c96a7daa52144cf7cf2858"
     },
     {
+      "bytes": 16103,
       "path": "scaffold/storyflow/chapters.py",
-      "sha256": "ccbfdabde892cae9879c59b3df326f55cd884418763721a0224d2f310807ea85",
-      "bytes": 16103
+      "sha256": "ccbfdabde892cae9879c59b3df326f55cd884418763721a0224d2f310807ea85"
     },
     {
+      "bytes": 7711,
       "path": "scaffold/storyflow/cli.py",
-      "sha256": "ebe9560d8601d705cfd39e5599ded56c91f06af2bcf6701dd6c8378b46c7d010",
-      "bytes": 7711
+      "sha256": "ebe9560d8601d705cfd39e5599ded56c91f06af2bcf6701dd6c8378b46c7d010"
     },
     {
+      "bytes": 5431,
       "path": "scaffold/storyflow/clock_qa.py",
-      "sha256": "b7eef616f95942ea666ac2c3e23a4583ebabeec63134975b788742c91b09e306",
-      "bytes": 5431
+      "sha256": "b7eef616f95942ea666ac2c3e23a4583ebabeec63134975b788742c91b09e306"
     },
     {
+      "bytes": 60214,
       "path": "scaffold/storyflow/core.py",
-      "sha256": "dbd0fade5a3697b00dafc0f1593b821c102e79f89dc244bcefc11e56690e17dd",
-      "bytes": 60214
+      "sha256": "dbd0fade5a3697b00dafc0f1593b821c102e79f89dc244bcefc11e56690e17dd"
     },
     {
+      "bytes": 8890,
       "path": "scaffold/storyflow/first_frame.py",
-      "sha256": "124e67b5f18c1d65c054597e1166415e820f8c1de0da9b42a79e96cb8511b3c7",
-      "bytes": 8890
+      "sha256": "124e67b5f18c1d65c054597e1166415e820f8c1de0da9b42a79e96cb8511b3c7"
     },
     {
+      "bytes": 91598,
       "path": "scaffold/storyflow/integrations.py",
-      "sha256": "9c5d3535b953a9841fd4a01fbb115b2b869c38fce8251a4635b8d930f284770d",
-      "bytes": 91598
+      "sha256": "9c5d3535b953a9841fd4a01fbb115b2b869c38fce8251a4635b8d930f284770d"
     },
     {
+      "bytes": 43374,
       "path": "scaffold/storyflow/learning.py",
-      "sha256": "c61e37a5c5d17f65fb05d5238d3eff18824b422a2837c78f76489065f665805e",
-      "bytes": 43374
+      "sha256": "c61e37a5c5d17f65fb05d5238d3eff18824b422a2837c78f76489065f665805e"
     },
     {
+      "bytes": 5971,
       "path": "scaffold/storyflow/learning_options.py",
-      "sha256": "b4eaef60050cd84238aa528ada5b3494296cf695128bfb473ca66812435a732d",
-      "bytes": 5971
+      "sha256": "b4eaef60050cd84238aa528ada5b3494296cf695128bfb473ca66812435a732d"
     },
     {
+      "bytes": 3676,
       "path": "scaffold/storyflow/manifest_ops.py",
-      "sha256": "1cd0d95e43905ac67a04ef52a5925ad3bf16e6c454d5c1015c1dfdb5e9ea1a28",
-      "bytes": 3676
+      "sha256": "1cd0d95e43905ac67a04ef52a5925ad3bf16e6c454d5c1015c1dfdb5e9ea1a28"
     },
     {
+      "bytes": 28066,
       "path": "scaffold/storyflow/pilot_release.py",
-      "sha256": "86109269bc80a730a4684dd0a8b4756f583308ac8ada2bd47db7b2a5ec826ac7",
-      "bytes": 28066
+      "sha256": "86109269bc80a730a4684dd0a8b4756f583308ac8ada2bd47db7b2a5ec826ac7"
     },
     {
+      "bytes": 3470,
       "path": "scaffold/storyflow/portable.py",
-      "sha256": "7dbfff5fb44669a38cb12dc8e8ed5489af716175f849c02ce34c0c1e06d24887",
-      "bytes": 3470
+      "sha256": "7dbfff5fb44669a38cb12dc8e8ed5489af716175f849c02ce34c0c1e06d24887"
     },
     {
+      "bytes": 18151,
       "path": "scaffold/storyflow/production.py",
-      "sha256": "88ecdaaa1118a6d55dcbbfa95ee8ef5492c6422ce0309fc87f02a7d231da161f",
-      "bytes": 18151
+      "sha256": "88ecdaaa1118a6d55dcbbfa95ee8ef5492c6422ce0309fc87f02a7d231da161f"
     },
     {
+      "bytes": 3473,
       "path": "scaffold/storyflow/providers.py",
-      "sha256": "48b82e2f8fad784da73d7a49525592c1dbe2fa5750553645b86816e076705bc0",
-      "bytes": 3473
+      "sha256": "48b82e2f8fad784da73d7a49525592c1dbe2fa5750553645b86816e076705bc0"
     },
     {
+      "bytes": 1938,
       "path": "scaffold/storyflow/research_contract.py",
-      "sha256": "b7160cdd1ab23f60a9401ad294d9f290343c571b8bfb17beba824fe7c317966e",
-      "bytes": 1938
+      "sha256": "b7160cdd1ab23f60a9401ad294d9f290343c571b8bfb17beba824fe7c317966e"
     },
     {
+      "bytes": 786,
       "path": "scaffold/storyflow/revision_gate.py",
-      "sha256": "333a3495b18db9b0d99903f4cfe5c14d65658dcccfb2f1069698cbce69f8b4bc",
-      "bytes": 786
+      "sha256": "333a3495b18db9b0d99903f4cfe5c14d65658dcccfb2f1069698cbce69f8b4bc"
     },
     {
+      "bytes": 12408,
       "path": "scaffold/storyflow/scene_assembly.py",
-      "sha256": "2666907701c5618ca0462a5389a13d8b3fdc5d616b57adac10501771d69c3c83",
-      "bytes": 12408
+      "sha256": "2666907701c5618ca0462a5389a13d8b3fdc5d616b57adac10501771d69c3c83"
     },
     {
+      "bytes": 702,
       "path": "scaffold/storyflow/scene_cleanup.py",
-      "sha256": "acf9f100e899d5fa212ce40139cabbe3eb4cafcca098f864f9413909f0c514bf",
-      "bytes": 702
+      "sha256": "acf9f100e899d5fa212ce40139cabbe3eb4cafcca098f864f9413909f0c514bf"
     },
     {
+      "bytes": 3192,
       "path": "scaffold/storyflow/scene_timing.py",
-      "sha256": "3e8f348413b2f3878708498f5db1088f6ab9b0c78056ff9e430a2195510b5087",
-      "bytes": 3192
+      "sha256": "3e8f348413b2f3878708498f5db1088f6ab9b0c78056ff9e430a2195510b5087"
     },
     {
+      "bytes": 14682,
       "path": "scaffold/storyflow/sound_library.py",
-      "sha256": "1017d949568227dfc91b2cc83b24c0bc7e5b3e1d551729bbe4ac69616ac0c920",
-      "bytes": 14682
+      "sha256": "1017d949568227dfc91b2cc83b24c0bc7e5b3e1d551729bbe4ac69616ac0c920"
     },
     {
+      "bytes": 1867,
       "path": "scaffold/storyflow/style_binding.py",
-      "sha256": "6bfe1311f3cc9f662b8117e80e9e1dab1cbd86a05c5c02a217625fb9aead1bb9",
-      "bytes": 1867
+      "sha256": "6bfe1311f3cc9f662b8117e80e9e1dab1cbd86a05c5c02a217625fb9aead1bb9"
     },
     {
+      "bytes": 12055,
       "path": "scaffold/storyflow/style_registry.py",
-      "sha256": "7cd14bb2f795fd4042db70d2792706478ca0ce1fe49dc2264021f49177cc83fb",
-      "bytes": 12055
+      "sha256": "7cd14bb2f795fd4042db70d2792706478ca0ce1fe49dc2264021f49177cc83fb"
     },
     {
+      "bytes": 1934,
       "path": "scaffold/storyflow/styles_cli.py",
-      "sha256": "ca8df10d74b0959339cfcd60f8b10a04fe1c70a5b946562918da8817db3c3021",
-      "bytes": 1934
+      "sha256": "ca8df10d74b0959339cfcd60f8b10a04fe1c70a5b946562918da8817db3c3021"
     },
     {
+      "bytes": 0,
       "path": "scaffold/storyflow/vendor/__init__.py",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "bytes": 0
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
+      "bytes": 824,
       "path": "scaffold/storyflow/vendor/smart_caption/SOURCE.json",
-      "sha256": "a5de40c43981eb3f926f8d5e269f2622c32d81f3729f443edc0f28fd4d13c5f5",
-      "bytes": 824
+      "sha256": "a5de40c43981eb3f926f8d5e269f2622c32d81f3729f443edc0f28fd4d13c5f5"
     },
     {
+      "bytes": 65,
       "path": "scaffold/storyflow/vendor/smart_caption/__init__.py",
-      "sha256": "7a04d9566f6dd0748143554e829869dcf9a484500570471603ab49358a2c95b7",
-      "bytes": 65
+      "sha256": "7a04d9566f6dd0748143554e829869dcf9a484500570471603ab49358a2c95b7"
     },
     {
+      "bytes": 6548,
       "path": "scaffold/storyflow/vendor/smart_caption/caption_units.py",
-      "sha256": "e5d36f0039a843bcd9664be233dc392801a435d15bb07278ccbac32c1f199886",
-      "bytes": 6548
+      "sha256": "e5d36f0039a843bcd9664be233dc392801a435d15bb07278ccbac32c1f199886"
     },
     {
+      "bytes": 5923,
       "path": "scaffold/storyflow/vendor/smart_caption/convert.py",
-      "sha256": "54bbec92946b8bd329a6156782aa5cf6e0c01bfb9c211a4a8b8a1e544281b1bc",
-      "bytes": 5923
+      "sha256": "54bbec92946b8bd329a6156782aa5cf6e0c01bfb9c211a4a8b8a1e544281b1bc"
     },
     {
+      "bytes": 13706,
       "path": "scaffold/storyflow/vendor/smart_caption/segment.py",
-      "sha256": "e1a194d1ed079e6e33df69d630eea4db4135c77aa96237126c988663e8135573",
-      "bytes": 13706
+      "sha256": "e1a194d1ed079e6e33df69d630eea4db4135c77aa96237126c988663e8135573"
     },
     {
+      "bytes": 8647,
       "path": "scaffold/storyflow/video_ops.py",
-      "sha256": "57a1a4e192161cd4158502f995e85f7622a8036604bd5948adbf07fdd7818e31",
-      "bytes": 8647
+      "sha256": "57a1a4e192161cd4158502f995e85f7622a8036604bd5948adbf07fdd7818e31"
     },
     {
+      "bytes": 3781,
       "path": "scaffold/storyflow/visual_prompt.py",
-      "sha256": "03645b787615c2d6831cb191af33a04741e153d1f631b5080ceb22d82a9fe41a",
-      "bytes": 3781
+      "sha256": "03645b787615c2d6831cb191af33a04741e153d1f631b5080ceb22d82a9fe41a"
     },
     {
+      "bytes": 34813,
       "path": "scaffold/storyflow/visuals.py",
-      "sha256": "f4ce5b9bc321e521a5b4f881e666851827eaeec269d3befeef79ab0ab965a3fc",
-      "bytes": 34813
+      "sha256": "f4ce5b9bc321e521a5b4f881e666851827eaeec269d3befeef79ab0ab965a3fc"
     },
     {
+      "bytes": 13434,
       "path": "scaffold/storyflow/voice_rewrite.py",
-      "sha256": "e4a6b92c47861af0b0a1d66547ee090183f292bf9183a9521fc1cc0217c78daf",
-      "bytes": 13434
+      "sha256": "e4a6b92c47861af0b0a1d66547ee090183f292bf9183a9521fc1cc0217c78daf"
     },
     {
+      "bytes": 999,
       "path": "scaffold/templates/chapter-transition/default-preset.json",
-      "sha256": "37650a6eab1ccfd8e272bb59d0c69f50b0d326fd0e6112a46bc0729e5928e00d",
-      "bytes": 999
+      "sha256": "37650a6eab1ccfd8e272bb59d0c69f50b0d326fd0e6112a46bc0729e5928e00d"
     },
     {
+      "bytes": 3732,
       "path": "scaffold/templates/chapter-transition/parameters.schema.json",
-      "sha256": "676710514f51ec10b7031f05a11cb9c768450844686025a33ea83968b0db5929",
-      "bytes": 3732
+      "sha256": "676710514f51ec10b7031f05a11cb9c768450844686025a33ea83968b0db5929"
     },
     {
+      "bytes": 0,
       "path": "scaffold/tests/__init__.py",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "bytes": 0
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
+      "bytes": 6801,
       "path": "scaffold/tests/test_alignment_asr_gate.py",
-      "sha256": "b14ff53a9facf82089a563c9ef0eb71797ad96a34a3cab975afca260a97fd033",
-      "bytes": 6801
+      "sha256": "b14ff53a9facf82089a563c9ef0eb71797ad96a34a3cab975afca260a97fd033"
     },
     {
+      "bytes": 1716,
       "path": "scaffold/tests/test_author_route.py",
-      "sha256": "9dcca5b5aaadf9db34ce75170aa58e139394a112f939e6afe20a08e46cfbe232",
-      "bytes": 1716
+      "sha256": "9dcca5b5aaadf9db34ce75170aa58e139394a112f939e6afe20a08e46cfbe232"
     },
     {
+      "bytes": 7703,
       "path": "scaffold/tests/test_burn_frame_mask.py",
-      "sha256": "745f1ba7f31403e501833ee72f99e5df2b62ec9a6e8317d65785d7143623633a",
-      "bytes": 7703
+      "sha256": "745f1ba7f31403e501833ee72f99e5df2b62ec9a6e8317d65785d7143623633a"
     },
     {
+      "bytes": 2214,
       "path": "scaffold/tests/test_burn_timestamps.py",
-      "sha256": "38d5b0a1de3ea1e954499a4e400c16b8f4698c87695fca7a0c90ab4641cc42dd",
-      "bytes": 2214
+      "sha256": "38d5b0a1de3ea1e954499a4e400c16b8f4698c87695fca7a0c90ab4641cc42dd"
     },
     {
+      "bytes": 757,
       "path": "scaffold/tests/test_caption_band_cleanup.py",
-      "sha256": "a6c516ccabd26f24c3e29bebb3efacbc99f4be3229afb9846169f4cf4e115cba",
-      "bytes": 757
+      "sha256": "a6c516ccabd26f24c3e29bebb3efacbc99f4be3229afb9846169f4cf4e115cba"
     },
     {
+      "bytes": 3341,
       "path": "scaffold/tests/test_caption_pipeline.py",
-      "sha256": "ef2902572102a1c6add6dc87ede17291437c1c2aad938a56de2087cd8611e908",
-      "bytes": 3341
+      "sha256": "ef2902572102a1c6add6dc87ede17291437c1c2aad938a56de2087cd8611e908"
     },
     {
+      "bytes": 10730,
       "path": "scaffold/tests/test_caption_upload_only.py",
-      "sha256": "5c1e3866d0eab82555a1c6b953c1e0a745f15e388480aed115c76fbbe76b722f",
-      "bytes": 10730
+      "sha256": "5c1e3866d0eab82555a1c6b953c1e0a745f15e388480aed115c76fbbe76b722f"
     },
     {
+      "bytes": 6863,
       "path": "scaffold/tests/test_chapter_clip_gate.py",
-      "sha256": "63a9e21bf3c506908b478457aeccbf697d2e3be7c5dd46e339e0fc41a4be620a",
-      "bytes": 6863
+      "sha256": "63a9e21bf3c506908b478457aeccbf697d2e3be7c5dd46e339e0fc41a4be620a"
     },
     {
+      "bytes": 1916,
       "path": "scaffold/tests/test_chapter_concat_context.py",
-      "sha256": "3769d73e83f43694507c6369f530185a03391a133bb11f1419e1a85641889869",
-      "bytes": 1916
+      "sha256": "3769d73e83f43694507c6369f530185a03391a133bb11f1419e1a85641889869"
     },
     {
+      "bytes": 14792,
       "path": "scaffold/tests/test_chapter_mix.py",
-      "sha256": "dbf608529b31a3ea473039040bf882a491f89efafa3e8df0ea520abae0d541f7",
-      "bytes": 14792
+      "sha256": "dbf608529b31a3ea473039040bf882a491f89efafa3e8df0ea520abae0d541f7"
     },
     {
+      "bytes": 5677,
       "path": "scaffold/tests/test_chapter_render.py",
-      "sha256": "5f0560c39391928eae13fa3a6e43d006d3b67889ab3bd0bfeb8a06f6106a48fd",
-      "bytes": 5677
+      "sha256": "5f0560c39391928eae13fa3a6e43d006d3b67889ab3bd0bfeb8a06f6106a48fd"
     },
     {
+      "bytes": 3176,
       "path": "scaffold/tests/test_chapters.py",
-      "sha256": "ecf8aab343a054375ac10d11243ad4d5a11e43845b9f15fc27b54250a06c317b",
-      "bytes": 3176
+      "sha256": "ecf8aab343a054375ac10d11243ad4d5a11e43845b9f15fc27b54250a06c317b"
     },
     {
+      "bytes": 3851,
       "path": "scaffold/tests/test_chinese_author_longform.py",
-      "sha256": "92156dfeb5d3b0c91f32dc740c3a68f6a148d43e85fd85ef46fbbc623ff8a136",
-      "bytes": 3851
+      "sha256": "92156dfeb5d3b0c91f32dc740c3a68f6a148d43e85fd85ef46fbbc623ff8a136"
     },
     {
+      "bytes": 13599,
       "path": "scaffold/tests/test_core.py",
-      "sha256": "d3355e5bf0af46eaf93a8f786046656399332c928e3cede6a686b607b3e7faff",
-      "bytes": 13599
+      "sha256": "d3355e5bf0af46eaf93a8f786046656399332c928e3cede6a686b607b3e7faff"
     },
     {
+      "bytes": 6092,
       "path": "scaffold/tests/test_first_frame.py",
-      "sha256": "c28bd23de42440be70f94a4bb3c096b05c99a9296fd4f136bce2c41f930f0d12",
-      "bytes": 6092
+      "sha256": "c28bd23de42440be70f94a4bb3c096b05c99a9296fd4f136bce2c41f930f0d12"
     },
     {
+      "bytes": 68274,
       "path": "scaffold/tests/test_integrations.py",
-      "sha256": "6c8670c989a6161483278f9f78ac2f8d09759c71071f79705ba6fe7a8244d2a1",
-      "bytes": 68274
+      "sha256": "6c8670c989a6161483278f9f78ac2f8d09759c71071f79705ba6fe7a8244d2a1"
     },
     {
+      "bytes": 20093,
       "path": "scaffold/tests/test_learning.py",
-      "sha256": "5ec3bd26027eb3984c5f778378846494c070635621fbb094c44421edd0d4b547",
-      "bytes": 20093
+      "sha256": "5ec3bd26027eb3984c5f778378846494c070635621fbb094c44421edd0d4b547"
     },
     {
+      "bytes": 4208,
       "path": "scaffold/tests/test_learning_options.py",
-      "sha256": "0b94b47eb6c4ae017013ce79ee1c416271385b921bb5858f500e9087f1310e84",
-      "bytes": 4208
+      "sha256": "0b94b47eb6c4ae017013ce79ee1c416271385b921bb5858f500e9087f1310e84"
     },
     {
+      "bytes": 17460,
       "path": "scaffold/tests/test_multilingual_pilot.py",
-      "sha256": "d41ef7129958e61a6afdd8c8419a5663f4ba692e15bce3639cbd2bfbd1579d41",
-      "bytes": 17460
+      "sha256": "d41ef7129958e61a6afdd8c8419a5663f4ba692e15bce3639cbd2bfbd1579d41"
     },
     {
+      "bytes": 8018,
       "path": "scaffold/tests/test_owner_review_pending.py",
-      "sha256": "d950a8528d26972037b721cb9dff46f160198419f73ed7c9c7329ac7001fa596",
-      "bytes": 8018
+      "sha256": "d950a8528d26972037b721cb9dff46f160198419f73ed7c9c7329ac7001fa596"
     },
     {
+      "bytes": 713,
       "path": "scaffold/tests/test_portable.py",
-      "sha256": "78cc931bd620cc51d89aa7b53407eae731de4ecebb4252c03b71b19e4223f152",
-      "bytes": 713
+      "sha256": "78cc931bd620cc51d89aa7b53407eae731de4ecebb4252c03b71b19e4223f152"
     },
     {
+      "bytes": 2431,
       "path": "scaffold/tests/test_providers.py",
-      "sha256": "541909afef77c5ebfd307aeb3ae5a1ae38620560ef9c1ddba2dc133104d452d5",
-      "bytes": 2431
+      "sha256": "541909afef77c5ebfd307aeb3ae5a1ae38620560ef9c1ddba2dc133104d452d5"
     },
     {
+      "bytes": 2403,
       "path": "scaffold/tests/test_public_110.py",
-      "sha256": "eafb2bedda144d71d216f50e8e15a9d11c93d1a93cf08c7f27c6ff7d6f3ed214",
-      "bytes": 2403
+      "sha256": "eafb2bedda144d71d216f50e8e15a9d11c93d1a93cf08c7f27c6ff7d6f3ed214"
     },
     {
+      "bytes": 7629,
       "path": "scaffold/tests/test_readiness_fix2.py",
-      "sha256": "77392107a1dee5e3172c24623a77d1937ca50c2d6a5d8f7164fafcd0d89b3777",
-      "bytes": 7629
+      "sha256": "77392107a1dee5e3172c24623a77d1937ca50c2d6a5d8f7164fafcd0d89b3777"
     },
     {
+      "bytes": 1053,
       "path": "scaffold/tests/test_research_contract.py",
-      "sha256": "b65ca93a6b10f4293f5579e31ee27c1f14109bace1ea5438ccb7436fbbff5e39",
-      "bytes": 1053
+      "sha256": "b65ca93a6b10f4293f5579e31ee27c1f14109bace1ea5438ccb7436fbbff5e39"
     },
     {
+      "bytes": 3083,
       "path": "scaffold/tests/test_revision_gate.py",
-      "sha256": "efce97f8efc807e9cc32059d392cc18005f3c268bd8732006ef90c243502d0d9",
-      "bytes": 3083
+      "sha256": "efce97f8efc807e9cc32059d392cc18005f3c268bd8732006ef90c243502d0d9"
     },
     {
+      "bytes": 10729,
       "path": "scaffold/tests/test_scene_assembly.py",
-      "sha256": "f617cf2fa7bf89addc605b7a5d01525d4df47866c252ffd27d02962607a9356b",
-      "bytes": 10729
+      "sha256": "f617cf2fa7bf89addc605b7a5d01525d4df47866c252ffd27d02962607a9356b"
     },
     {
+      "bytes": 5859,
       "path": "scaffold/tests/test_sound_library.py",
-      "sha256": "c23e475e69af6667e6cdc6cadf8b11460921e712e1e48b17f041827a4e2aa2bf",
-      "bytes": 5859
+      "sha256": "c23e475e69af6667e6cdc6cadf8b11460921e712e1e48b17f041827a4e2aa2bf"
     },
     {
+      "bytes": 15357,
       "path": "scaffold/tests/test_spine_offline_paths.py",
-      "sha256": "38e607fdd6b33be04e3e86caef9629361006ea2783d71423dbe47ddfcfdcd946",
-      "bytes": 15357
+      "sha256": "38e607fdd6b33be04e3e86caef9629361006ea2783d71423dbe47ddfcfdcd946"
     },
     {
+      "bytes": 7334,
       "path": "scaffold/tests/test_style_consumers.py",
-      "sha256": "faafc77208d80a5349775370ba30b7fa41039db527710b8dbf53640c84a15182",
-      "bytes": 7334
+      "sha256": "faafc77208d80a5349775370ba30b7fa41039db527710b8dbf53640c84a15182"
     },
     {
+      "bytes": 9194,
       "path": "scaffold/tests/test_style_registry.py",
-      "sha256": "bdb0c039e081fd89ae92a6b509952ed3c6c05830a0ac6b28ad2ca38fda1fdb38",
-      "bytes": 9194
+      "sha256": "bdb0c039e081fd89ae92a6b509952ed3c6c05830a0ac6b28ad2ca38fda1fdb38"
     },
     {
+      "bytes": 7803,
       "path": "scaffold/tests/test_visual_gate.py",
-      "sha256": "df963a42110f74df950191b0e70e60973dc040a5c12b27ed1c50dee743edd912",
-      "bytes": 7803
+      "sha256": "df963a42110f74df950191b0e70e60973dc040a5c12b27ed1c50dee743edd912"
     },
     {
+      "bytes": 22931,
       "path": "scaffold/tests/test_visuals.py",
-      "sha256": "e6ae56639c377d10cc3201a6198fb72a60143e0c8965e612959d10f6a9f66f48",
-      "bytes": 22931
+      "sha256": "e6ae56639c377d10cc3201a6198fb72a60143e0c8965e612959d10f6a9f66f48"
     },
     {
+      "bytes": 14648,
       "path": "scaffold/tests/test_voice_rewrite.py",
-      "sha256": "d81b691e92d130b1766da5ecb36e7379e2184a8399f9e1fb76610a32d3260243",
-      "bytes": 14648
+      "sha256": "d81b691e92d130b1766da5ecb36e7379e2184a8399f9e1fb76610a32d3260243"
     },
     {
+      "bytes": 3816,
       "path": "scaffold/tests/test_withdrawal.py",
-      "sha256": "c9895a33936385409c1a96d37e446256050d40f933e3cb71d32648042ecacc15",
-      "bytes": 3816
+      "sha256": "c9895a33936385409c1a96d37e446256050d40f933e3cb71d32648042ecacc15"
     },
     {
+      "bytes": 10361,
       "path": "scaffold/tools/burn_subtitles.py",
-      "sha256": "588712bba7cf47c4414a9a3aadddcc67ac0642fb64e25736712618ac8caf94c2",
-      "bytes": 10361
+      "sha256": "588712bba7cf47c4414a9a3aadddcc67ac0642fb64e25736712618ac8caf94c2"
     },
     {
+      "bytes": 6554,
       "path": "scaffold/tools/burn_subtitles_masked.py",
-      "sha256": "fcd59fa44dcfa1b78b044685755d7c6004ae3552eaa2aa2ed6ce943b34f6a01a",
-      "bytes": 6554
+      "sha256": "fcd59fa44dcfa1b78b044685755d7c6004ae3552eaa2aa2ed6ce943b34f6a01a"
     },
     {
+      "bytes": 11922,
       "path": "scaffold/tools/chinese_author.py",
-      "sha256": "91ae25669d750a6d7373c7d11be2d4c946783da191a7dedee4c33cdbd91382ad",
-      "bytes": 11922
+      "sha256": "91ae25669d750a6d7373c7d11be2d4c946783da191a7dedee4c33cdbd91382ad"
     },
     {
+      "bytes": 1784,
       "path": "scaffold/tools/configure_roles.py",
-      "sha256": "925332ceb0de28b1cbf075c4042eac2d8d946c5b49c237b5422cc39ac9188058",
-      "bytes": 1784
+      "sha256": "925332ceb0de28b1cbf075c4042eac2d8d946c5b49c237b5422cc39ac9188058"
     },
     {
+      "bytes": 1817,
       "path": "scaffold/tools/export_cover.py",
-      "sha256": "a6c223e51d6781e34f179fdbc39d54659e9c68335f79a161c2da45fded86dcbb",
-      "bytes": 1817
+      "sha256": "a6c223e51d6781e34f179fdbc39d54659e9c68335f79a161c2da45fded86dcbb"
     },
     {
+      "bytes": 167,
       "path": "scaffold/tools/qy.py",
-      "sha256": "39ab1b58484bc7b2bfe0cdb30a3617d6a7f33b080ac7e1c0df4592742523d068",
-      "bytes": 167
+      "sha256": "39ab1b58484bc7b2bfe0cdb30a3617d6a7f33b080ac7e1c0df4592742523d068"
     }
   ],
   "install": {
@@ -834,7 +836,7 @@
       "阅读 documentation/PROVIDERS.md，按自己的环境配置依赖、字体和供应商；不默认开始付费制作。",
       "安装后执行 python3 tools/configure_roles.py --execute 配置本工作区thumbnail-designer的gpt-6.1-sol；缺Codex内置image_gen不得用收费API冒充。"
     ],
-    "verify": "python3 bin/story-animation doctor"
+    "verify": "python3 scaffold/bin/story-animation doctor"
   },
   "name": "story-animation",
   "permissions": {
@@ -963,16 +965,16 @@
       "name": "thumbnail-designer"
     },
     {
-      "name": "thumbnail-preproducer",
-      "description": "Final-canvas thumbnail contract, dedicated Codex designer handoff, prepare/verify/consume gate before final composition."
+      "description": "Final-canvas thumbnail contract, dedicated Codex designer handoff, prepare/verify/consume gate before final composition.",
+      "name": "thumbnail-preproducer"
     },
     {
-      "name": "dedup-adviser",
-      "description": "Independent compact SQL/vector duplicate and angle advice; frozen plan first."
+      "description": "Independent compact SQL/vector duplicate and angle advice; frozen plan first.",
+      "name": "dedup-adviser"
     },
     {
-      "name": "feedback-analyst",
-      "description": "Independent opt-in public comment assessment; exact approved replies and provenance-preserving topic suggestions."
+      "description": "Independent opt-in public comment assessment; exact approved replies and provenance-preserving topic suggestions.",
+      "name": "feedback-analyst"
     }
   ],
   "schema_version": "agentj.catalog/v1",
@@ -987,5 +989,6 @@
   "title_en": "Story Animation",
   "title_zh": "Story Animation 动画故事工作流",
   "type": "workflow",
-  "version": "1.2.3"
+  "version": "1.2.4",
+  "updated_at": "2026-11-05"
 }

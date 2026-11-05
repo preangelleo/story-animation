@@ -12,16 +12,18 @@ The R2 video has burned-in Simplified Chinese captions. The YouTube alternative 
 
 The pilot is a showcase, not an MIT-licensed media asset. It includes authorized cloned narration and provider-generated content; the code license does not grant rights to reuse the voice or redistribute the media.
 
+Installation verification hotfix: 1.2.4 runs `python3 scaffold/bin/story-animation doctor` from the package root. Plaza signed package SHA256: `f4cdad2c8f9a8658698a8e1af2a27ff53ef708c4ccbe02d06aa2b74c12c7cbcc`.
+
 ## Give this prompt to Agent J
 
-> Find **Story Animation** in Agent J Plaza: ID `story-animation`, version `1.2.3`. Authors may use Codex, Claude, Ark or my own adapter. Keep all learning modules off initially; explain the requirements and costs of SQL facts, real embeddings/outbox, independent dedup, comments and topic suggestions. Replies remain read-only unless I explicitly enable them. Read its manifest, README, skills and provider requirements. Preview installation in a new independent workspace and explain permissions, verification status and the native confirmation process. Check my models, image generation, narration, forced alignment, fonts and rendering environment. Use a secret card or my approved secret manager for credentials. Distinguish verified integrations from alternatives that need adaptation. Report missing setup, propose research and a production budget, and wait for my approval before paid work. Do not purchase services, inherit another channel's account, publish or enable automation. If parameters cannot meet my needs, propose source changes first.
+> Find **Story Animation** in Agent J Plaza: ID `story-animation`, version `1.2.4`. Authors may use Codex, Claude, Ark or my own adapter. Keep all learning modules off initially; explain the requirements and costs of SQL facts, real embeddings/outbox, independent dedup, comments and topic suggestions. Replies remain read-only unless I explicitly enable them. Read its manifest, README, skills and provider requirements. Preview installation in a new independent workspace and explain permissions, verification status and the native confirmation process. Check my models, image generation, narration, forced alignment, fonts and rendering environment. Use a secret card or my approved secret manager for credentials. Distinguish verified integrations from alternatives that need adaptation. Report missing setup, propose research and a production budget, and wait for my approval before paid work. Do not purchase services, inherit another channel's account, publish or enable automation. If parameters cannot meet my needs, propose source changes first.
 
 ## Install or inspect
 
 Full Plaza downloads require an account with a paid seat. This repository is publicly readable and clonable. Third-party services have separate costs. The native command previews installation by default:
 
 ```sh
-agentj plaza install story-animation --version 1.2.3 --workspace /your/new/story-workspace --harness codex
+agentj plaza install story-animation --version 1.2.4 --workspace /your/new/story-workspace --harness codex
 ```
 
 Replace the example path. Follow your installed CLI's `--help`, permission, digest and confirmation flow. Community availability does not imply official certification; do not bypass verification.
@@ -41,7 +43,7 @@ Install or copy the scaffold to your own independent workspace before real produ
 | Capability | Accepted pilot / public implementation | Alternatives |
 |---|---|---|
 | Orchestration and images | Codex with built-in `image_gen`; thumbnail role configured as `gpt-6.1-sol` | Other harnesses or image providers need explicit adapters and verification of references and output contracts |
-| Script author | The 1.1.0 pilot used OpenCode + Ark Agent Plan `doubao-seed-2.1-pro`; 1.2.3 reads configurable author.provider | Codex/Claude/custom tool-free handoff or installer-owned adapter; verify authentication, costs and quality; no silent metered fallback |
+| Script author | The 1.1.0 pilot used OpenCode + Ark Agent Plan `doubao-seed-2.1-pro`; 1.2.4 reads configurable author.provider | Codex/Claude/custom tool-free handoff or installer-owned adapter; verify authentication, costs and quality; no silent metered fallback |
 | Narration and alignment | Own ElevenLabs key and authorized voice; pilot used `eleven_v4`, public default is `eleven_multilingual_v2` | Fish Audio or Volcengine can be adapted, but are not advertised as validated drop-in integrations |
 | Rendering | Python 3.11+, ffmpeg/ffprobe, Fontconfig, Node, HyperFrames 0.8.225 and browser dependencies | Supply fonts you have the right to use |
 | Video inserts | Pilot: Seedance2.5; optional Replicate integration, up to three clips of about ten seconds | Model/version parameters do not guarantee provider availability, prices or access |
